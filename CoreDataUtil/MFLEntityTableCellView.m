@@ -14,9 +14,6 @@
 
 @implementation MFLEntityTableCellView
 
-@synthesize label = _label;
-@synthesize countButton = _countButton;
-
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
@@ -30,13 +27,13 @@
 
 - (CGFloat)widthOfString:(NSString *)string withFont:(NSFont *)font
 {
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+    NSDictionary *attributes = @{NSFontAttributeName: font};
     return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
 }
 
 - (CGFloat)heightOfString:(NSString *)string withFont:(NSFont *)font
 {
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+    NSDictionary *attributes = @{NSFontAttributeName: font};
     return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].height;
 }
 

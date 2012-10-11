@@ -11,11 +11,6 @@
 
 @implementation MFLInAppPurchaseHelper
 
-@synthesize productIdentifiers = _productIdentifiers;
-@synthesize products = _products;
-@synthesize purchasedProducts = _purchasedProducts;
-@synthesize request = _request;
-
 - (id)initWithProductIdentifiers:(NSSet *)productIds
 {
     if ((self = [super init]))

@@ -35,32 +35,6 @@
 
 @implementation OpenFileSheetController
 
-@synthesize tabView = _tabView;
-@synthesize fileTabModelTextField = _fileTabModelTextField;
-@synthesize fileTabPersistenceTextField = _fileTabPersistenceTextField;
-@synthesize fileTabPersistenceFormat = _fileTabPersistenceFormat;
-@synthesize processTabModelTextField = _processTabModelTextField;
-@synthesize processTabPersistenceTextField = _processTabPersistenceTextField;
-@synthesize processTabPersistenceFormat = _processTabPersistenceFormat;
-@synthesize simulatorTabModelTextField = _simulatorTabModelTextField;
-@synthesize simulatorTabPersistenceTextField = _simulatorTabPersistenceTextField;
-@synthesize fileTabPersistenceFileButton = _fileTabPersistenceFileButton;
-@synthesize fileTabSimulatorDirectoryButton = _fileTabSimulatorDirectoryButton;
-@synthesize processTabPersistenceFileButton = _processTabPersistenceFileButton;
-@synthesize processTabAppSupportButton = _processTabAppSupportButton;
-@synthesize simulatorTabPersistenceFileButton = _simulatorTabPersistenceFileButton;
-@synthesize simulatorTabSimulatorDirectoryButton = _simulatorTabSimulatorDirectoryButton;
-@synthesize simulatorTabPersistenceFormat = _simulatorTabPersistenceFormat;
-@synthesize openButton = _openButton;
-@synthesize processSelectorBox = _processSelectorBox;
-@synthesize comboSelectorDialog = _comboSelectorDialog;
-
-@synthesize initialValues = _initialValues;
-@synthesize momFileUrl = _momFileUrl;
-@synthesize dbFileUrl = _dbFileUrl;
-@synthesize savedFields = _savedFields;
-@synthesize processList = _processList;
-@synthesize simulatorUrlList = _simulatorUrlList;
 
 - (id)initWithWindowNibName:(NSString *)windowNibName
 {

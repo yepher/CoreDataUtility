@@ -10,9 +10,6 @@
 
 @implementation InAppPurchaseTableCellView
 
-@synthesize infoField = _infoField;
-@synthesize priceField = _priceField;
-
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];

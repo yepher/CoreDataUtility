@@ -25,23 +25,17 @@
 
 @implementation MFLAppDelegate
 
-@synthesize openFileSheetController = _openFileSheetController;
-@synthesize inAppPurchaseSheetController = _inAppPurchaseSheetController;
-@synthesize mainWindowController = _mainWindowController;
-@synthesize projectHasChanged = _projectHasChanged;
-@synthesize window = _window;
-
 
 - (BOOL) openFileHelper: (NSString*) filename {
     if ([filename hasSuffix:MFL_COREDATA_PROJECT_EXTENSION]) {        
         
         NSLog(@"Load Project File: [%@]", filename);
         NSDictionary* project = [NSDictionary dictionaryWithContentsOfFile:filename];
-        NSString* momFilePath = [project objectForKey:MFL_MOM_FILE_KEY];
-        NSString* dbFilePath = [project objectForKey:MFL_DB_FILE_KEY];
-        NSNumber* persistenceFormat = [project objectForKey:MFL_DB_FORMAT_KEY];
+        NSString* momFilePath = project[MFL_MOM_FILE_KEY];
+        NSString* dbFilePath = project[MFL_DB_FILE_KEY];
+        NSNumber* persistenceFormat = project[MFL_DB_FORMAT_KEY];
         if (persistenceFormat == nil) {
-            persistenceFormat = [NSNumber numberWithInt:MFL_SQLiteStoreType];
+            persistenceFormat = @MFL_SQLiteStoreType;
         }
         
         NSURL* momUrl = nil;
@@ -66,9 +60,7 @@
     } else if ([filename hasSuffix:MFL_MOM_FILE_EXTENSION]) {
         NSLog(@"Load MOM File: [%@]", filename);
         //NSURL* momUrl = [NSURL fileURLWithPath:filename];
-        NSDictionary* initialValue = [NSDictionary dictionaryWithObjectsAndKeys:
-                                      filename, MFL_MOM_FILE_KEY,
-                                      nil];
+        NSDictionary* initialValue = @{MFL_MOM_FILE_KEY: filename};
         
         if (self.openFileSheetController != nil) {
             NSBeep();
@@ -78,15 +70,15 @@
         self.openFileSheetController = [[OpenFileSheetController alloc] initWithWindowNibName:@"OpenFileSheetController"];
         NSDictionary *newValues = [self.openFileSheetController show:self.window: initialValue];
         self.openFileSheetController = nil;
-        if ([newValues objectForKey:MFL_MOM_FILE_KEY] != nil && [newValues objectForKey:MFL_DB_FILE_KEY] != nil)
+        if (newValues[MFL_MOM_FILE_KEY] != nil && newValues[MFL_DB_FILE_KEY] != nil)
         {
             
-            NSNumber* persistenceFormat = [newValues objectForKey:MFL_DB_FORMAT_KEY];
+            NSNumber* persistenceFormat = newValues[MFL_DB_FORMAT_KEY];
             if (persistenceFormat == nil) {
-                persistenceFormat = [NSNumber numberWithInt:MFL_SQLiteStoreType];
+                persistenceFormat = @MFL_SQLiteStoreType;
             }
             
-            BOOL result = [self.mainWindowController openFiles:[newValues objectForKey:MFL_MOM_FILE_KEY] :[newValues objectForKey:MFL_DB_FILE_KEY]: [persistenceFormat intValue]];
+            BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] :newValues[MFL_DB_FILE_KEY]: [persistenceFormat intValue]];
             
             if (result)
             {
@@ -116,15 +108,15 @@
         self.openFileSheetController = [[OpenFileSheetController alloc] initWithWindowNibName:@"OpenFileSheetController"];
         NSDictionary *newValues = [self.openFileSheetController show:self.window: project];
         self.openFileSheetController = nil;
-        if ([newValues objectForKey:MFL_MOM_FILE_KEY] != nil && [newValues objectForKey:MFL_DB_FILE_KEY] != nil)
+        if (newValues[MFL_MOM_FILE_KEY] != nil && newValues[MFL_DB_FILE_KEY] != nil)
         {
             
-            NSNumber* persistenceFormat = [newValues objectForKey:MFL_DB_FORMAT_KEY];
+            NSNumber* persistenceFormat = newValues[MFL_DB_FORMAT_KEY];
             if (persistenceFormat == nil) {
-                persistenceFormat = [NSNumber numberWithInt:MFL_SQLiteStoreType];
+                persistenceFormat = @MFL_SQLiteStoreType;
             }
             
-            BOOL result = [self.mainWindowController openFiles:[newValues objectForKey:MFL_MOM_FILE_KEY] :[newValues objectForKey:MFL_DB_FILE_KEY]: [persistenceFormat intValue]];
+            BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] :newValues[MFL_DB_FILE_KEY]: [persistenceFormat intValue]];
             
             if (result)
             {
@@ -177,8 +169,8 @@
         // If there is a recent document, try to open it.
         if ([documents count] > 0)
         {
-            [self openFileHelper:[[documents objectAtIndex:0] path]];
-            if ([[[documents objectAtIndex:0] absoluteString] hasSuffix:MFL_COREDATA_PROJECT_EXTENSION])
+            [self openFileHelper:[documents[0] path]];
+            if ([[documents[0] absoluteString] hasSuffix:MFL_COREDATA_PROJECT_EXTENSION])
             {
                 self.projectHasChanged = false;
             }
@@ -205,7 +197,7 @@
 {
     NSLog(@"openAction: [%@]", sender);
     [self.window makeKeyAndOrderFront:self];
-    NSArray *fileTypes = [[NSArray alloc] initWithObjects:MFL_COREDATA_PROJECT_EXTENSION, MFL_COREDATA_PROJECT_EXTENSION_UPERCASE, MFL_COREDATA_EDITOR_PROJECT_EXTENSION, nil];
+    NSArray *fileTypes = @[MFL_COREDATA_PROJECT_EXTENSION, MFL_COREDATA_PROJECT_EXTENSION_UPERCASE, MFL_COREDATA_EDITOR_PROJECT_EXTENSION];
     
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     [openDlg setCanChooseFiles:YES];
@@ -213,7 +205,7 @@
     
     if ([openDlg runModal] == NSOKButton)
     {
-        NSString *filename = [[[openDlg URLs] objectAtIndex:0] path];
+        NSString *filename = [[openDlg URLs][0] path];
         [self openFileHelper:filename];
     }
 }
@@ -229,15 +221,15 @@
     self.openFileSheetController = [[OpenFileSheetController alloc] initWithWindowNibName:@"OpenFileSheetController"];
     NSDictionary *newValues = [self.openFileSheetController show:self.window];
     self.openFileSheetController = nil;
-    if ([newValues objectForKey:MFL_MOM_FILE_KEY] != nil && [newValues objectForKey:MFL_DB_FILE_KEY] != nil)
+    if (newValues[MFL_MOM_FILE_KEY] != nil && newValues[MFL_DB_FILE_KEY] != nil)
     {
         
-        NSNumber* persistenceFormat = [newValues objectForKey:MFL_DB_FORMAT_KEY];
+        NSNumber* persistenceFormat = newValues[MFL_DB_FORMAT_KEY];
         if (persistenceFormat == nil) {
-            persistenceFormat = [NSNumber numberWithInt:MFL_SQLiteStoreType];
+            persistenceFormat = @MFL_SQLiteStoreType;
         }
         
-        BOOL result = [self.mainWindowController openFiles:[newValues objectForKey:MFL_MOM_FILE_KEY] :[newValues objectForKey:MFL_DB_FILE_KEY]: [persistenceFormat intValue]];
+        BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] :newValues[MFL_DB_FILE_KEY]: [persistenceFormat intValue]];
 
         if (result) {
             self.projectHasChanged = true;
@@ -249,7 +241,7 @@
     if (self.mainWindowController == nil) {return;}
     if (self.mainWindowController.persistenceFileUrl == nil) {return; }
     
-    NSArray *fileURLs = [NSArray arrayWithObjects:self.mainWindowController.persistenceFileUrl, nil];
+    NSArray *fileURLs = @[self.mainWindowController.persistenceFileUrl];
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:fileURLs];
 }
 
@@ -257,7 +249,7 @@
     if (self.mainWindowController == nil) {return;}
     if (self.mainWindowController.momFileUrl == nil) {return; }
     
-    NSArray *fileURLs = [NSArray arrayWithObjects:self.mainWindowController.momFileUrl, nil];
+    NSArray *fileURLs = @[self.mainWindowController.momFileUrl];
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:fileURLs];
 }
 
@@ -310,23 +302,21 @@
     
     if (momfileUrl != nil)
     {
-        NSArray *fileTypes = [[NSArray alloc] initWithObjects:MFL_COREDATA_PROJECT_EXTENSION, MFL_COREDATA_PROJECT_EXTENSION_UPERCASE, MFL_COREDATA_EDITOR_PROJECT_EXTENSION, nil];
+        NSArray *fileTypes = @[MFL_COREDATA_PROJECT_EXTENSION, MFL_COREDATA_PROJECT_EXTENSION_UPERCASE, MFL_COREDATA_EDITOR_PROJECT_EXTENSION];
         
         NSSavePanel* saveDlg = [NSSavePanel savePanel];
         [saveDlg setAllowedFileTypes:fileTypes];
         
         NSArray *documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentURLString = [URL_FILE_BEGINNING stringByAppendingString:[documents objectAtIndex:0]];
+        NSString *documentURLString = [URL_FILE_BEGINNING stringByAppendingString:documents[0]];
         [saveDlg setDirectoryURL:[NSURL URLWithString:documentURLString]];
         
         if ([saveDlg runModal] == NSSaveAsOperation)
         {
-            NSDictionary *stuffToSave = [NSDictionary dictionaryWithObjectsAndKeys:
-                                         [NSNumber numberWithInt:1], MFL_PROJECT_FILE_VERSION_KEY,
-                                         [momfileUrl absoluteString], MFL_MOM_FILE_KEY,
-                                         [NSNumber numberWithInt:(int)persistenceType], MFL_DB_FORMAT_KEY,
-                                         [persistenceUrl absoluteString], MFL_DB_FILE_KEY,
-                                         nil];
+            NSDictionary *stuffToSave = @{MFL_PROJECT_FILE_VERSION_KEY: @1,
+                                         MFL_MOM_FILE_KEY: [momfileUrl absoluteString],
+                                         MFL_DB_FORMAT_KEY: @((int)persistenceType),
+                                         MFL_DB_FILE_KEY: [persistenceUrl absoluteString]};
             
             if (![stuffToSave writeToURL:[saveDlg URL] atomically:NO])
             {
@@ -398,7 +388,7 @@
 
 - (IBAction)reportAnIssueAction:(id)sender
 {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://fluentfactory.com/support_ticket.php"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/yepher/CoreDataUtility/issues"]];
 }
 
 @end

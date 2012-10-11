@@ -41,22 +41,6 @@
 
 @implementation MFLMainWindowController
 
-@synthesize coreDataIntrospection = _coreDataIntrospection;
-@synthesize dateStyle = _dateStyle;
-@synthesize sortType = _sortType;
-@synthesize lastColumn = _lastColumn;
-@synthesize baseRowTemplates = _baseRowTemplates;
-@synthesize predicateEditor = _predicateEditor;
-
-
-@synthesize userSelecteddateFormat = _userSelecteddateFormat;
-@synthesize dataSourceList = _dataSourceList;
-@synthesize entityContentTable = _entityContentTable;
-@synthesize predicateSheet = _predicateSheet;
-@synthesize preferenceSheetMatrix = _preferenceSheetMatrix;
-@synthesize generatedPredicateLabel = _generatedPredicateLabel;
-@synthesize historySegmentedControl = _historySegmentedControl;
-
 
 - (id)initWithWindow:(NSWindow *)window
 {
@@ -152,7 +136,7 @@
     //    }
     
     NSMutableDictionary *bindingOptions=[NSMutableDictionary dictionary];
-    [bindingOptions setObject:[NSNumber numberWithBool:YES] forKey:NSValidatesImmediatelyBindingOption];
+    bindingOptions[NSValidatesImmediatelyBindingOption] = @YES;
     
     // You can probably do some sort of dynamic binding here:
     //NSString *keyPath = [NSString stringWithFormat:@"arrangedObjects.%@", ident];
@@ -165,7 +149,7 @@
     //NSLog(@"==== removeColumns");
     while ([[self entityContentTable] numberOfColumns] > 0)
     {
-        [self.entityContentTable removeTableColumn:[[self.entityContentTable tableColumns] objectAtIndex:0]];
+        [self.entityContentTable removeTableColumn:[self.entityContentTable tableColumns][0]];
     }
     //NSLog(@"There are now %ld columns", [[self entityContentTable] numberOfColumns]);
 }
@@ -630,7 +614,7 @@
     NSInteger column = [self.dataSourceList columnForView:sender];
     NSArray *columns = [self.entityContentTable tableColumns];
     
-    id valueObj = [self getValueObjFromDataRows:self.entityContentTable :row :[columns objectAtIndex:column]];
+    id valueObj = [self getValueObjFromDataRows:self.entityContentTable :row :columns[column]];
     
     if (valueObj != nil)
     {
@@ -646,8 +630,8 @@
         {
             NSArray *array = (NSArray *)valueObj;
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", array];
-            [self reloadEntityDataTable:[[[array objectAtIndex:0] entity] name] :predicate];
-            [self.coreDataIntrospection updateCoreDataHistory:[[[array objectAtIndex:0] entity] name] :predicate];
+            [self reloadEntityDataTable:[[array[0] entity] name] :predicate];
+            [self.coreDataIntrospection updateCoreDataHistory:[[array[0] entity] name] :predicate];
             [self enableDisableHistorySegmentedControls];
         }
         else if ([valueObj isKindOfClass:[NSSet class]])
@@ -669,7 +653,7 @@
     if ([control selectedSegment] == 0 && [self canEnableBackHistoryControl])
     {
         [self.coreDataIntrospection setCurrentHistoryIndex:currentIndex+1];
-        CoreDataHistoryObject *historyObj = [self.coreDataIntrospection.coreDataHistory objectAtIndex:[self.coreDataIntrospection getCurrentHistoryIndex]];
+        CoreDataHistoryObject *historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
         [self reloadEntityDataTable:historyObj.entityName :historyObj.predicate]; 
         [self enableDisableHistorySegmentedControls];
     }
@@ -677,7 +661,7 @@
     else if ([control selectedSegment] == 1 && [self canEnableForwardHistoryControl])
     {
         [self.coreDataIntrospection setCurrentHistoryIndex:currentIndex-1];
-        CoreDataHistoryObject *historyObj = [self.coreDataIntrospection.coreDataHistory objectAtIndex:[self.coreDataIntrospection getCurrentHistoryIndex]];
+        CoreDataHistoryObject *historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
         [self reloadEntityDataTable:historyObj.entityName :historyObj.predicate];
         [self enableDisableHistorySegmentedControls];
     }
@@ -750,7 +734,7 @@
     {
         if (self.coreDataIntrospection.coreDataHistory != nil && [self.coreDataIntrospection.coreDataHistory count] > 0)
         {
-            CoreDataHistoryObject *historyObj = [self.coreDataIntrospection.coreDataHistory objectAtIndex:[self.coreDataIntrospection getCurrentHistoryIndex]];
+            CoreDataHistoryObject *historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
             entityDescription = [self.coreDataIntrospection entityDescriptionForName:historyObj.entityName];
         }
     }
@@ -789,7 +773,7 @@
     NSMutableArray* allTemplates = [NSMutableArray arrayWithArray:self.baseRowTemplates];
     if (self.coreDataIntrospection.coreDataHistory != nil && [self.coreDataIntrospection.coreDataHistory count] > 0)
     {
-        CoreDataHistoryObject *historyObj = [self.coreDataIntrospection.coreDataHistory objectAtIndex:[self.coreDataIntrospection getCurrentHistoryIndex]];
+        CoreDataHistoryObject *historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
         NSPredicateEditorRowTemplate *row = [[NSPredicateEditorRowTemplate alloc] init];
         [row setPredicate:historyObj.predicate];
         [allTemplates addObject:row];

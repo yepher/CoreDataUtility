@@ -10,7 +10,6 @@
 
 @implementation MFLTextTableCellView
 
-@synthesize infoField = _infoField;
 
 - (id)initWithFrame:(NSRect)frame
 {

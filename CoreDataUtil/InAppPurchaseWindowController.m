@@ -16,7 +16,6 @@
 
 @implementation InAppPurchaseWindowController
 
-@synthesize inAppPurchaseTableView;
 
 - (id)initWithWindowNibName:(NSString *)windowNibName
 {
@@ -105,7 +104,7 @@
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {    
-    SKProduct *product = [[MFLInAppPurchaseHelperSubclass sharedHelper].products objectAtIndex:row];
+    SKProduct *product = ([MFLInAppPurchaseHelperSubclass sharedHelper].products)[row];
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
@@ -152,7 +151,7 @@
         return;
     }
 
-    SKProduct *product = [[MFLInAppPurchaseHelperSubclass sharedHelper].products objectAtIndex:selectedRow];
+    SKProduct *product = ([MFLInAppPurchaseHelperSubclass sharedHelper].products)[selectedRow];
     [[MFLInAppPurchaseHelperSubclass sharedHelper] buyProduct:product];
 }
 

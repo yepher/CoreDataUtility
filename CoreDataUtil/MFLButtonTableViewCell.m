@@ -17,9 +17,6 @@
 
 @implementation MFLButtonTableViewCell
 
-@synthesize infoField = _infoField;
-@synthesize cellButton = _cellButton;
-
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];

@@ -52,17 +52,15 @@
     NSArray* results = [self executeFetchRequest:managedObjectContext :fetchRequest];
     
     if (results != nil && [results count] > 0) {
-        NSManagedObject* object = [results objectAtIndex:0];
+        NSManagedObject* object = results[0];
         
         NSURL* modelURL = [object valueForKey:@"modelURL"];
         NSURL* storeURL = [object valueForKey:@"storeURL"];
         
         NSLog(@"modelURL: %@\nstoreURL: %@",modelURL, storeURL);
-        NSDictionary* newValues = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSNumber numberWithInt:MFL_SQLiteStoreType], MFL_DB_FORMAT_KEY,
-                                   [modelURL path], MFL_MOM_FILE_KEY,
-                                   [storeURL path], MFL_DB_FILE_KEY,
-                                   nil];
+        NSDictionary* newValues = @{MFL_DB_FORMAT_KEY: @MFL_SQLiteStoreType,
+                                   MFL_MOM_FILE_KEY: [modelURL path],
+                                   MFL_DB_FILE_KEY: [storeURL path]};
         
         return newValues;
     }

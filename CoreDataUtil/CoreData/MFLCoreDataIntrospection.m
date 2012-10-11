@@ -22,19 +22,6 @@
 
 @implementation MFLCoreDataIntrospection
 
-@synthesize delegate = _delegate;
-
-@synthesize storeType = _storeType;
-@synthesize objModel = _objModel;
-@synthesize momFileUrl = _momFileUrl;
-@synthesize dbFileUrl = _dbFileUrl;
-
-@synthesize entities = _entities;
-@synthesize entityData = _entityData;
-
-@synthesize dateStyle = _dateStyle;
-@synthesize coreDataHistory = _coreDataHistory;
-
 - (id)init
 {
     self = [super init];
@@ -146,7 +133,7 @@
 }
 
 - (NSEntityDescription*) entityDescription:(NSUInteger) index {
-    NSEntityDescription* entityDescription = [[self.objModel entities] objectAtIndex:index];
+    NSEntityDescription* entityDescription = [self.objModel entities][index];
     return entityDescription;
 }
 
@@ -237,7 +224,7 @@
             comparisonSelector = @selector(caseInsensitiveCompare:);
         }
         
-        [columnObjs setObject:valueObj forKey:[NSString stringWithFormat:@"%ld", rowNum]];
+        columnObjs[[NSString stringWithFormat:@"%ld", rowNum]] = valueObj;
         rowNum++;
     }
     
@@ -252,7 +239,7 @@
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     for (NSString *oldRowNum in sortedColumns)
     {
-        [temp addObject:[self.entityData objectAtIndex:[oldRowNum integerValue]]];
+        [temp addObject:(self.entityData)[[oldRowNum integerValue]]];
     }
     self.entityData = temp;
 }
@@ -348,9 +335,9 @@
 }
                               
 - (NSError *)errnoErrorWithReason:(NSString *)reason {
-    NSString *errMsg = [NSString stringWithUTF8String:strerror(errno)];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:errMsg, NSLocalizedDescriptionKey,
-                            reason, NSLocalizedFailureReasonErrorKey, nil];
+    NSString *errMsg = @(strerror(errno));
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errMsg,
+                            NSLocalizedFailureReasonErrorKey: reason};
 
     return [NSError errorWithDomain:NSPOSIXErrorDomain code:errno userInfo:userInfo];
 }
@@ -376,7 +363,7 @@
 }
 
 - (NSString*) entityAtIndex:(NSUInteger) index {
-    return [self.entities objectAtIndex:index];
+    return (self.entities)[index];
 }
 
 - (NSUInteger) entityDataCountAtIndex: (NSUInteger) index
@@ -394,7 +381,7 @@
 }
 
 - (NSArray*) getDataAtRow: (NSUInteger) row {
-    return [self.entityData objectAtIndex:row];
+    return (self.entityData)[row];
 }
 
 - (NSInteger)getCurrentHistoryIndex
@@ -433,8 +420,8 @@
     // handle any duplicate objects that are side-by-side
     if (([self.coreDataHistory count] >= 2) && (currentHistoryIndex <= [self.coreDataHistory count] - 2))
     {
-        CoreDataHistoryObject *currentObj = [self.coreDataHistory objectAtIndex:currentHistoryIndex];
-        CoreDataHistoryObject *nextObj = [self.coreDataHistory objectAtIndex:currentHistoryIndex + 1];
+        CoreDataHistoryObject *currentObj = (self.coreDataHistory)[currentHistoryIndex];
+        CoreDataHistoryObject *nextObj = (self.coreDataHistory)[currentHistoryIndex + 1];
         if ([currentObj isEqualTo:nextObj] || 
             [[self fetchObjectsByEntityName:currentObj.entityName :currentObj.predicate] isEqualTo:[self fetchObjectsByEntityName:nextObj.entityName :nextObj.predicate]])
         {

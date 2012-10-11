@@ -10,9 +10,6 @@
 
 @implementation CoreDataHistoryObject
 
-@synthesize entityName;
-@synthesize predicate;
-
 - (BOOL)isEqualTo:(id)object
 {
     if ([object isKindOfClass:[CoreDataHistoryObject class]])

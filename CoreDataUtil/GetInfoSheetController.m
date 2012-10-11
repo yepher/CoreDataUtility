@@ -28,14 +28,6 @@
 
 @implementation GetInfoSheetController
 
-@synthesize entityNameTextField = _entityNameTextField;
-@synthesize entityUserInfoTableView = _entityUserInfoTableView;
-@synthesize entityDescriptionOutlineView = _entityDescriptionOutlineView;
-@synthesize parentCells = _parentCells;
-@synthesize childCells = _childCells;
-@synthesize initialValues = _initialValues;
-@synthesize entityUserInfo = _entityUserInfo;
-
 - (id)initWithWindowNibName:(NSString *)windowNibName
 {
     self = [super initWithWindowNibName:windowNibName];
@@ -76,7 +68,7 @@
 {
     while ([[self entityUserInfoTableView] numberOfColumns] > 0)
     {
-        [self.entityUserInfoTableView removeTableColumn:[[self.entityUserInfoTableView tableColumns] objectAtIndex:0]];
+        [self.entityUserInfoTableView removeTableColumn:[self.entityUserInfoTableView tableColumns][0]];
     }
 }
 
@@ -344,7 +336,7 @@
         }
         [self.parentCells addObject:parent];
         
-        [self.childCells setObject:[self createCellChildrenCells:property] forKey:key];
+        (self.childCells)[key] = [self createCellChildrenCells:property];
     }
 }
 
@@ -379,7 +371,7 @@
     else
     {
         EntityDataTableViewCell *parent = (EntityDataTableViewCell *)item;
-        return [[self.childCells objectForKey:parent.cellText] count];
+        return [(self.childCells)[parent.cellText] count];
     }
 }
 
@@ -399,11 +391,11 @@
     EntityDataTableViewCell *cell = (EntityDataTableViewCell *)item;
     if (cell == nil)
     {
-        return [self.parentCells objectAtIndex:index];
+        return (self.parentCells)[index];
     }
     else
     {
-        return [[self.childCells objectForKey:cell.cellText] objectAtIndex:index];
+        return (self.childCells)[cell.cellText][index];
     }
 }
 
@@ -435,7 +427,7 @@
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(NSInteger)rowIndex
 {
-    NSString *key = [[self.entityUserInfo allKeys] objectAtIndex:rowIndex];
+    NSString *key = [self.entityUserInfo allKeys][rowIndex];
     
     if ([[aTableColumn identifier] isEqualToString:@"Key"])
     {
@@ -443,7 +435,7 @@
     }
     else
     {
-        return [self.entityUserInfo objectForKey:key];
+        return (self.entityUserInfo)[key];
     }
 }
 

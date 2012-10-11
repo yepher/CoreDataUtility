@@ -9,10 +9,6 @@
 #import "MFLCoreDataCommon.h"
 
 @implementation MFLCoreDataCommon
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-@synthesize context = _context;
-@synthesize managedObjectContext = _managedObjectContext;
 
 /**
  Creates if necessary and returns the managed object model for the application.
@@ -50,7 +46,7 @@
     NSURL *applicationFilesDirectory = [self applicationFilesDirectory];
     NSError *error = nil;
     
-    NSDictionary *properties = [applicationFilesDirectory resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] error:&error];
+    NSDictionary *properties = [applicationFilesDirectory resourceValuesForKeys:@[NSURLIsDirectoryKey] error:&error];
     if (!properties)
     {
         BOOL ok = NO;
@@ -66,7 +62,7 @@
     }
     else
     {
-        if ([[properties objectForKey:NSURLIsDirectoryKey] boolValue] != YES)
+        if ([properties[NSURLIsDirectoryKey] boolValue] != YES)
         {
             // Customize and localize this error.
             NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]]; 

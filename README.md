@@ -60,6 +60,8 @@ In many ways CoreDataUtility is similar to CoreDataEditor.
 This tool looks really cool but I never quite figured it out:
     http://pmougin.wordpress.com/2010/04/11/core-data-browser-app/
 
+This tool looks good:
+    http://corner.squareup.com/2012/08/ponydebugger-remote-debugging.html
 
 TODO
 ===============

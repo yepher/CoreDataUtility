@@ -22,7 +22,6 @@
 
 @implementation EntityDataTableViewCell
 
-@synthesize cellText = _cellText;
 
 - (CellType)getCellType
 {
@@ -131,9 +130,8 @@
     }
     textOrigin.y = cellFrame.origin.y;
     
-    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [NSColor blackColor], NSForegroundColorAttributeName,
-                                    textFont, NSFontAttributeName, nil];
+    NSDictionary *textAttributes = @{NSForegroundColorAttributeName: [NSColor blackColor],
+                                    NSFontAttributeName: textFont};
     
     NSString *text = self.cellText;
     if ([self widthOfString:text withFont:textFont] >= maxWidth)
@@ -160,7 +158,7 @@
 
 - (CGFloat)widthOfString:(NSString *)string withFont:(NSFont *)font
 {
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+    NSDictionary *attributes = @{NSFontAttributeName: font};
     return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
 }
 

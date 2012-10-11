@@ -121,7 +121,7 @@
             // Next Index
             currentIndex = [indexSet indexGreaterThanIndex: currentIndex];
         }
-        [pb declareTypes:[NSArray arrayWithObjects:NSStringPboardType, nil] owner:nil];
+        [pb declareTypes:@[NSStringPboardType] owner:nil];
         [pb setString:[NSString stringWithString:textBuf] forType:NSStringPboardType];
     }
 }
