@@ -299,7 +299,7 @@
 - (id)getValueObjFromDataRows:(NSTableView *)tableView :(NSInteger)row :(NSTableColumn *)tableColumn
 {
     NSArray* dataRow;
-    NSInteger normalizedRow = [self sortOrderedRow:tableView :row];
+    NSInteger normalizedRow = [self sortOrderedRow:tableView row:row];
     
     id valueObj = nil;
     @try
@@ -319,7 +319,7 @@
     return valueObj;
 }
 
-- (NSInteger) sortOrderedRow:(NSTableView *)tableView: (NSInteger) row {
+- (NSInteger) sortOrderedRow:(NSTableView *)tableView row:(NSInteger) row {
     NSInteger normalizedRow = row;
     if (self.sortType == Descending)
     {
@@ -351,20 +351,20 @@
         
         if (valueObj == nil)
         {
-            MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView: self];
+            MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
             return textCell;
         }
         else if ([valueObj isKindOfClass:[NSString class]])
         {
             NSString* cellText = [NSString stringWithFormat:@"%@", valueObj];
-            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView :cellText: self];
+            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
             return textCell;
         }
         else if ([valueObj isKindOfClass:[NSURL class]])
         {
             NSURL* url = (NSURL*) valueObj;
             NSString* cellText = [NSString stringWithFormat:@"%@", [url absoluteString]];
-            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView :cellText: self];
+            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
             return textCell;
         }
         else if ([valueObj isKindOfClass:[NSDate class]])
@@ -373,20 +373,20 @@
             [dateFormatter setDateStyle:self.dateStyle];
             [dateFormatter setTimeStyle:self.dateStyle];
             NSString *cellText = [dateFormatter stringFromDate:valueObj];
-            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView :cellText: self];
+            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
             
             return textCell;
         }
         else if ([valueObj isKindOfClass:[NSData class]])
         {
             NSString* cellText = [NSString stringWithFormat:@"%ld", [valueObj length]];
-            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView :cellText: self];
+            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner: self];
             return textCell;
         }
         else if ([valueObj isKindOfClass:[NSNumber class]])
         {
             NSString* cellText = [NSString stringWithFormat:@"%@", valueObj];
-            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView :cellText: self];
+            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner:self];
             return textCell;
         }
         
@@ -394,7 +394,7 @@
         else if ([valueObj isKindOfClass:[NSManagedObject class]])
         {
             NSString* cellText = [NSString stringWithFormat:@"%@", [[valueObj entity] name]];
-            MFLButtonTableViewCell* buttonCell = [MFLCellBuilder objectCellWithString:tableView :cellText: self];
+            MFLButtonTableViewCell* buttonCell = [MFLCellBuilder objectCellWithString:tableView textToSet:cellText owner:self];
             return buttonCell;
         }
         else if ([valueObj isKindOfClass:[NSSet class]])
@@ -412,7 +412,7 @@
             }
             else // Empty NSSet
             {
-                MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView: self];
+                MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
                 return textCell;
             }            
         }
@@ -431,7 +431,7 @@
             }
             else // Empty NSArray
             {
-                MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView: self];
+                MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
                 return textCell;
             }
         }
@@ -442,7 +442,7 @@
             NSLog(@"is Other");
             
             NSString* cellText = [NSString stringWithFormat:@"??? %@ ???", [valueObj class]];
-            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView :cellText: self];
+            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner:self];
             [[textCell infoField] setTextColor:[NSColor redColor]];
             
             return textCell;
@@ -455,11 +455,11 @@
 #pragma mark - 
 #pragma mark Helpers
 
-- (BOOL) openFiles:(NSURL*) momFile :(NSURL*) perstenceFile: (NSInteger) persistenceType
+- (BOOL) openFiles:(NSURL*) momFile persistenceFile:(NSURL*) persistenceFile persistenceType:(NSInteger) persistenceType
 {
     [self.window makeKeyAndOrderFront:self];
     
-    [self openCoreDataIntrospectionWithUrls:momFile :perstenceFile :persistenceType];
+    [self openCoreDataIntrospectionWithUrls:momFile persistFileUrl:persistenceFile persistFormat:persistenceType];
     [self.dataSourceList reloadData];
     [self.entityContentTable reloadData];
     [self enableDisableHistorySegmentedControls];
@@ -467,7 +467,7 @@
     return YES;
 }
 
-- (void) openCoreDataIntrospectionWithUrls: (NSURL*) momFileUrl: (NSURL*) persistFileUrl: (NSInteger) persistFormat {
+- (void) openCoreDataIntrospectionWithUrls: (NSURL*) momFileUrl persistFileUrl:(NSURL*) persistFileUrl persistFormat:(NSInteger) persistFormat {
     [self setCoreDataIntrospection:[[MFLCoreDataIntrospection alloc] init]];
     [self.coreDataIntrospection setDateStyle:self.dateStyle];
     [self.coreDataIntrospection setDelegate:self];
@@ -596,13 +596,13 @@
     
     self.sortType = Unsorted;
     
-    [self.coreDataIntrospection applyPredicate:name :predicate];
+    [self.coreDataIntrospection applyPredicate:name predicate:predicate];
     NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:name];
     for (NSString* columnName in columnNames)
     {
         [self addTableColumnWithIdentifier:columnName];
     }
-    [self.coreDataIntrospection applyPredicate:name :predicate];
+    [self.coreDataIntrospection applyPredicate:name predicate:predicate];
     
     [self.entityContentTable reloadData];
     [self.dataSourceList deselectRow:[self.dataSourceList selectedRow]];
@@ -814,7 +814,7 @@
 
 - (IBAction)cancelPredicateEditing:(id)sender
 {
-    [self.coreDataIntrospection applyPredicate:[[self getEntityForPredicateEditor] name] :nil];
+    [self.coreDataIntrospection applyPredicate:[[self getEntityForPredicateEditor] name] predicate:nil];
     
     [self.entityContentTable reloadData];
     
@@ -825,7 +825,7 @@
 - (IBAction)applyPredicate:(id)sender
 {
     [self.generatedPredicateLabel setStringValue:[self.predicateEditor objectValue]];
-    [self.coreDataIntrospection applyPredicate:[[self getEntityForPredicateEditor] name] :[self.predicateEditor objectValue]];
+    [self.coreDataIntrospection applyPredicate:[[self getEntityForPredicateEditor] name] predicate:[self.predicateEditor objectValue]];
     [self.entityContentTable reloadData];
 }
 

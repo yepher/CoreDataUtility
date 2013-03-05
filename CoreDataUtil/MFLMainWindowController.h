@@ -24,7 +24,7 @@
 @property (weak) IBOutlet NSSegmentedControl *historySegmentedControl;
 
 //- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename;
-- (BOOL) openFiles:(NSURL*) momFile :(NSURL*) perstenceFile: (NSInteger) persistenceType;
+- (BOOL) openFiles:(NSURL*) momFile persistenceFile:(NSURL*) persistenceFile persistenceType: (NSInteger) persistenceType;
 
 - (NSURL*) momFileUrl;
 - (NSURL*) persistenceFileUrl;

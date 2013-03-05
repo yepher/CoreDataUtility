@@ -12,15 +12,15 @@
 @implementation MFLCoreDataEditorProjectLoader
 
 
-- (NSFetchRequest*) fetchRequestForEntitiesOfType: (NSManagedObjectContext*) managedObjectContext: (NSString*) entityName {
+- (NSFetchRequest*) fetchRequestForEntitiesOfType:(NSManagedObjectContext*) managedObjectContext entityName:(NSString*) entityName {
     NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:managedObjectContext]];
     return fetchRequest;
 }
 
-- (NSArray*) executeFetchRequest: (NSManagedObjectContext*) managedObjectContext: (NSFetchRequest*) fetchRequest {
+- (NSArray*) executeFetchRequest:(NSManagedObjectContext*) managedObjectContext fetchRequest:(NSFetchRequest*) fetchRequest {
     NSError* error = nil;
-    NSArray* results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray* results = [managedObjectContext executeFetchRequest :fetchRequest error:&error];
     if (error != nil) {
         @throw [NSException exceptionWithName:@"Could not execute fetch request." reason:[NSString stringWithFormat:@"Trouble executing fetch request %@: %@", fetchRequest, error] userInfo:nil];
     }
@@ -48,8 +48,8 @@
     NSManagedObjectContext* managedObjectContext = [[NSManagedObjectContext alloc] init];
     [managedObjectContext setPersistentStoreCoordinator:coordinator];
     
-    NSFetchRequest* fetchRequest = [self fetchRequestForEntitiesOfType:managedObjectContext :@"CDEConfiguration"];
-    NSArray* results = [self executeFetchRequest:managedObjectContext :fetchRequest];
+    NSFetchRequest* fetchRequest = [self fetchRequestForEntitiesOfType:managedObjectContext entityName:@"CDEConfiguration"];
+    NSArray* results = [self executeFetchRequest:managedObjectContext fetchRequest:fetchRequest];
     
     if (results != nil && [results count] > 0) {
         NSManagedObject* object = results[0];

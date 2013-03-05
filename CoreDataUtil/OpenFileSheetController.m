@@ -16,7 +16,7 @@
 @property (strong) NSDictionary *initialValues;
 @property (strong) NSURL *momFileUrl;
 @property (strong) NSURL *dbFileUrl;
-@property (strong) NSMutableDictionary *savedFields;
+@property (strong) NSDictionary *savedFields;
 @property (strong) NSArray *processList;
 @property (strong) NSMutableArray *simulatorUrlList;
 
@@ -27,7 +27,7 @@
 - (void)showOrHidePersistenceButtons;
 - (NSSet *)filesWithExtension:(NSString *)dir :(NSString *)extension;
 - (void)handleMomSelection:(NSSet *)momFiles modelTextField:(NSTextField *)modelTextField;
-- (void)selectDbFileButtonAction:(NSTextField *)modelTextField persistenceTextField:(NSTextField *)persistenceTextField: (NSURL*) directoryURL;
+- (void)selectDbFileButtonAction:(NSTextField *)modelTextField persistenceTextField:(NSTextField *)persistenceTextField directoryURL:(NSURL*) directoryURL;
 - (void)selectSimulatorDirectoryAction:(NSTextField *)modelTextField persistenceTextField:(NSTextField *)persistenceTextField;
 - (void)clearComboSelector;
 
@@ -99,7 +99,7 @@
     
     if (self.initialValues != nil)
     {
-        NSString* momFile = [self.initialValues objectForKey:MFL_MOM_FILE_KEY];
+        NSString* momFile = (self.initialValues)[MFL_MOM_FILE_KEY];
         if (momFile != nil) {
             if ([[momFile lowercaseString] rangeOfString:@"/iphone simulator"].location != NSNotFound) {
                 currentTab = SimulatorTab;
@@ -364,7 +364,7 @@
     }
 }
 
-- (void)selectDbFileButtonAction:(NSTextField *)modelTextField persistenceTextField:(NSTextField *)persistenceTextField: (NSURL*) directoryURL
+- (void)selectDbFileButtonAction:(NSTextField *)modelTextField persistenceTextField:(NSTextField *)persistenceTextField directoryURL:(NSURL*) directoryURL
 {
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     if (directoryURL != nil) {
@@ -377,18 +377,18 @@
     
     if ([openDlg runModal] == NSOKButton)
     {        
-        NSString *fileString = [[[openDlg URLs] objectAtIndex:0] absoluteString];
+        NSString *fileString = [[openDlg URLs][0] absoluteString];
         if ([fileString hasSuffix:MFL_COREDATA_PROJECT_EXTENSION])
         {
-            NSDictionary *filePaths = [[NSDictionary alloc] initWithContentsOfURL:[[openDlg URLs] objectAtIndex:0]];
-            self.momFileUrl = [NSURL URLWithString:[filePaths objectForKey:MFL_MOM_FILE_KEY]];
+            NSDictionary *filePaths = [[NSDictionary alloc] initWithContentsOfURL:[openDlg URLs][0]];
+            self.momFileUrl = [NSURL URLWithString:filePaths[MFL_MOM_FILE_KEY]];
             [modelTextField setStringValue:[self.momFileUrl relativePath]];
-            self.dbFileUrl = [NSURL URLWithString:[filePaths objectForKey:MFL_DB_FILE_KEY]];
+            self.dbFileUrl = [NSURL URLWithString:filePaths[MFL_DB_FILE_KEY]];
             [persistenceTextField setStringValue:[self.dbFileUrl relativePath]];
         }
         else
         {
-            self.dbFileUrl = [[openDlg URLs] objectAtIndex:0];
+            self.dbFileUrl = [openDlg URLs][0];
             [persistenceTextField setStringValue:[self.dbFileUrl relativePath]];
         }
         
@@ -433,7 +433,7 @@
     [openDlg setCanChooseFiles:YES];
     if ([openDlg runModal] == NSOKButton)
     {
-        self.dbFileUrl = [[openDlg URLs] objectAtIndex:0];
+        self.dbFileUrl = [openDlg URLs][0];
         [persistenceTextField setStringValue:[self.dbFileUrl relativePath]];
         
         [self showOrHideOpenButton];
@@ -442,7 +442,7 @@
 
 - (IBAction)fileTabModelFileButtonAction:(id)sender
 {
-    NSArray *fileTypes = [[NSArray alloc] initWithObjects:@"mom", @"MOM", @"app", MFL_COREDATA_PROJECT_EXTENSION, MFL_COREDATA_PROJECT_EXTENSION_UPERCASE, MFL_COREDATA_EDITOR_PROJECT_EXTENSION, nil];
+    NSArray *fileTypes = @[@"mom", @"MOM", @"app", MFL_COREDATA_PROJECT_EXTENSION, MFL_COREDATA_PROJECT_EXTENSION_UPERCASE, MFL_COREDATA_EDITOR_PROJECT_EXTENSION];
     
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     [openDlg setTreatsFilePackagesAsDirectories:NO];
@@ -451,13 +451,13 @@
     
     if ([openDlg runModal] == NSOKButton)
     {
-        NSString *fileString = [[[openDlg URLs] objectAtIndex:0] absoluteString];
+        NSString *fileString = [[openDlg URLs][0] absoluteString];
         if ([fileString hasSuffix:MFL_COREDATA_PROJECT_EXTENSION])
         {
-            NSDictionary *filePaths = [[NSDictionary alloc] initWithContentsOfURL:[[openDlg URLs] objectAtIndex:0]];
-            self.momFileUrl = [NSURL URLWithString:[filePaths objectForKey:MFL_MOM_FILE_KEY]];
+            NSDictionary *filePaths = [[NSDictionary alloc] initWithContentsOfURL:[openDlg URLs][0]];
+            self.momFileUrl = [NSURL URLWithString:filePaths[MFL_MOM_FILE_KEY]];
             [self.fileTabModelTextField setStringValue:[self.momFileUrl relativePath]];
-            self.dbFileUrl = [NSURL URLWithString:[filePaths objectForKey:MFL_DB_FILE_KEY]];
+            self.dbFileUrl = [NSURL URLWithString:filePaths[MFL_DB_FILE_KEY]];
             [self.fileTabPersistenceTextField setStringValue:[self.dbFileUrl relativePath]];
             
             [self showOrHideOpenButton];
@@ -465,13 +465,13 @@
         }
         else if ([fileString hasSuffix:@".app"])
         {
-            NSURL *url = [[openDlg URLs] objectAtIndex:0];
+            NSURL *url = [openDlg URLs][0];
             NSSet *momFiles = [self filesWithExtension: [url path]: MFL_MOM_FILE_EXTENSION];
             [self handleMomSelection:momFiles modelTextField:self.fileTabModelTextField];
         }
         else
         {
-            self.momFileUrl = [[openDlg URLs] objectAtIndex:0];
+            self.momFileUrl = [openDlg URLs][0];
             [self.fileTabModelTextField setStringValue:[self.momFileUrl relativePath]];
             
             [self showOrHideOpenButton];
@@ -498,7 +498,7 @@
     [apps sortUsingSelector:@selector(caseInsensitiveCompare:)];
     // update self.processList
     NSSortDescriptor *desc = [NSSortDescriptor sortDescriptorWithKey:@"localizedName" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    self.processList = [self.processList sortedArrayUsingDescriptors:[NSArray arrayWithObject:desc]];
+    self.processList = [self.processList sortedArrayUsingDescriptors:@[desc]];
     
     [self.processSelectorBox addItemsWithObjectValues:apps];
     
@@ -551,7 +551,7 @@
             }
         }
         
-        [apps addObject:[NSString stringWithFormat:@"%@ %@ %@", [separatedPath objectAtIndex:versionIndex], appName, [separatedPath objectAtIndex:[separatedPath count]-1]]];
+        [apps addObject:[NSString stringWithFormat:@"%@ %@ %@", separatedPath[versionIndex], appName, separatedPath[[separatedPath count]-1]]];
     }
     
     [self.processSelectorBox addItemsWithObjectValues:apps];
@@ -566,13 +566,13 @@
 - (IBAction)tabStoreFileButtonAction:(id)sender
 {
     NSTextField* storeTextField = [self currentPersistenceTextField];
-    [self selectDbFileButtonAction:self.simulatorTabModelTextField persistenceTextField:storeTextField: nil];
+    [self selectDbFileButtonAction:self.simulatorTabModelTextField persistenceTextField:storeTextField directoryURL:nil];
 }
 
 - (IBAction)tabStoreApplicationSupportButtonAction:(id)sender
 {
     NSTextField* storeTextField = [self currentPersistenceTextField];
-    [self selectDbFileButtonAction:self.simulatorTabModelTextField persistenceTextField:storeTextField: [self applicationSupportDirectory] ];
+    [self selectDbFileButtonAction:self.simulatorTabModelTextField persistenceTextField:storeTextField directoryURL:[self applicationSupportDirectory] ];
 }
 
 - (IBAction)openButtonAction:(id)sender
@@ -603,7 +603,7 @@
     {
         if (self.processList != nil)
         {
-            NSRunningApplication* selectedApp = [self.processList objectAtIndex:selectedItemIndex];
+            NSRunningApplication* selectedApp = (self.processList)[selectedItemIndex];
             NSLog(@"Selected: %@", selectedApp);
             
             NSSet* momFiles = [self filesWithExtension: [[selectedApp bundleURL] path]: MFL_MOM_FILE_EXTENSION];
@@ -629,17 +629,17 @@
         {
             NSLog(@"value: %@ - %@", [self.processSelectorBox objectValueOfSelectedItem], [[self.processSelectorBox objectValueOfSelectedItem] class]);
             
-            self.momFileUrl = [NSURL fileURLWithPath:[self.simulatorUrlList objectAtIndex:selectedItemIndex]];
+            self.momFileUrl = [NSURL fileURLWithPath:(self.simulatorUrlList)[selectedItemIndex]];
             switch (currentTab)
             {
                 case FileTab:
-                    [self.fileTabModelTextField setStringValue:[self.simulatorUrlList objectAtIndex:selectedItemIndex]];
+                    [self.fileTabModelTextField setStringValue:(self.simulatorUrlList)[selectedItemIndex]];
                 break;
                 case ProcessTab:
-                    [self.processTabModelTextField setStringValue:[self.simulatorUrlList objectAtIndex:selectedItemIndex]];
+                    [self.processTabModelTextField setStringValue:(self.simulatorUrlList)[selectedItemIndex]];
                 break;
                 case SimulatorTab:
-                    [self.simulatorTabModelTextField setStringValue:[self.simulatorUrlList objectAtIndex:selectedItemIndex]];
+                    [self.simulatorTabModelTextField setStringValue:(self.simulatorUrlList)[selectedItemIndex]];
                 break;
             }
             
@@ -672,9 +672,9 @@
     [self setInitialValues:initialValues];
     [self initializeTab];
     
-    if (self.initialValues != nil && [self.initialValues objectForKey:MFL_MOM_FILE_KEY] != nil)
+    if (self.initialValues != nil && (self.initialValues)[MFL_MOM_FILE_KEY] != nil)
     {
-        NSString* momFilePath = [self.initialValues objectForKey:MFL_MOM_FILE_KEY];
+        NSString* momFilePath = (self.initialValues)[MFL_MOM_FILE_KEY];
         self.momFileUrl = [NSURL fileURLWithPath:momFilePath];
         
         if ([[momFilePath lowercaseString] rangeOfString:@"/iphone simulator"].location != NSNotFound) {
@@ -702,9 +702,9 @@
         }        
     }
     
-    if (self.initialValues != nil && [self.initialValues objectForKey:MFL_DB_FILE_KEY] != nil)
+    if (self.initialValues != nil && (self.initialValues)[MFL_DB_FILE_KEY] != nil)
     {
-        NSString* storeFilePath = [self.initialValues objectForKey:MFL_DB_FILE_KEY];
+        NSString* storeFilePath = (self.initialValues)[MFL_DB_FILE_KEY];
         self.dbFileUrl = [NSURL fileURLWithPath:storeFilePath];
         
         NSTextField* textField = [self currentPersistenceTextField];
@@ -723,11 +723,9 @@
     
     if (didSubmit)
     {
-        self.savedFields = [NSDictionary dictionaryWithObjectsAndKeys:
-                            self.momFileUrl, MFL_MOM_FILE_KEY,
-                            self.dbFileUrl, MFL_DB_FILE_KEY,
-                            [NSNumber numberWithInt:[self persistFileFormat]], MFL_DB_FORMAT_KEY,
-                            nil];
+        self.savedFields = @{MFL_MOM_FILE_KEY: self.momFileUrl,
+                            MFL_DB_FILE_KEY: self.dbFileUrl,
+                            MFL_DB_FORMAT_KEY: [NSNumber numberWithInt:[self persistFileFormat]]};
     }
     else
     {

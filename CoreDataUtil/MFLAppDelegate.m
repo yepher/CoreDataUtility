@@ -47,7 +47,7 @@
         if (dbFilePath != nil) {
             dbUrl = [NSURL URLWithString:dbFilePath];
         }
-        BOOL result = [self.mainWindowController openFiles: momUrl: dbUrl: [persistenceFormat intValue]];
+        BOOL result = [self.mainWindowController openFiles: momUrl persistenceFile:dbUrl persistenceType:[persistenceFormat intValue]];
         
         if (result)
         {
@@ -78,7 +78,7 @@
                 persistenceFormat = @MFL_SQLiteStoreType;
             }
             
-            BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] :newValues[MFL_DB_FILE_KEY]: [persistenceFormat intValue]];
+            BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] persistenceFile:newValues[MFL_DB_FILE_KEY] persistenceType:[persistenceFormat intValue]];
             
             if (result)
             {
@@ -116,7 +116,7 @@
                 persistenceFormat = @MFL_SQLiteStoreType;
             }
             
-            BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] :newValues[MFL_DB_FILE_KEY]: [persistenceFormat intValue]];
+            BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] persistenceFile:newValues[MFL_DB_FILE_KEY] persistenceType:[persistenceFormat intValue]];
             
             if (result)
             {
@@ -229,7 +229,7 @@
             persistenceFormat = @MFL_SQLiteStoreType;
         }
         
-        BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] :newValues[MFL_DB_FILE_KEY]: [persistenceFormat intValue]];
+        BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] persistenceFile:newValues[MFL_DB_FILE_KEY] persistenceType:[persistenceFormat intValue]];
 
         if (result) {
             self.projectHasChanged = true;

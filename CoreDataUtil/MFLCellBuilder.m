@@ -17,7 +17,7 @@
 #pragma mark - 
 #pragma mark Data Cell Helper
 
-+ (MFLTextTableCellView* ) textCellWithString:(NSTableView *)tableView: (NSString*) textToSet: (id) owner {
++ (MFLTextTableCellView* ) textCellWithString:(NSTableView *)tableView textToSet:(NSString*) textToSet owner:(id) owner {
     
     MFLTextTableCellView* textCell = [tableView makeViewWithIdentifier:MFL_TEXT_CELL owner:owner];
     [[textCell infoField] setAlignment:NSLeftTextAlignment];
@@ -28,7 +28,7 @@
     return textCell;
 }
 
-+ (MFLTextTableCellView* ) numberCellWithString:(NSTableView *)tableView: (NSString*) textToSet: (id) owner {
++ (MFLTextTableCellView* ) numberCellWithString:(NSTableView *)tableView textToSet:(NSString*) textToSet owner: (id) owner {
     
     MFLTextTableCellView* textCell = [tableView makeViewWithIdentifier:MFL_TEXT_CELL owner:owner];
     [[textCell infoField] setAlignment:NSRightTextAlignment];
@@ -39,7 +39,7 @@
     return textCell;
 }
 
-+ (MFLTextTableCellView* ) nullCell:(NSTableView *)tableView: (id) owner {
++ (MFLTextTableCellView* ) nullCell:(NSTableView *)tableView owner: (id) owner {
     
     MFLTextTableCellView* textCell = [tableView makeViewWithIdentifier:MFL_TEXT_CELL owner:owner];
     [[textCell infoField] setAlignment:NSRightTextAlignment];
@@ -50,7 +50,7 @@
     return textCell;
 }
 
-+ (MFLButtonTableViewCell* ) objectCellWithString:(NSTableView *)tableView: (NSString*) textToSet: (id) owner {
++ (MFLButtonTableViewCell* ) objectCellWithString:(NSTableView *)tableView textToSet:(NSString*) textToSet owner:(id) owner {
     
     MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:owner];
     [[buttonCell infoField] setAlignment:NSRightTextAlignment];

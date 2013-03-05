@@ -54,9 +54,9 @@
 
 - (NSUndoManager*) undoManager;
 
-- (void) applyPredicate: (NSString*) entityName: (NSPredicate*) predicate;
+- (void) applyPredicate: (NSString*) entityName  predicate:(NSPredicate*) predicate;
 - (void)sortEntityData:(NSString *)fieldName;
-+ (id)getDisplayValueForObject:(id)obj: (NSDateFormatterStyle) dateStyle;
++ (id)getDisplayValueForObject:(id)obj dateStyle:(NSDateFormatterStyle) dateStyle;
 - (NSInteger)getCurrentHistoryIndex;
 - (void)setCurrentHistoryIndex:(NSInteger)currentIndex;
 - (void)updateCoreDataHistory:(NSString *)name :(NSPredicate *)predicate;

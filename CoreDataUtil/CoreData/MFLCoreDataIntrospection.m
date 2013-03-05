@@ -196,7 +196,7 @@
     return fetchedObjects;
 }
 
-- (void) applyPredicate: (NSString*) entityName: (NSPredicate*) predicate {
+- (void) applyPredicate: (NSString*) entityName predicate:(NSPredicate*) predicate {
     
     self.entityData = [self fetchObjectsByEntityName:entityName: predicate];
 }
@@ -214,7 +214,7 @@
     NSInteger rowNum = 0;
     for (NSArray *row in self.entityData)
     {
-        id valueObj = [MFLCoreDataIntrospection getDisplayValueForObject:[row valueForKey:fieldName]: self.dateStyle];
+        id valueObj = [MFLCoreDataIntrospection getDisplayValueForObject:[row valueForKey:fieldName] dateStyle:self.dateStyle];
         if ([valueObj isKindOfClass:[NSString class]] && [formatter dateFromString:valueObj])
         {
             valueObj = [formatter dateFromString:valueObj];
@@ -244,7 +244,7 @@
     self.entityData = temp;
 }
 
-+ (id)getDisplayValueForObject:(id)obj: (NSDateFormatterStyle) dateStyle
++ (id)getDisplayValueForObject:(id)obj dateStyle:(NSDateFormatterStyle) dateStyle
 {
     if (obj == nil)
     {
