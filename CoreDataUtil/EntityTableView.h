@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface EntityTableView : NSTableView
+@interface EntityTableView : NSOutlineView
 {
     NSInteger rightClickedRow;
 }

@@ -20,6 +20,38 @@
 #import "MFLInAppPurchaseHelperSubclass.h"
 #import "InAppPurchaseWindowController.h"
 
+#define kEntitiesRootNode @"rootNode"
+
+@interface OutlineViewNode : NSObject
+@property (strong) OutlineViewNode *parent;
+@property (strong) NSString *title;
+@property (assign) int index;
+@property (assign) int badgeValue;
+@property (strong) NSMutableArray *childs;
+- (void) addChild:(OutlineViewNode *)node;
+- (void) removeChild:(OutlineViewNode *)node;
+- (BOOL) hasChild:(OutlineViewNode *)node;
+@end
+
+@implementation OutlineViewNode
+- (id) init {
+    self = [super init];
+    self.childs = [NSMutableArray new];
+    return self;
+}
+- (void) addChild:(OutlineViewNode *)node {
+    node.parent = self;
+    [self.childs addObject:node];
+}
+- (void) removeChild:(OutlineViewNode *)node {
+    node.parent = nil;
+    [self.childs removeObject:node];
+}
+- (BOOL) hasChild:(OutlineViewNode *)node {
+    return [self.childs indexOfObject:node] != NSNotFound;
+}
+@end
+
 
 @interface MFLMainWindowController ()
 
@@ -29,6 +61,7 @@
 @property (weak) NSTableColumn *lastColumn;
 @property (strong) NSArray* baseRowTemplates;
 @property (weak) IBOutlet NSPredicateEditor *predicateEditor;
+@property (strong) OutlineViewNode *rootNode;
 
 - (void) loadUserDefinedDateFormat;
 - (BOOL)canEnableBackHistoryControl;
@@ -218,7 +251,7 @@
             
             self.sortType = Unsorted;
             
-            NSInteger selected = [self.dataSourceList selectedRow];
+            NSInteger selected = [self.dataSourceList selectedRow] - 1;
             NSLog(@"Selected idx=%ld", selected);
             if (selected >= 0)
             {
@@ -452,6 +485,66 @@
     return nil;
 }
 
+#pragma mark - Outline view
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
+    if (!item) {
+        return self.rootNode.childs.count;
+    }
+    
+    OutlineViewNode *node = item;
+    return node.childs.count;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
+    if (!item) {
+        return self.rootNode.childs[index];
+    }
+    
+    OutlineViewNode *node = item;
+    return node.childs[index];
+}
+
+- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item
+{
+    NSTableCellView *cell = nil;
+    OutlineViewNode *node = item;
+    if ([self.rootNode hasChild:item]) {
+        cell = [outlineView makeViewWithIdentifier:@"HeaderCell" owner:self];
+        cell.textField.stringValue = [node.title uppercaseString];
+    }
+    else {
+        cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
+        cell.textField.stringValue = node.title;
+        NSButton *button = [cell viewWithTag:1];
+        button.title = [NSString stringWithFormat:@"%d", node.badgeValue];
+    }
+    
+    return cell;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+    return [outlineView parentForItem:item] == nil;
+}
+
+- (BOOL) outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
+    OutlineViewNode *node = item;
+    return node.childs.count > 0;
+}
+- (BOOL) outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
+    OutlineViewNode *node = item;
+    return node.childs.count > 0;
+}
+- (BOOL) outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item {
+    OutlineViewNode *node = item;
+    return node.childs.count <= 0;
+}
+
+- (void)outlineViewSelectionDidChange:(NSNotification *)notification {
+    [self tableViewSelectionDidChange:notification];
+}
+
+
 #pragma mark - 
 #pragma mark Helpers
 
@@ -460,7 +553,29 @@
     [self.window makeKeyAndOrderFront:self];
     
     [self openCoreDataIntrospectionWithUrls:momFile persistFileUrl:persistenceFile persistFormat:persistenceType];
+    
+    self.rootNode = [OutlineViewNode new];
+    self.rootNode.index = 0;
+    self.rootNode.title = @"";
+    
+    OutlineViewNode *entitiesNode = [OutlineViewNode new];
+    entitiesNode.title = @"entities";
+    entitiesNode.index = 0;
+    [self.rootNode addChild:entitiesNode];
+    
+    NSUInteger entityCount = self.coreDataIntrospection.entityCount;
+    for(NSUInteger i=0; i<entityCount; i++) {
+        OutlineViewNode *node = [OutlineViewNode new];
+        node.title = [self.coreDataIntrospection entityAtIndex:i];
+        node.index = i;
+        node.badgeValue = [self.coreDataIntrospection entityDataCountAtIndex:i];
+        [entitiesNode addChild:node];
+    }
+    
     [self.dataSourceList reloadData];
+    if (self.rootNode.childs.count > 0) {
+        [self.dataSourceList expandItem:self.rootNode.childs[0]];
+    }
     [self.entityContentTable reloadData];
     [self enableDisableHistorySegmentedControls];
     
@@ -827,6 +942,20 @@
     [self.generatedPredicateLabel setStringValue:[self.predicateEditor objectValue]];
     [self.coreDataIntrospection applyPredicate:[[self getEntityForPredicateEditor] name] predicate:[self.predicateEditor objectValue]];
     [self.entityContentTable reloadData];
+}
+
+#pragma mark - Split view
+
+- (BOOL) splitView:(NSSplitView *)splitView canCollapseSubview:(NSView *)subview {
+    return NO;
+}
+
+- (BOOL) splitView:(NSSplitView *)splitView shouldCollapseSubview:(NSView *)subview forDoubleClickOnDividerAtIndex:(NSInteger)dividerIndex {
+    return NO;
+}
+
+- (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex {
+    return proposedPosition > 250.0 ? proposedPosition : 250.0;
 }
 
 @end
