@@ -14,6 +14,8 @@
 
 @property (strong, nonatomic) NSManagedObjectModel* objModel;
 @property (strong, nonatomic) NSMutableArray *entities;
+@property (strong, nonatomic) NSArray *fetchRequests;
+
 @property (strong, nonatomic) NSArray *entityData;
 
 - (NSError *)errnoErrorWithReason:(NSString *)reason;
@@ -122,6 +124,8 @@
         [self.entities addObject:[entityDescription name]];
     }
     
+	self.fetchRequests = [[self.objModel fetchRequestTemplatesByName] allKeys];
+	
     error = nil;
     
     // we're opening a new file - clear the history. Don't add a new history object because an entity data table hasn't been populated yet
@@ -130,6 +134,13 @@
 
 - (void) reloadObjectModel {
     [self loadObjectModel];
+}
+
+- (NSUInteger) fetchRequestCount {
+	return [self.fetchRequests count];
+}
+- (NSString*) fetchRequestAtIndex:(NSUInteger) index {
+	return self.fetchRequests[index];
 }
 
 - (NSEntityDescription*) entityDescription:(NSUInteger) index {

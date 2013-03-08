@@ -40,6 +40,9 @@
 - (NSUInteger) entityCount;
 - (NSString*) entityAtIndex:(NSUInteger) index;
 
+- (NSUInteger) fetchRequestCount;
+- (NSString*) fetchRequestAtIndex:(NSUInteger) index;
+
 - (NSArray*) entityFieldNames:(NSString*) entityName;
 - (NSEntityDescription*) entityDescription:(NSUInteger) index;
 - (NSEntityDescription *)entityDescriptionForName:(NSString *)entityName;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D52573D16EAA47400A91244 /* Fetch_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D52573C16EAA47400A91244 /* Fetch_Small.png */; };
 		5B2AEF1B1576B67600DFD0D6 /* GetInfoSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AEF191576B67600DFD0D6 /* GetInfoSheetController.m */; };
 		5B2AEF1C1576B67600DFD0D6 /* GetInfoSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AEF1A1576B67600DFD0D6 /* GetInfoSheetController.xib */; };
 		5B2BA5C4159C9FEB00AFEC9D /* CoreDataHistoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2BA5C3159C9FEB00AFEC9D /* CoreDataHistoryObject.m */; };
@@ -83,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D52573C16EAA47400A91244 /* Fetch_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fetch_Small.png; sourceTree = "<group>"; };
 		5B2AEF181576B67600DFD0D6 /* GetInfoSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetInfoSheetController.h; sourceTree = "<group>"; };
 		5B2AEF191576B67600DFD0D6 /* GetInfoSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetInfoSheetController.m; sourceTree = "<group>"; };
 		5B2AEF1A1576B67600DFD0D6 /* GetInfoSheetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetInfoSheetController.xib; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 		C1CEFE5C1463779D00466EB3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1D52573C16EAA47400A91244 /* Fetch_Small.png */,
 				838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */,
 				838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */,
 				83052CAC159D4B3900BB2FC6 /* CoreDataPro.entitlements */,
@@ -517,6 +520,7 @@
 				5B666D42159E50F100683E10 /* InAppPurchaseWindowController.xib in Resources */,
 				838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */,
 				838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */,
+				1D52573D16EAA47400A91244 /* Fetch_Small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

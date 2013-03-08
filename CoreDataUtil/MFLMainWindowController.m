@@ -31,6 +31,7 @@
 - (void) addChild:(OutlineViewNode *)node;
 - (void) removeChild:(OutlineViewNode *)node;
 - (BOOL) hasChild:(OutlineViewNode *)node;
+
 @end
 
 @implementation OutlineViewNode
@@ -50,6 +51,7 @@
 - (BOOL) hasChild:(OutlineViewNode *)node {
     return [self.childs indexOfObject:node] != NSNotFound;
 }
+
 @end
 
 
@@ -538,10 +540,18 @@
         cell.textField.stringValue = [node.title uppercaseString];
     }
     else {
-        cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
-        cell.textField.stringValue = node.title;
-        NSButton *button = [cell viewWithTag:1];
-        button.title = [NSString stringWithFormat:@"%d", node.badgeValue];
+		if ([self.rootNode.childs[1] hasChild:node]) {
+			cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
+			cell.textField.stringValue = node.title;
+			cell.imageView.image = [NSImage imageNamed:@"Fetch_Small"];
+			NSButton *button = [cell viewWithTag:1];
+			[button removeFromSuperview];
+		} else {
+			cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
+			cell.textField.stringValue = node.title;
+			NSButton *button = [cell viewWithTag:1];
+			button.title = [NSString stringWithFormat:@"%d", node.badgeValue];
+		}
     }
     
     return cell;
@@ -585,7 +595,7 @@
     entitiesNode.title = @"entities";
     entitiesNode.index = 0;
     [self.rootNode addChild:entitiesNode];
-    
+    	
     NSUInteger entityCount = self.coreDataIntrospection.entityCount;
     for(NSUInteger i=0; i<entityCount; i++) {
         OutlineViewNode *node = [OutlineViewNode new];
@@ -595,10 +605,24 @@
         [entitiesNode addChild:node];
     }
     
+	OutlineViewNode *fetchRequestNode = [OutlineViewNode new];
+    fetchRequestNode.title = @"fetch requests";
+    fetchRequestNode.index = 1;
+    [self.rootNode addChild:fetchRequestNode];
+	
+	for(NSUInteger i=0; i<self.coreDataIntrospection.fetchRequestCount; i++) {
+        OutlineViewNode *node = [OutlineViewNode new];
+        node.title = [self.coreDataIntrospection fetchRequestAtIndex:i];
+        node.index = i;
+        [fetchRequestNode addChild:node];
+    }
+	
     [self.dataSourceList reloadData];
     if (self.rootNode.childs.count > 0) {
         [self.dataSourceList expandItem:self.rootNode.childs[0]];
+		[self.dataSourceList expandItem:self.rootNode.childs[1]];
     }
+	
     [self.entityContentTable reloadData];
     [self enableDisableHistorySegmentedControls];
     
