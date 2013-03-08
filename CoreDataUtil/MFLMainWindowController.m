@@ -616,8 +616,9 @@
 }
 
 
-- (NSEntityDescription*) selectedEntity { 
-    NSInteger selected = [[self dataSourceList] selectedRow] - 1;
+- (NSEntityDescription*) selectedEntity {
+    OutlineViewNode *selectedNode = [self.dataSourceList itemAtRow:[self.dataSourceList selectedRow]];
+    NSInteger selected = selectedNode.index;
     if (selected < 0) {
         NSBeep();
         return nil;
