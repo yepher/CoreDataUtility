@@ -250,8 +250,9 @@
             [self.entityContentTable reloadData];
             
             self.sortType = Unsorted;
+            OutlineViewNode *selectedNode = [self.dataSourceList itemAtRow:[self.dataSourceList selectedRow]];
             
-            NSInteger selected = [self.dataSourceList selectedRow] - 1;
+            NSInteger selected = selectedNode.index;
             NSLog(@"Selected idx=%ld", selected);
             if (selected >= 0)
             {
