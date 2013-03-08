@@ -693,7 +693,7 @@
 - (void)getInfoAction
 {
     //NSLog(@"getInfoAction");
-    NSInteger selected = [[self dataSourceList] getRightClickedRow];
+    NSInteger selected = [[self dataSourceList] getRightClickedRow] - 1;
     NSEntityDescription* entityDescription = [self.coreDataIntrospection entityDescription:selected];
     
     GetInfoSheetController* infoSheetController = [[GetInfoSheetController alloc] initWithWindowNibName:@"GetInfoSheetController"];
