@@ -20,7 +20,7 @@
     rightClickedRow = [self rowAtPoint:[self convertPoint:[event locationInWindow] fromView:nil]];
     
 	NSMenu *menu;
-	if (rightClickedRow != -1)  //row exists
+	if (rightClickedRow > 0)  //row exists
 	{
 		menu = [[NSMenu alloc] init];
 		[menu addItem:[[NSMenuItem alloc] initWithTitle:@"Entity Info" action:@selector(getInfoAction) keyEquivalent:@"I"]];
