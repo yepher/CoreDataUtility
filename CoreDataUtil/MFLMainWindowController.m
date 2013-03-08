@@ -234,6 +234,29 @@
     }
 }
 
+- (void) resotreEntitySelectionForHistoryObject:(CoreDataHistoryObject *)historyObject {
+    OutlineViewNode *(^__weak __block find)(OutlineViewNode *, NSString *) = ^OutlineViewNode *(OutlineViewNode *node, NSString *title) {
+        if ([node.title isEqualToString:title]) {
+            return node;
+        }
+        
+        for (OutlineViewNode *child in node.childs) {
+            OutlineViewNode *result = find(child, title);
+            if (result) {
+                return result;
+            }
+        }
+        
+        return nil;
+    };
+    
+    OutlineViewNode *node = find(self.rootNode, historyObject.entityName);
+    
+    if (node) {
+        [self.dataSourceList selectRowIndexes:[NSIndexSet indexSetWithIndex:[self.dataSourceList rowForItem:node]] byExtendingSelection:NO];
+    }
+}
+
 #pragma mark
 #pragma mark NSTableViewDelegate
 
@@ -541,10 +564,9 @@
     return node.childs.count <= 0;
 }
 
-- (void)outlineViewSelectionDidChange:(NSNotification *)notification {
+- (void)outlineViewSelectionIsChanging:(NSNotification *)notification {
     [self tableViewSelectionDidChange:notification];
 }
-
 
 #pragma mark - 
 #pragma mark Helpers
@@ -616,8 +638,9 @@
 }
 
 
-- (NSEntityDescription*) selectedEntity { 
-    NSInteger selected = [[self dataSourceList] selectedRow] - 1;
+- (NSEntityDescription*) selectedEntity {
+    OutlineViewNode *selectedNode = [self.dataSourceList itemAtRow:[self.dataSourceList selectedRow]];
+    NSInteger selected = selectedNode.index;
     if (selected < 0) {
         NSBeep();
         return nil;
@@ -761,15 +784,19 @@
     }
 }
 
+
+
 - (IBAction) historyToolbarItemSelected:(id)sender
 {
     NSSegmentedControl *control = (NSSegmentedControl *)sender;
     NSInteger currentIndex = [self.coreDataIntrospection getCurrentHistoryIndex];
+    CoreDataHistoryObject *historyObj;
+    
     // go back
     if ([control selectedSegment] == 0 && [self canEnableBackHistoryControl])
     {
         [self.coreDataIntrospection setCurrentHistoryIndex:currentIndex+1];
-        CoreDataHistoryObject *historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
+        historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
         [self reloadEntityDataTable:historyObj.entityName :historyObj.predicate]; 
         [self enableDisableHistorySegmentedControls];
     }
@@ -777,10 +804,12 @@
     else if ([control selectedSegment] == 1 && [self canEnableForwardHistoryControl])
     {
         [self.coreDataIntrospection setCurrentHistoryIndex:currentIndex-1];
-        CoreDataHistoryObject *historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
+        historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
         [self reloadEntityDataTable:historyObj.entityName :historyObj.predicate];
         [self enableDisableHistorySegmentedControls];
     }
+    
+    [self resotreEntitySelectionForHistoryObject:historyObj];
 }
 
 - (IBAction) refreshItemSelected:(id)sender
