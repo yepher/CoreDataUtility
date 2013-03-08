@@ -616,7 +616,7 @@
 
 
 - (NSEntityDescription*) selectedEntity { 
-    NSInteger selected = [[self dataSourceList] selectedRow];
+    NSInteger selected = [[self dataSourceList] selectedRow] - 1;
     if (selected < 0) {
         NSBeep();
         return nil;
