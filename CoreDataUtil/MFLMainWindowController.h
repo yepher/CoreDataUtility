@@ -13,7 +13,7 @@
 @class EntityTableView;
 @class EntityDataTableView;
 
-@interface MFLMainWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, MFLCoreDataIntrospectionDelegate>
+@interface MFLMainWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, MFLCoreDataIntrospectionDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSSplitViewDelegate>
 
 @property (weak) IBOutlet EntityTableView *dataSourceList;
 @property (weak) IBOutlet EntityDataTableView *entityContentTable;
