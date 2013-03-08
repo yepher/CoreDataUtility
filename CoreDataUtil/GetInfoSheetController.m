@@ -349,7 +349,6 @@
 - (void)show:(NSWindow *)sender :(NSEntityDescription *) initial
 {
     self.initialValues = initial;
-    [self initialize];
     
     [NSApp beginSheet:self.window modalForWindow:sender modalDelegate:nil didEndSelector:nil contextInfo:nil];
 	[NSApp runModalForWindow:self.window];
