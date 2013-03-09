@@ -279,8 +279,9 @@
             OutlineViewNode *selectedNode = [self.dataSourceList itemAtRow:[self.dataSourceList selectedRow]];
             
             NSInteger selected = selectedNode.index;
+			NSInteger section = selectedNode.parent.index;
             NSLog(@"Selected idx=%ld", selected);
-            if (selected >= 0)
+            if (selected >= 0 && section == 0)
             {
                 [self.coreDataIntrospection loadEntityDataAtIndex:selected];
                 NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:[self.coreDataIntrospection entityAtIndex:selected]];
@@ -290,7 +291,16 @@
                 }
                 
                 [self.coreDataIntrospection loadEntityDataAtIndex:selected];
-            }
+            } else if (selected >= 0 && section == 1)
+			{
+				NSFetchRequest *fetch = [self.coreDataIntrospection fetchRequest:selected];
+                NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:[fetch.entity name]];
+                for (NSString* name in columnNames)
+                {
+                    [self addTableColumnWithIdentifier:name];
+                }
+				[self.coreDataIntrospection executeFetch:fetch];
+			}
             [self.entityContentTable reloadData];
             
             [self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection entityAtIndex:selected] :nil];

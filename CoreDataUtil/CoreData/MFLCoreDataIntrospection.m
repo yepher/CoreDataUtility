@@ -220,6 +220,10 @@
     self.entityData = [self fetchObjectsByEntityName:entityName: predicate];
 }
 
+- (void) executeFetch: (NSFetchRequest *)fetch {
+	self.entityData = [self.context executeFetchRequest:fetch error:NULL];
+}
+
 - (void)sortEntityData:(NSString *)fieldName
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
