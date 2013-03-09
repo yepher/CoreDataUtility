@@ -549,6 +549,7 @@
 		} else {
 			cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
 			cell.textField.stringValue = node.title;
+			cell.imageView.image = [NSImage imageNamed:@"Entity_Small"];
 			NSButton *button = [cell viewWithTag:1];
 			button.title = [NSString stringWithFormat:@"%d", node.badgeValue];
 		}
