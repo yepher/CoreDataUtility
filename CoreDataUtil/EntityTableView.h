@@ -8,10 +8,19 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol EntityTableViewDataSource <NSObject>
+
+- (NSSet *)tableSectionIndexes;
+- (NSInteger)sectionIndexForRow:(NSInteger)row;
+
+@end
+
 @interface EntityTableView : NSOutlineView
 {
     NSInteger rightClickedRow;
 }
+
+@property (weak) IBOutlet id<EntityTableViewDataSource> entityDataSource;
 
 - (NSInteger)getRightClickedRow;
 

@@ -20,13 +20,20 @@
     rightClickedRow = [self rowAtPoint:[self convertPoint:[event locationInWindow] fromView:nil]];
     
 	NSMenu *menu;
-	if (rightClickedRow > 0)  //row exists
+	if (![[self.entityDataSource tableSectionIndexes] containsObject:@(rightClickedRow)])
 	{
 		menu = [[NSMenu alloc] init];
-		[menu addItem:[[NSMenuItem alloc] initWithTitle:@"Entity Info" action:@selector(getInfoAction) keyEquivalent:@"I"]];
+		if ([self.entityDataSource sectionIndexForRow:rightClickedRow] == 0) {
+			[menu addItem:[[NSMenuItem alloc] initWithTitle:@"Entity Info" action:@selector(getInfoAction) keyEquivalent:@"I"]];
+		} else if ([self.entityDataSource sectionIndexForRow:rightClickedRow] == 1){
+			[menu addItem:[[NSMenuItem alloc] initWithTitle:@"Fetch Request Info" action:@selector(getInfoAction) keyEquivalent:@"I"]];
+		}
+		
+
 	}
 
     return menu;
 }
+
 
 @end

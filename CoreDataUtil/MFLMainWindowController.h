@@ -10,10 +10,12 @@
 #import "MFLCoreDataIntrospection.h"
 #import "CoreDataHistoryObject.h"
 
+#import "EntityTableView.h"
+
 @class EntityTableView;
 @class EntityDataTableView;
 
-@interface MFLMainWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, MFLCoreDataIntrospectionDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSSplitViewDelegate>
+@interface MFLMainWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, MFLCoreDataIntrospectionDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSSplitViewDelegate, EntityTableViewDataSource>
 
 @property (weak) IBOutlet EntityTableView *dataSourceList;
 @property (weak) IBOutlet EntityDataTableView *entityContentTable;

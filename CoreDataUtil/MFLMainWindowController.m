@@ -1012,4 +1012,19 @@
     return proposedPosition > 250.0 ? proposedPosition : 250.0;
 }
 
+#pragma mark - EntityTableViewDataSource 
+
+- (NSInteger)sectionIndexForRow:(NSInteger)row {
+	//@TODO: we need more elegant solution here
+	if (row <= [[self.rootNode.childs[0] childs] count]) {
+		return 0;
+	}
+	return 1;
+}
+
+- (NSSet *)tableSectionIndexes {
+//@TODO: how can we get indexes of all 'HeaderCell' cells?
+	return [NSSet setWithArray:@[@0, @([[self.rootNode.childs[0] childs] count] + 1)]];
+}
+
 @end
