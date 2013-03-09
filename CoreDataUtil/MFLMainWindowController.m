@@ -17,8 +17,7 @@
 #import "MFLCellBuilder.h"
 #import "OpenFileSheetController.h"
 #import "GetInfoSheetController.h"
-#import "MFLInAppPurchaseHelperSubclass.h"
-#import "InAppPurchaseWindowController.h"
+#import "FetchRequestInfoController.h"
 
 #define kEntitiesRootNode @"rootNode"
 
@@ -31,6 +30,7 @@
 - (void) addChild:(OutlineViewNode *)node;
 - (void) removeChild:(OutlineViewNode *)node;
 - (BOOL) hasChild:(OutlineViewNode *)node;
+
 @end
 
 @implementation OutlineViewNode
@@ -50,6 +50,7 @@
 - (BOOL) hasChild:(OutlineViewNode *)node {
     return [self.childs indexOfObject:node] != NSNotFound;
 }
+
 @end
 
 
@@ -276,8 +277,9 @@
             OutlineViewNode *selectedNode = [self.dataSourceList itemAtRow:[self.dataSourceList selectedRow]];
             
             NSInteger selected = selectedNode.index;
+			NSInteger section = selectedNode.parent.index;
             NSLog(@"Selected idx=%ld", selected);
-            if (selected >= 0)
+            if (selected >= 0 && section == 0)
             {
                 [self.coreDataIntrospection loadEntityDataAtIndex:selected];
                 NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:[self.coreDataIntrospection entityAtIndex:selected]];
@@ -287,7 +289,16 @@
                 }
                 
                 [self.coreDataIntrospection loadEntityDataAtIndex:selected];
-            }
+            } else if (selected >= 0 && section == 1)
+			{
+				NSFetchRequest *fetch = [self.coreDataIntrospection fetchRequest:selected];
+                NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:[fetch.entity name]];
+                for (NSString* name in columnNames)
+                {
+                    [self addTableColumnWithIdentifier:name];
+                }
+				[self.coreDataIntrospection executeFetch:fetch];
+			}
             [self.entityContentTable reloadData];
             
             [self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection entityAtIndex:selected] :nil];
@@ -538,10 +549,19 @@
         cell.textField.stringValue = [node.title uppercaseString];
     }
     else {
-        cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
-        cell.textField.stringValue = node.title;
-        NSButton *button = [cell viewWithTag:1];
-        button.title = [NSString stringWithFormat:@"%d", node.badgeValue];
+		if ([self.rootNode.childs[1] hasChild:node]) {
+			cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
+			cell.textField.stringValue = node.title;
+			cell.imageView.image = [NSImage imageNamed:@"Fetch_Small"];
+			NSButton *button = [cell viewWithTag:1];
+			[button removeFromSuperview];
+		} else {
+			cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
+			cell.textField.stringValue = node.title;
+			cell.imageView.image = [NSImage imageNamed:@"Entity_Small"];
+			NSButton *button = [cell viewWithTag:1];
+			button.title = [NSString stringWithFormat:@"%d", node.badgeValue];
+		}
     }
     
     return cell;
@@ -585,7 +605,7 @@
     entitiesNode.title = @"entities";
     entitiesNode.index = 0;
     [self.rootNode addChild:entitiesNode];
-    
+    	
     NSUInteger entityCount = self.coreDataIntrospection.entityCount;
     for(NSUInteger i=0; i<entityCount; i++) {
         OutlineViewNode *node = [OutlineViewNode new];
@@ -595,10 +615,24 @@
         [entitiesNode addChild:node];
     }
     
+	OutlineViewNode *fetchRequestNode = [OutlineViewNode new];
+    fetchRequestNode.title = @"fetch requests";
+    fetchRequestNode.index = 1;
+    [self.rootNode addChild:fetchRequestNode];
+	
+	for(NSUInteger i=0; i<self.coreDataIntrospection.fetchRequestCount; i++) {
+        OutlineViewNode *node = [OutlineViewNode new];
+        node.title = [self.coreDataIntrospection fetchRequestAtIndex:i];
+        node.index = i;
+        [fetchRequestNode addChild:node];
+    }
+	
     [self.dataSourceList reloadData];
     if (self.rootNode.childs.count > 0) {
         [self.dataSourceList expandItem:self.rootNode.childs[0]];
+		[self.dataSourceList expandItem:self.rootNode.childs[1]];
     }
+	
     [self.entityContentTable reloadData];
     [self enableDisableHistorySegmentedControls];
     
@@ -722,6 +756,15 @@
     
     GetInfoSheetController* infoSheetController = [[GetInfoSheetController alloc] initWithWindowNibName:@"GetInfoSheetController"];
     [infoSheetController show:self.window :entityDescription];
+}
+
+- (void)getFetchRequestInfoAction
+{
+	//@TODO: convert section/row to correct selected index
+    NSInteger selected = [[self dataSourceList] getRightClickedRow] - self.coreDataIntrospection.entityCount - 2;
+	NSFetchRequest *fetchRequest = [self.coreDataIntrospection fetchRequest:selected];
+	FetchRequestInfoController *fetchRequestController = [[FetchRequestInfoController alloc] initWithWindowNibName:@"FetchRequestInfoController"];
+	[fetchRequestController show:self.window forFetchRequest:fetchRequest title:[self.coreDataIntrospection fetchRequestAtIndex:selected]];
 }
 
 #pragma mark -
@@ -889,15 +932,6 @@
 
 - (IBAction)showPredicateEditor:(id)sender
 {    
-    // if the in-app purchase is not already purchased, prompt user to buy it
-    if ([[MFLInAppPurchaseHelperSubclass sharedHelper] isFullVersion] == NO) {
-        InAppPurchaseWindowController* inAppPurchaseSheetController = [[InAppPurchaseWindowController alloc] initWithWindowNibName:@"InAppPurchaseWindowController"];
-        [inAppPurchaseSheetController show:self.window];
-        inAppPurchaseSheetController = nil;
-        if ([[MFLInAppPurchaseHelperSubclass sharedHelper] isFullVersion] == NO) {
-            return;
-        }
-    }
     
     NSEntityDescription *entityDescription = [self getEntityForPredicateEditor];
     if (entityDescription == nil)
@@ -986,6 +1020,21 @@
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainSplitPosition:(CGFloat)proposedPosition ofSubviewAt:(NSInteger)dividerIndex {
     return proposedPosition > 250.0 ? proposedPosition : 250.0;
+}
+
+#pragma mark - EntityTableViewDataSource 
+
+- (NSInteger)sectionIndexForRow:(NSInteger)row {
+	OutlineViewNode *nodeAtRow = [self.dataSourceList itemAtRow:row];
+	return nodeAtRow.parent.index;
+}
+
+- (NSSet *)tableSectionIndexes {
+	NSMutableArray *result = [NSMutableArray array];
+	for (OutlineViewNode *sectionNode in self.rootNode.childs) {
+		[result addObject:@([self.dataSourceList rowForItem:sectionNode])];
+	}
+	return [NSSet setWithArray:[result copy]];
 }
 
 @end

@@ -9,18 +9,12 @@
 #ifndef CoreDataUtil_MFLConstants_h
 #define CoreDataUtil_MFLConstants_h
 
-// Comment this out for production version
-#ifdef DEBUG
-#define FORCE_FULL_VERSION 1
-#endif
-
 #define URL_FILE_BEGINNING @"file://localhost"
 #define DATE_STYLE_KEY_NAME @"dateStyleKey"
 
 #define MFL_TEXT_CELL @"MFLTextTableViewCell"
 #define MFL_BUTTON_CELL @"MFLButtonTableViewCell"
 #define MFL_ENTITY_CELL @"MFLEntityTableCellView"
-#define IN_APP_CELL @"InAppPurchaseTableCellView"
 
 #define MFL_MOM_FILE_EXTENSION @".mom"
 

@@ -40,6 +40,10 @@
 - (NSUInteger) entityCount;
 - (NSString*) entityAtIndex:(NSUInteger) index;
 
+- (NSUInteger) fetchRequestCount;
+- (NSString*) fetchRequestAtIndex:(NSUInteger) index;
+- (NSFetchRequest*) fetchRequest:(NSUInteger) index;
+
 - (NSArray*) entityFieldNames:(NSString*) entityName;
 - (NSEntityDescription*) entityDescription:(NSUInteger) index;
 - (NSEntityDescription *)entityDescriptionForName:(NSString *)entityName;
@@ -55,6 +59,8 @@
 - (NSUndoManager*) undoManager;
 
 - (void) applyPredicate: (NSString*) entityName  predicate:(NSPredicate*) predicate;
+- (void) executeFetch: (NSFetchRequest *)fetch;
+
 - (void)sortEntityData:(NSString *)fieldName;
 + (id)getDisplayValueForObject:(id)obj dateStyle:(NSDateFormatterStyle) dateStyle;
 - (NSInteger)getCurrentHistoryIndex;

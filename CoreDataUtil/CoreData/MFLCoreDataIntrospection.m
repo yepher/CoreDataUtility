@@ -14,6 +14,8 @@
 
 @property (strong, nonatomic) NSManagedObjectModel* objModel;
 @property (strong, nonatomic) NSMutableArray *entities;
+@property (strong, nonatomic) NSArray *fetchRequests;
+
 @property (strong, nonatomic) NSArray *entityData;
 
 - (NSError *)errnoErrorWithReason:(NSString *)reason;
@@ -122,14 +124,31 @@
         [self.entities addObject:[entityDescription name]];
     }
     
+	self.fetchRequests = [[self.objModel fetchRequestTemplatesByName] allKeys];
+	
     error = nil;
     
     // we're opening a new file - clear the history. Don't add a new history object because an entity data table hasn't been populated yet
     self.coreDataHistory = nil;
 }
 
-- (void) reloadObjectModel {
+- (void) reloadObjectModel
+{
     [self loadObjectModel];
+}
+
+- (NSUInteger) fetchRequestCount
+{
+	return [self.fetchRequests count];
+}
+- (NSString*) fetchRequestAtIndex:(NSUInteger) index
+{
+	return self.fetchRequests[index];
+}
+
+- (NSFetchRequest*) fetchRequest:(NSUInteger) index
+{
+	return [self.objModel fetchRequestTemplateForName:self.fetchRequests[index]];
 }
 
 - (NSEntityDescription*) entityDescription:(NSUInteger) index {
@@ -199,6 +218,10 @@
 - (void) applyPredicate: (NSString*) entityName predicate:(NSPredicate*) predicate {
     
     self.entityData = [self fetchObjectsByEntityName:entityName: predicate];
+}
+
+- (void) executeFetch: (NSFetchRequest *)fetch {
+	self.entityData = [self.context executeFetchRequest:fetch error:NULL];
 }
 
 - (void)sortEntityData:(NSString *)fieldName

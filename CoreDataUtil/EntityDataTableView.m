@@ -9,7 +9,6 @@
 #import "EntityDataTableView.h"
 #import "MFLButtonTableViewCell.h"
 #import "MFLMainWindowController.h"
-#import "InAppPurchaseWindowController.h"
 
 @implementation EntityDataTableView
 
@@ -126,34 +125,14 @@
     }
 }
 
-- (BOOL) isFUllVersion {
-
-    // if Copy is not already purchased, prompt user to buy it
-    if ([[MFLInAppPurchaseHelperSubclass sharedHelper] isFullVersion] == NO) {
-        InAppPurchaseWindowController* inAppPurchaseSheetController = [[InAppPurchaseWindowController alloc] initWithWindowNibName:@"InAppPurchaseWindowController"];
-        [inAppPurchaseSheetController show:self.window];
-        inAppPurchaseSheetController = nil;
-    }
-    return [[MFLInAppPurchaseHelperSubclass sharedHelper] isFullVersion];
-}
-
 - (IBAction) copy:(id)sender
 {
-    // if the in-app purchase is not already purchased, prompt user to buy it
-    if ([self isFUllVersion] == NO) {
-        return;
-    }
-
     NSLog(@"Copy Selected entityDataTable items. [%@]", sender);
     [self copySelectedRow:NO];
 }
 
 - (IBAction) copyFormatted:(id)sender
 {
-    if ([self isFUllVersion] == NO) {
-        return;
-    }
-    
     NSLog(@"copyFormated Selected entityDataTable items. [%@]", sender);
     [self copySelectedRow:YES];
 }
