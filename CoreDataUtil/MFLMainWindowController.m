@@ -17,8 +17,6 @@
 #import "MFLCellBuilder.h"
 #import "OpenFileSheetController.h"
 #import "GetInfoSheetController.h"
-#import "MFLInAppPurchaseHelperSubclass.h"
-#import "InAppPurchaseWindowController.h"
 #import "FetchRequestInfoController.h"
 
 #define kEntitiesRootNode @"rootNode"
@@ -934,15 +932,6 @@
 
 - (IBAction)showPredicateEditor:(id)sender
 {    
-    // if the in-app purchase is not already purchased, prompt user to buy it
-    if ([[MFLInAppPurchaseHelperSubclass sharedHelper] isFullVersion] == NO) {
-        InAppPurchaseWindowController* inAppPurchaseSheetController = [[InAppPurchaseWindowController alloc] initWithWindowNibName:@"InAppPurchaseWindowController"];
-        [inAppPurchaseSheetController show:self.window];
-        inAppPurchaseSheetController = nil;
-        if ([[MFLInAppPurchaseHelperSubclass sharedHelper] isFullVersion] == NO) {
-            return;
-        }
-    }
     
     NSEntityDescription *entityDescription = [self getEntityForPredicateEditor];
     if (entityDescription == nil)

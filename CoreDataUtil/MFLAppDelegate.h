@@ -10,14 +10,11 @@
 #import "MFLCoreDataIntrospection.h"
 
 @class GetInfoSheetController;
-@class InAppPurchaseWindowController;
 
 @class MFLMainWindowController;
 
 
 @interface MFLAppDelegate : NSObject <NSApplicationDelegate>
-{
-}
 
 @property (strong) MFLMainWindowController* mainWindowController;
 @property (assign) IBOutlet NSWindow *window;

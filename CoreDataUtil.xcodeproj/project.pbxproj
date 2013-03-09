@@ -13,20 +13,15 @@
 		5B2AEF1B1576B67600DFD0D6 /* GetInfoSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AEF191576B67600DFD0D6 /* GetInfoSheetController.m */; };
 		5B2AEF1C1576B67600DFD0D6 /* GetInfoSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AEF1A1576B67600DFD0D6 /* GetInfoSheetController.xib */; };
 		5B2BA5C4159C9FEB00AFEC9D /* CoreDataHistoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2BA5C3159C9FEB00AFEC9D /* CoreDataHistoryObject.m */; };
-		5B2D94C415A20C7800E07BC6 /* InAppPurchaseTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2D94C315A20C7800E07BC6 /* InAppPurchaseTableCellView.m */; };
 		5B2E2AA61565A8AC00F6F6EA /* OpenFileSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2E2AA41565A8AC00F6F6EA /* OpenFileSheetController.m */; };
 		5B2E2AA71565A8AC00F6F6EA /* OpenFileSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2E2AA51565A8AC00F6F6EA /* OpenFileSheetController.xib */; };
 		5B330A701590CB1E00D79D4D /* EntityDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B330A6F1590CB1E00D79D4D /* EntityDataTableViewCell.m */; };
-		5B666CB9159E365700683E10 /* MFLInAppPurchaseHelperSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B666CB8159E365700683E10 /* MFLInAppPurchaseHelperSubclass.m */; };
-		5B666D41159E50F100683E10 /* InAppPurchaseWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B666D3F159E50F100683E10 /* InAppPurchaseWindowController.m */; };
-		5B666D42159E50F100683E10 /* InAppPurchaseWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B666D40159E50F100683E10 /* InAppPurchaseWindowController.xib */; };
 		5BE26B63157FE8EE00DC186E /* EntityTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE26B62157FE8EE00DC186E /* EntityTableView.m */; };
 		5BE26B67157FF22700DC186E /* EntityDataTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE26B66157FF22700DC186E /* EntityDataTableView.m */; };
 		830D04ED1598CC4D003874CA /* MFLMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830D04EB1598CC4D003874CA /* MFLMainWindowController.m */; };
 		830D04EE1598CC4D003874CA /* MFLMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830D04EC1598CC4D003874CA /* MFLMainWindowController.xib */; };
 		830D8452158FE0780022F403 /* Entity_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 830D8450158FE0780022F403 /* Entity_Small.png */; };
 		830D8453158FE0780022F403 /* Entity_Small_Set.png in Resources */ = {isa = PBXBuildFile; fileRef = 830D8451158FE0780022F403 /* Entity_Small_Set.png */; };
-		83282A7B159CDFA800C25041 /* MFLInAppPurchaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 83282A7A159CDFA800C25041 /* MFLInAppPurchaseHelper.m */; };
 		83282A7D159CE13700C25041 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83282A7C159CE13600C25041 /* StoreKit.framework */; };
 		832C9696159BD69E00AC8FA8 /* CoreData.ext in Resources */ = {isa = PBXBuildFile; fileRef = 832C9695159BD69E00AC8FA8 /* CoreData.ext */; };
 		832C969B159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */; };
@@ -95,18 +90,11 @@
 		5B2AEF1A1576B67600DFD0D6 /* GetInfoSheetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetInfoSheetController.xib; sourceTree = "<group>"; };
 		5B2BA5C2159C9FEB00AFEC9D /* CoreDataHistoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataHistoryObject.h; path = CoreDataUtil/CoreDataHistoryObject.h; sourceTree = SOURCE_ROOT; };
 		5B2BA5C3159C9FEB00AFEC9D /* CoreDataHistoryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataHistoryObject.m; path = CoreDataUtil/CoreDataHistoryObject.m; sourceTree = SOURCE_ROOT; };
-		5B2D94C215A20C7800E07BC6 /* InAppPurchaseTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseTableCellView.h; sourceTree = "<group>"; };
-		5B2D94C315A20C7800E07BC6 /* InAppPurchaseTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseTableCellView.m; sourceTree = "<group>"; };
 		5B2E2AA31565A8AC00F6F6EA /* OpenFileSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenFileSheetController.h; sourceTree = "<group>"; };
 		5B2E2AA41565A8AC00F6F6EA /* OpenFileSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenFileSheetController.m; sourceTree = "<group>"; };
 		5B2E2AA51565A8AC00F6F6EA /* OpenFileSheetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenFileSheetController.xib; sourceTree = "<group>"; };
 		5B330A6E1590CB1E00D79D4D /* EntityDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityDataTableViewCell.h; sourceTree = "<group>"; };
 		5B330A6F1590CB1E00D79D4D /* EntityDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityDataTableViewCell.m; sourceTree = "<group>"; };
-		5B666CB7159E365700683E10 /* MFLInAppPurchaseHelperSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLInAppPurchaseHelperSubclass.h; sourceTree = "<group>"; };
-		5B666CB8159E365700683E10 /* MFLInAppPurchaseHelperSubclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLInAppPurchaseHelperSubclass.m; sourceTree = "<group>"; };
-		5B666D3E159E50F100683E10 /* InAppPurchaseWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseWindowController.h; sourceTree = "<group>"; };
-		5B666D3F159E50F100683E10 /* InAppPurchaseWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseWindowController.m; sourceTree = "<group>"; };
-		5B666D40159E50F100683E10 /* InAppPurchaseWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InAppPurchaseWindowController.xib; sourceTree = "<group>"; };
 		5BE26B61157FE8EE00DC186E /* EntityTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityTableView.h; sourceTree = "<group>"; };
 		5BE26B62157FE8EE00DC186E /* EntityTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityTableView.m; sourceTree = "<group>"; };
 		5BE26B65157FF22700DC186E /* EntityDataTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityDataTableView.h; sourceTree = "<group>"; };
@@ -117,8 +105,6 @@
 		830D04EC1598CC4D003874CA /* MFLMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MFLMainWindowController.xib; sourceTree = "<group>"; };
 		830D8450158FE0780022F403 /* Entity_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Entity_Small.png; sourceTree = "<group>"; };
 		830D8451158FE0780022F403 /* Entity_Small_Set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Entity_Small_Set.png; sourceTree = "<group>"; };
-		83282A79159CDFA800C25041 /* MFLInAppPurchaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLInAppPurchaseHelper.h; sourceTree = "<group>"; };
-		83282A7A159CDFA800C25041 /* MFLInAppPurchaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLInAppPurchaseHelper.m; sourceTree = "<group>"; };
 		83282A7C159CE13600C25041 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		832C9695159BD69E00AC8FA8 /* CoreData.ext */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CoreData.ext; sourceTree = "<group>"; };
 		832C9699159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCoreDataEditorProjectLoader.h; sourceTree = "<group>"; };
@@ -219,10 +205,6 @@
 			children = (
 				832C9699159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.h */,
 				832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */,
-				83282A79159CDFA800C25041 /* MFLInAppPurchaseHelper.h */,
-				83282A7A159CDFA800C25041 /* MFLInAppPurchaseHelper.m */,
-				5B666CB7159E365700683E10 /* MFLInAppPurchaseHelperSubclass.h */,
-				5B666CB8159E365700683E10 /* MFLInAppPurchaseHelperSubclass.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -240,8 +222,6 @@
 				833DF7FD1593836600793430 /* MFLEntityTableCellView.m */,
 				83922D361598F264004C273C /* MFLCellBuilder.h */,
 				83922D371598F264004C273C /* MFLCellBuilder.m */,
-				5B2D94C215A20C7800E07BC6 /* InAppPurchaseTableCellView.h */,
-				5B2D94C315A20C7800E07BC6 /* InAppPurchaseTableCellView.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -337,9 +317,6 @@
 				5B2AEF181576B67600DFD0D6 /* GetInfoSheetController.h */,
 				5B2AEF191576B67600DFD0D6 /* GetInfoSheetController.m */,
 				5B2AEF1A1576B67600DFD0D6 /* GetInfoSheetController.xib */,
-				5B666D3E159E50F100683E10 /* InAppPurchaseWindowController.h */,
-				5B666D3F159E50F100683E10 /* InAppPurchaseWindowController.m */,
-				5B666D40159E50F100683E10 /* InAppPurchaseWindowController.xib */,
 				C1CEFE5C1463779D00466EB3 /* Supporting Files */,
 				1D52574316EB66F100A91244 /* FetchRequestInfoController.h */,
 				1D52574416EB66F100A91244 /* FetchRequestInfoController.m */,
@@ -525,7 +502,6 @@
 				83A219751594DEB600ADDF5D /* String_Small.png in Resources */,
 				830D04EE1598CC4D003874CA /* MFLMainWindowController.xib in Resources */,
 				832C9696159BD69E00AC8FA8 /* CoreData.ext in Resources */,
-				5B666D42159E50F100683E10 /* InAppPurchaseWindowController.xib in Resources */,
 				838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */,
 				838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */,
 				1D52573D16EAA47400A91244 /* Fetch_Small.png in Resources */,
@@ -589,10 +565,6 @@
 				83922D381598F264004C273C /* MFLCellBuilder.m in Sources */,
 				832C969B159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m in Sources */,
 				5B2BA5C4159C9FEB00AFEC9D /* CoreDataHistoryObject.m in Sources */,
-				83282A7B159CDFA800C25041 /* MFLInAppPurchaseHelper.m in Sources */,
-				5B666CB9159E365700683E10 /* MFLInAppPurchaseHelperSubclass.m in Sources */,
-				5B666D41159E50F100683E10 /* InAppPurchaseWindowController.m in Sources */,
-				5B2D94C415A20C7800E07BC6 /* InAppPurchaseTableCellView.m in Sources */,
 				1D52574616EB66F200A91244 /* FetchRequestInfoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

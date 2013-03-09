@@ -10,7 +10,6 @@
 #import "MFLConstants.h"
 #import "MFLTextTableCellView.h"
 #import "MFLButtonTableViewCell.h"
-#import "InAppPurchaseTableCellView.h"
 
 @implementation MFLCellBuilder
 
@@ -59,32 +58,6 @@
     [buttonCell setToolTip:textToSet];
     
     return buttonCell;
-}
-
-+ (InAppPurchaseTableCellView *)inAppPurchaseCellWithString:(NSTableView *)tableView :(NSString *)textToSet :(NSString *)priceText :(NSInteger)row :(id)owner
-{
-    InAppPurchaseTableCellView *cell = [tableView makeViewWithIdentifier:IN_APP_CELL owner:owner];
-    
-    // set value text
-    [[cell infoField] setAlignment:NSLeftTextAlignment];
-    [[cell infoField] setTextColor:[NSColor blackColor]];
-    [[cell infoField] setStringValue:textToSet];
-    [cell setToolTip:textToSet];
-    
-    // set price text
-    [[cell priceField] setAlignment:NSLeftTextAlignment];
-    [[cell priceField] setTextColor:[NSColor grayColor]];
-    [[cell priceField] setStringValue:priceText];
-    
-    // set up button
-    NSButton *buyButton = [[NSButton alloc] init];
-    buyButton.frame = CGRectMake(0, 0, 72, 37);
-    [buyButton setTitle:@"Buy"];
-    buyButton.tag = row;
-    [buyButton setTarget:owner];
-    [buyButton setAction:@selector(buyButtonTapped:)];
-    
-    return cell;
 }
 
 @end

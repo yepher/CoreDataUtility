@@ -10,14 +10,11 @@
 #import "MFLConstants.h"
 #import "MFLMainWindowController.h"
 #import "OpenFileSheetController.h"
-#import "InAppPurchaseWindowController.h"
 #import "MFLCoreDataEditorProjectLoader.h"
-#import "MFLInAppPurchaseHelper.h"
 
 @interface MFLAppDelegate ()
 
 @property (strong) OpenFileSheetController *openFileSheetController;
-@property (strong) InAppPurchaseWindowController *inAppPurchaseSheetController;
 
 - (void) addRecentDocument: (NSURL*) recentDocumentUrl;
 
@@ -136,28 +133,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {   
-    NSLog(@"applicationDidFinishLaunching bundleId: [%@]", [[NSBundle mainBundle] bundleIdentifier]);
-    NSURL *receiptUrl = [[NSBundle mainBundle] appStoreReceiptURL];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[receiptUrl path]])
-    {
-        NSLog(@"no receipt - exit the app with code 173");
-#ifndef FORCE_FULL_VERSION
-        exit(173);
-#endif
-    
-    }
-    
-    if ([[MFLInAppPurchaseHelperSubclass sharedHelper] isFullVersion] == NO) {
-        // Pre-load product identifiers
-        [[MFLInAppPurchaseHelperSubclass sharedHelper] productIdentifiers];
-    }
-
-    
     if (self.mainWindowController == nil) {
         self.mainWindowController = [[MFLMainWindowController alloc] initWithWindowNibName:@"MFLMainWindowController"];
     }
-    
-    
     
     [self setWindow:[self.mainWindowController window]];
     
@@ -280,16 +258,6 @@
 
 - (IBAction)saveAction:(id)sender
 {
-    // if the in-app purchase is not already purchased, prompt user to buy it
-    if ([[MFLInAppPurchaseHelperSubclass sharedHelper] isFullVersion] == NO) {
-        self.inAppPurchaseSheetController = [[InAppPurchaseWindowController alloc] initWithWindowNibName:@"InAppPurchaseWindowController"];
-        [self.inAppPurchaseSheetController show:self.window];
-        self.inAppPurchaseSheetController = nil;
-        if ([[MFLInAppPurchaseHelperSubclass sharedHelper] isFullVersion] == NO) {
-            return;
-        }
-    }
-    
     if (self.mainWindowController == nil)
     {
         return;
