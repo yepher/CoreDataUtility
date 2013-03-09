@@ -23,13 +23,13 @@
 	if (![[self.entityDataSource tableSectionIndexes] containsObject:@(rightClickedRow)])
 	{
 		menu = [[NSMenu alloc] init];
-		if ([self.entityDataSource sectionIndexForRow:rightClickedRow] == 0) {
+		if ([self.entityDataSource sectionIndexForRow:rightClickedRow] == 0)
+		{
 			[menu addItem:[[NSMenuItem alloc] initWithTitle:@"Entity Info" action:@selector(getInfoAction) keyEquivalent:@"I"]];
-		} else if ([self.entityDataSource sectionIndexForRow:rightClickedRow] == 1){
-			[menu addItem:[[NSMenuItem alloc] initWithTitle:@"Fetch Request Info" action:@selector(getInfoAction) keyEquivalent:@"I"]];
+		} else if ([self.entityDataSource sectionIndexForRow:rightClickedRow] == 1)
+		{
+			[menu addItem:[[NSMenuItem alloc] initWithTitle:@"Fetch Request Info" action:@selector(getFetchRequestInfoAction) keyEquivalent:@"I"]];
 		}
-		
-
 	}
 
     return menu;

@@ -19,6 +19,7 @@
 #import "GetInfoSheetController.h"
 #import "MFLInAppPurchaseHelperSubclass.h"
 #import "InAppPurchaseWindowController.h"
+#import "FetchRequestInfoController.h"
 
 #define kEntitiesRootNode @"rootNode"
 
@@ -747,6 +748,15 @@
     
     GetInfoSheetController* infoSheetController = [[GetInfoSheetController alloc] initWithWindowNibName:@"GetInfoSheetController"];
     [infoSheetController show:self.window :entityDescription];
+}
+
+- (void)getFetchRequestInfoAction
+{
+	//@TODO: convert section/row to correct selected index
+    NSInteger selected = [[self dataSourceList] getRightClickedRow] - self.coreDataIntrospection.entityCount - 2;
+	NSFetchRequest *fetchRequest = [self.coreDataIntrospection fetchRequest:selected];
+	FetchRequestInfoController *fetchRequestController = [[FetchRequestInfoController alloc] initWithWindowNibName:@"FetchRequestInfoController"];
+	[fetchRequestController show:self.window forFetchRequest:fetchRequest title:[self.coreDataIntrospection fetchRequestAtIndex:selected]];
 }
 
 #pragma mark -

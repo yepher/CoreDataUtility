@@ -132,15 +132,23 @@
     self.coreDataHistory = nil;
 }
 
-- (void) reloadObjectModel {
+- (void) reloadObjectModel
+{
     [self loadObjectModel];
 }
 
-- (NSUInteger) fetchRequestCount {
+- (NSUInteger) fetchRequestCount
+{
 	return [self.fetchRequests count];
 }
-- (NSString*) fetchRequestAtIndex:(NSUInteger) index {
+- (NSString*) fetchRequestAtIndex:(NSUInteger) index
+{
 	return self.fetchRequests[index];
+}
+
+- (NSFetchRequest*) fetchRequest:(NSUInteger) index
+{
+	return [self.objModel fetchRequestTemplateForName:self.fetchRequests[index]];
 }
 
 - (NSEntityDescription*) entityDescription:(NSUInteger) index {

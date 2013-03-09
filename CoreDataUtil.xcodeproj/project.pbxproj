@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1D52573D16EAA47400A91244 /* Fetch_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D52573C16EAA47400A91244 /* Fetch_Small.png */; };
+		1D52574616EB66F200A91244 /* FetchRequestInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D52574416EB66F100A91244 /* FetchRequestInfoController.m */; };
+		1D52574716EB66F200A91244 /* FetchRequestInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D52574516EB66F100A91244 /* FetchRequestInfoController.xib */; };
 		5B2AEF1B1576B67600DFD0D6 /* GetInfoSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AEF191576B67600DFD0D6 /* GetInfoSheetController.m */; };
 		5B2AEF1C1576B67600DFD0D6 /* GetInfoSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AEF1A1576B67600DFD0D6 /* GetInfoSheetController.xib */; };
 		5B2BA5C4159C9FEB00AFEC9D /* CoreDataHistoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2BA5C3159C9FEB00AFEC9D /* CoreDataHistoryObject.m */; };
@@ -85,6 +87,9 @@
 
 /* Begin PBXFileReference section */
 		1D52573C16EAA47400A91244 /* Fetch_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fetch_Small.png; sourceTree = "<group>"; };
+		1D52574316EB66F100A91244 /* FetchRequestInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchRequestInfoController.h; sourceTree = "<group>"; };
+		1D52574416EB66F100A91244 /* FetchRequestInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchRequestInfoController.m; sourceTree = "<group>"; };
+		1D52574516EB66F100A91244 /* FetchRequestInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FetchRequestInfoController.xib; sourceTree = "<group>"; };
 		5B2AEF181576B67600DFD0D6 /* GetInfoSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetInfoSheetController.h; sourceTree = "<group>"; };
 		5B2AEF191576B67600DFD0D6 /* GetInfoSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetInfoSheetController.m; sourceTree = "<group>"; };
 		5B2AEF1A1576B67600DFD0D6 /* GetInfoSheetController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetInfoSheetController.xib; sourceTree = "<group>"; };
@@ -336,6 +341,9 @@
 				5B666D3F159E50F100683E10 /* InAppPurchaseWindowController.m */,
 				5B666D40159E50F100683E10 /* InAppPurchaseWindowController.xib */,
 				C1CEFE5C1463779D00466EB3 /* Supporting Files */,
+				1D52574316EB66F100A91244 /* FetchRequestInfoController.h */,
+				1D52574416EB66F100A91244 /* FetchRequestInfoController.m */,
+				1D52574516EB66F100A91244 /* FetchRequestInfoController.xib */,
 			);
 			path = CoreDataUtil;
 			sourceTree = "<group>";
@@ -521,6 +529,7 @@
 				838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */,
 				838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */,
 				1D52573D16EAA47400A91244 /* Fetch_Small.png in Resources */,
+				1D52574716EB66F200A91244 /* FetchRequestInfoController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +593,7 @@
 				5B666CB9159E365700683E10 /* MFLInAppPurchaseHelperSubclass.m in Sources */,
 				5B666D41159E50F100683E10 /* InAppPurchaseWindowController.m in Sources */,
 				5B2D94C415A20C7800E07BC6 /* InAppPurchaseTableCellView.m in Sources */,
+				1D52574616EB66F200A91244 /* FetchRequestInfoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
