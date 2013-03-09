@@ -1015,16 +1015,16 @@
 #pragma mark - EntityTableViewDataSource 
 
 - (NSInteger)sectionIndexForRow:(NSInteger)row {
-	//@TODO: we need more elegant solution here
-	if (row <= [[self.rootNode.childs[0] childs] count]) {
-		return 0;
-	}
-	return 1;
+	OutlineViewNode *nodeAtRow = [self.dataSourceList itemAtRow:row];
+	return nodeAtRow.parent.index;
 }
 
 - (NSSet *)tableSectionIndexes {
-//@TODO: how can we get indexes of all 'HeaderCell' cells?
-	return [NSSet setWithArray:@[@0, @([[self.rootNode.childs[0] childs] count] + 1)]];
+	NSMutableArray *result = [NSMutableArray array];
+	for (OutlineViewNode *sectionNode in self.rootNode.childs) {
+		[result addObject:@([self.dataSourceList rowForItem:sectionNode])];
+	}
+	return [NSSet setWithArray:[result copy]];
 }
 
 @end
