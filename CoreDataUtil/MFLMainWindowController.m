@@ -591,13 +591,8 @@
 #pragma mark - 
 #pragma mark Helpers
 
-- (BOOL) openFiles:(NSURL*) momFile persistenceFile:(NSURL*) persistenceFile persistenceType:(NSInteger) persistenceType
-{
-    [self.window makeKeyAndOrderFront:self];
-    
-    [self openCoreDataIntrospectionWithUrls:momFile persistFileUrl:persistenceFile persistFormat:persistenceType];
-    
-    self.rootNode = [OutlineViewNode new];
+- (void)configureOutlineViewNodes {
+	self.rootNode = [OutlineViewNode new];
     self.rootNode.index = 0;
     self.rootNode.title = @"";
     
@@ -605,7 +600,7 @@
     entitiesNode.title = @"entities";
     entitiesNode.index = 0;
     [self.rootNode addChild:entitiesNode];
-    	
+	
     NSUInteger entityCount = self.coreDataIntrospection.entityCount;
     for(NSUInteger i=0; i<entityCount; i++) {
         OutlineViewNode *node = [OutlineViewNode new];
@@ -632,7 +627,16 @@
         [self.dataSourceList expandItem:self.rootNode.childs[0]];
 		[self.dataSourceList expandItem:self.rootNode.childs[1]];
     }
-	
+}
+
+- (BOOL) openFiles:(NSURL*) momFile persistenceFile:(NSURL*) persistenceFile persistenceType:(NSInteger) persistenceType
+{
+    [self.window makeKeyAndOrderFront:self];
+    
+    [self openCoreDataIntrospectionWithUrls:momFile persistFileUrl:persistenceFile persistFormat:persistenceType];
+    
+	[self configureOutlineViewNodes];
+
     [self.entityContentTable reloadData];
     [self enableDisableHistorySegmentedControls];
     
@@ -861,7 +865,7 @@
     if (self.coreDataIntrospection != nil)
     {
         [self.coreDataIntrospection reloadObjectModel];
-        [self.dataSourceList reloadData];
+		[self configureOutlineViewNodes];
         [self.entityContentTable reloadData];
         [self enableDisableHistorySegmentedControls];
     }
