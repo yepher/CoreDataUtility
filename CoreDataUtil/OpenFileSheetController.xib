@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12C3006</string>
+		<string key="IBDocument.SystemVersion">12C60</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
@@ -92,6 +92,7 @@
 							<string key="NSFrame">{{464, 12}, {74, 32}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="888996739">
@@ -907,7 +908,7 @@ Y3VtZW50cyBmb2xkZXLigKggICAgNC4gU2VsZWN0IHRoZSBzdG9yYWdlIGZvcm1hdA</bytes>
 							<int key="NSvFlags">289</int>
 							<string key="NSFrame">{{342, 12}, {94, 32}}</string>
 							<reference key="NSSuperview" ref="800658864"/>
-							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="637815723">
 								<int key="NSCellFlags">67108864</int>
@@ -929,7 +930,6 @@ Y3VtZW50cyBmb2xkZXLigKggICAgNC4gU2VsZWN0IHRoZSBzdG9yYWdlIGZvcm1hdA</bytes>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{260, 12}, {82, 32}}</string>
 							<reference key="NSSuperview" ref="800658864"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1000659992"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -954,7 +954,6 @@ Y3VtZW50cyBmb2xkZXLigKggICAgNC4gU2VsZWN0IHRoZSBzdG9yYWdlIGZvcm1hdA</bytes>
 							<int key="NSvFlags">12</int>
 							<string key="NSFrame">{{21, 83}, {412, 26}}</string>
 							<reference key="NSSuperview" ref="800658864"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="896565203"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -1052,7 +1051,6 @@ Y3VtZW50cyBmb2xkZXLigKggICAgNC4gU2VsZWN0IHRoZSBzdG9yYWdlIGZvcm1hdA</bytes>
 					</array>
 					<string key="NSFrameSize">{450, 143}</string>
 					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="30874583"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -1070,14 +1068,6 @@ Y3VtZW50cyBmb2xkZXLigKggICAgNC4gU2VsZWN0IHRoZSBzdG9yYWdlIGZvcm1hdA</bytes>
 						<reference key="destination" ref="1005"/>
 					</object>
 					<int key="connectionID">3</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">cancelButtonAction:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="619087853"/>
-					</object>
-					<int key="connectionID">9</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1342,6 +1332,14 @@ Y3VtZW50cyBmb2xkZXLigKggICAgNC4gU2VsZWN0IHRoZSBzdG9yYWdlIGZvcm1hdA</bytes>
 						<reference key="destination" ref="261546104"/>
 					</object>
 					<int key="connectionID">1309</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cancelButtonAction:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="619087853"/>
+					</object>
+					<int key="connectionID">1317</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2093,7 +2091,7 @@ Y3VtZW50cyBmb2xkZXLigKggICAgNC4gU2VsZWN0IHRoZSBzdG9yYWdlIGZvcm1hdA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1316</int>
+			<int key="maxID">1317</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2108,6 +2106,8 @@ Y3VtZW50cyBmb2xkZXLigKggICAgNC4gU2VsZWN0IHRoZSBzdG9yYWdlIGZvcm1hdA</bytes>
 						<string key="openButtonAction:">id</string>
 						<string key="processTabRunningProcessButtonAction:">id</string>
 						<string key="simulatorTabSimulatorAppButtonAction:">id</string>
+						<string key="tabStoreApplicationSupportButtonAction:">id</string>
+						<string key="tabStoreFileButtonAction:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="cancelButtonAction:">
@@ -2136,6 +2136,14 @@ Y3VtZW50cyBmb2xkZXLigKggICAgNC4gU2VsZWN0IHRoZSBzdG9yYWdlIGZvcm1hdA</bytes>
 						</object>
 						<object class="IBActionInfo" key="simulatorTabSimulatorAppButtonAction:">
 							<string key="name">simulatorTabSimulatorAppButtonAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="tabStoreApplicationSupportButtonAction:">
+							<string key="name">tabStoreApplicationSupportButtonAction:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="tabStoreFileButtonAction:">
+							<string key="name">tabStoreFileButtonAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

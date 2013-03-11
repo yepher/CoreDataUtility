@@ -7,24 +7,34 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "MFLAppDelegate.h"
 
 typedef enum
 {
     FileTab,
     ProcessTab,
     SimulatorTab
-}TabName;
+} TabName;
 
-@class MFLAppDelegate;
+@class OpenFileSheetController;
+
+@protocol OpenFileSheetControllerDelegate <NSObject>
+@required
+- (void)openFileSheetControllerDidCancel:(OpenFileSheetController *)controller;
+
+- (void)openFileSheetController:(OpenFileSheetController *)controller
+              didSelectModelURL:(NSURL *)modelURL
+                     storageURL:(NSURL *)storageURL;
+@end
 
 @interface OpenFileSheetController : NSWindowController <NSTabViewDelegate>
 {
     TabName currentTab;
     BOOL didSubmit;
 }
-@property (weak) IBOutlet NSTabView *tabView;
 
+@property (weak) id<OpenFileSheetControllerDelegate> delegate;
+
+@property (weak) IBOutlet NSTabView *tabView;
 @property (weak) IBOutlet NSTextField *fileTabModelTextField;
 @property (weak) IBOutlet NSTextField *fileTabPersistenceTextField;
 @property (weak) IBOutlet NSPopUpButton *fileTabPersistenceFormat;

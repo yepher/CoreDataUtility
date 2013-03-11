@@ -31,6 +31,9 @@
 - (void)selectSimulatorDirectoryAction:(NSTextField *)modelTextField persistenceTextField:(NSTextField *)persistenceTextField;
 - (void)clearComboSelector;
 
+@property (strong) NSURL *selectedModelURL;
+@property (strong) NSURL *selectedStorageURL;
+
 @end
 
 @implementation OpenFileSheetController
@@ -316,8 +319,12 @@
         NSString* momFile = [momFiles anyObject];
         if ([momFile hasPrefix:@"/"]) {
             self.momFileUrl = [NSURL fileURLWithPath:momFile];
+            
+            self.selectedModelURL = self.momFileUrl;
         } else {
             self.momFileUrl = [NSURL URLWithString:momFile];
+            
+            self.selectedModelURL = self.momFileUrl;
         }
 
         [modelTextField setStringValue:[self.momFileUrl relativePath]];
@@ -382,13 +389,22 @@
         {
             NSDictionary *filePaths = [[NSDictionary alloc] initWithContentsOfURL:[openDlg URLs][0]];
             self.momFileUrl = [NSURL URLWithString:filePaths[MFL_MOM_FILE_KEY]];
+            
+            self.selectedModelURL = self.momFileUrl;
+            
             [modelTextField setStringValue:[self.momFileUrl relativePath]];
             self.dbFileUrl = [NSURL URLWithString:filePaths[MFL_DB_FILE_KEY]];
+            
+            self.selectedStorageURL = self.dbFileUrl;
+            
             [persistenceTextField setStringValue:[self.dbFileUrl relativePath]];
         }
         else
         {
             self.dbFileUrl = [openDlg URLs][0];
+            
+            self.selectedStorageURL = self.dbFileUrl;
+            
             [persistenceTextField setStringValue:[self.dbFileUrl relativePath]];
         }
         
@@ -434,6 +450,9 @@
     if ([openDlg runModal] == NSOKButton)
     {
         self.dbFileUrl = [openDlg URLs][0];
+        
+        self.selectedStorageURL = self.dbFileUrl;
+        
         [persistenceTextField setStringValue:[self.dbFileUrl relativePath]];
         
         [self showOrHideOpenButton];
@@ -456,8 +475,14 @@
         {
             NSDictionary *filePaths = [[NSDictionary alloc] initWithContentsOfURL:[openDlg URLs][0]];
             self.momFileUrl = [NSURL URLWithString:filePaths[MFL_MOM_FILE_KEY]];
+            
+            self.selectedModelURL = self.momFileUrl;
+            
             [self.fileTabModelTextField setStringValue:[self.momFileUrl relativePath]];
             self.dbFileUrl = [NSURL URLWithString:filePaths[MFL_DB_FILE_KEY]];
+            
+            self.selectedStorageURL = self.dbFileUrl;
+            
             [self.fileTabPersistenceTextField setStringValue:[self.dbFileUrl relativePath]];
             
             [self showOrHideOpenButton];
@@ -472,6 +497,9 @@
         else
         {
             self.momFileUrl = [openDlg URLs][0];
+            
+            self.selectedModelURL = self.momFileUrl;
+            
             [self.fileTabModelTextField setStringValue:[self.momFileUrl relativePath]];
             
             [self showOrHideOpenButton];
@@ -577,16 +605,14 @@
 
 - (IBAction)openButtonAction:(id)sender
 {
-    didSubmit = YES;
-    [NSApp stopModal];
-    [self.window close];
+    [self.delegate openFileSheetController:self
+                         didSelectModelURL:self.selectedModelURL
+                                storageURL:self.selectedStorageURL];
 }
 
 - (IBAction)cancelButtonAction:(id)sender
 {
-    didSubmit = NO;
-    [NSApp stopModal];
-    [self.window close];
+    [self.delegate openFileSheetControllerDidCancel:self];
 }
 
 - (void)clearComboSelector
@@ -630,6 +656,9 @@
             NSLog(@"value: %@ - %@", [self.processSelectorBox objectValueOfSelectedItem], [[self.processSelectorBox objectValueOfSelectedItem] class]);
             
             self.momFileUrl = [NSURL fileURLWithPath:(self.simulatorUrlList)[selectedItemIndex]];
+            
+            self.selectedModelURL = self.momFileUrl;
+            
             switch (currentTab)
             {
                 case FileTab:
@@ -677,6 +706,8 @@
         NSString* momFilePath = (self.initialValues)[MFL_MOM_FILE_KEY];
         self.momFileUrl = [NSURL fileURLWithPath:momFilePath];
         
+        self.selectedModelURL = self.momFileUrl;
+        
         if ([[momFilePath lowercaseString] rangeOfString:@"/iphone simulator"].location != NSNotFound) {
             NSArray* items = [self.tabView tabViewItems];
             for (NSTabViewItem * item in items) {
@@ -706,6 +737,8 @@
     {
         NSString* storeFilePath = (self.initialValues)[MFL_DB_FILE_KEY];
         self.dbFileUrl = [NSURL fileURLWithPath:storeFilePath];
+        
+        self.selectedStorageURL = self.dbFileUrl;
         
         NSTextField* textField = [self currentPersistenceTextField];
         [textField setStringValue:storeFilePath];
