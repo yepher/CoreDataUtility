@@ -39,21 +39,22 @@ const float kOpenFileControllerShowDelay = 1.0;
 {
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
-    
-    [self.progressIndicator startAnimation:nil];
-    
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kOpenFileControllerShowDelay * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        self.openFileController = [[OpenFileSheetController alloc] initWithWindowNibName:@"OpenFileSheetController"];
-        self.openFileController.delegate = self;
+
+    if (!self.fileURL) {
+        [self.progressIndicator startAnimation:nil];
         
-        [NSApp beginSheet:self.openFileController.window
-           modalForWindow:self.windowForSheet
-            modalDelegate:nil
-           didEndSelector:nil
-              contextInfo:NULL];
-    });
-    
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kOpenFileControllerShowDelay * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            self.openFileController = [[OpenFileSheetController alloc] initWithWindowNibName:@"OpenFileSheetController"];
+            self.openFileController.delegate = self;
+            
+            [NSApp beginSheet:self.openFileController.window
+               modalForWindow:self.windowForSheet
+                modalDelegate:nil
+               didEndSelector:nil
+                  contextInfo:NULL];
+        });
+    }
 }
 
 + (BOOL)autosavesInPlace
@@ -78,6 +79,9 @@ const float kOpenFileControllerShowDelay = 1.0;
     
     NSLog(@"Model URL: %@", modelURL);
     NSLog(@"Storage URL: %@", storageURL);
+    
+    [self.progressIndicator stopAnimation:nil];
+    self.progressIndicator.hidden = YES;
 }
 
 @end
