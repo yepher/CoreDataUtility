@@ -43,6 +43,7 @@
 - (NSUInteger) fetchRequestCount;
 - (NSString*) fetchRequestAtIndex:(NSUInteger) index;
 - (NSFetchRequest*) fetchRequest:(NSUInteger) index;
+- (NSFetchRequest*) fetchRequestWithName:(NSString *) name;
 
 - (NSArray*) entityFieldNames:(NSString*) entityName;
 - (NSEntityDescription*) entityDescription:(NSUInteger) index;
@@ -65,6 +66,6 @@
 + (id)getDisplayValueForObject:(id)obj dateStyle:(NSDateFormatterStyle) dateStyle;
 - (NSInteger)getCurrentHistoryIndex;
 - (void)setCurrentHistoryIndex:(NSInteger)currentIndex;
-- (void)updateCoreDataHistory:(NSString *)name :(NSPredicate *)predicate;
+- (void)updateCoreDataHistory:(NSString *)name predicate:(NSPredicate *)predicate objectType:(MFLObjectType)type;
 
 @end

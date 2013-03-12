@@ -151,6 +151,11 @@
 	return [self.objModel fetchRequestTemplateForName:self.fetchRequests[index]];
 }
 
+- (NSFetchRequest*) fetchRequestWithName:(NSString *) name
+{
+	return [self.objModel fetchRequestTemplateForName:name];
+}
+
 - (NSEntityDescription*) entityDescription:(NSUInteger) index {
     NSEntityDescription* entityDescription = [self.objModel entities][index];
     return entityDescription;
@@ -417,7 +422,7 @@
     currentHistoryIndex = currentIndex;
 }
 
-- (void)updateCoreDataHistory:(NSString *)name :(NSPredicate *)predicate
+- (void)updateCoreDataHistory:(NSString *)name predicate:(NSPredicate *)predicate objectType:(MFLObjectType)type
 {
     if (self.coreDataHistory == nil)
     {
@@ -425,8 +430,9 @@
     }
     
     CoreDataHistoryObject *coreDataHistoryObj = [[CoreDataHistoryObject alloc] init];
-    [coreDataHistoryObj setEntityName:name];
+    [coreDataHistoryObj setName:name];
     [coreDataHistoryObj setPredicate:predicate];
+	[coreDataHistoryObj setType:type];
     [self.coreDataHistory insertObject:coreDataHistoryObj atIndex:currentHistoryIndex];
     
     // handle the case where we are in the middle of the history array and we insert a new history item
@@ -443,10 +449,10 @@
     // handle any duplicate objects that are side-by-side
     if (([self.coreDataHistory count] >= 2) && (currentHistoryIndex <= [self.coreDataHistory count] - 2))
     {
-        CoreDataHistoryObject *currentObj = (self.coreDataHistory)[currentHistoryIndex];
-        CoreDataHistoryObject *nextObj = (self.coreDataHistory)[currentHistoryIndex + 1];
-        if ([currentObj isEqualTo:nextObj] || 
-            [[self fetchObjectsByEntityName:currentObj.entityName :currentObj.predicate] isEqualTo:[self fetchObjectsByEntityName:nextObj.entityName :nextObj.predicate]])
+        CoreDataHistoryObject *currentObj = self.coreDataHistory[currentHistoryIndex];
+        CoreDataHistoryObject *nextObj = self.coreDataHistory[currentHistoryIndex + 1];
+        if ([currentObj isEqualTo:nextObj] || (currentObj.type == nextObj.type && currentObj.type == MFLObjectTypeEntity &&
+            [[self fetchObjectsByEntityName:currentObj.name :currentObj.predicate] isEqualTo:[self fetchObjectsByEntityName:nextObj.name :nextObj.predicate]]))
         {
             [self.coreDataHistory removeObjectAtIndex:currentHistoryIndex + 1];
         }

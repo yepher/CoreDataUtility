@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, MFLObjectType) {
+	MFLObjectTypeEntity,
+	MFLObjectTypeFetchRequest
+};
+
 @interface CoreDataHistoryObject : NSObject
 
-@property (strong) NSString *entityName;
+@property (strong) NSString *name;
 @property (strong) NSPredicate *predicate;
+@property (assign) MFLObjectType type;
 
 @end
