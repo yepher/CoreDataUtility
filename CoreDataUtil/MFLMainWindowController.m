@@ -68,7 +68,7 @@
 - (BOOL)canEnableBackHistoryControl;
 - (BOOL)canEnableForwardHistoryControl;
 - (void)enableDisableHistorySegmentedControls;
-- (void)reloadEntityDataTable:(NSString *)name :(NSPredicate *)predicate;
+- (void)reloadEntityDataTable:(NSString *)name predicate:(NSPredicate *)predicate type:(MFLObjectType)type;
 - (NSEntityDescription *)getEntityForPredicateEditor;
 
 @end
@@ -216,23 +216,8 @@
 
 - (void)enableDisableHistorySegmentedControls
 {
-    if ([self canEnableBackHistoryControl])
-    {
-        [self.historySegmentedControl setEnabled:YES forSegment:0];
-    }
-    else
-    {
-        [self.historySegmentedControl setEnabled:NO forSegment:0];
-    }
-    
-    if ([self canEnableForwardHistoryControl])
-    {
-        [self.historySegmentedControl setEnabled:YES forSegment:1];
-    }
-    else
-    {
-        [self.historySegmentedControl setEnabled:NO forSegment:1];
-    }
+	[self.historySegmentedControl setEnabled:[self canEnableBackHistoryControl] forSegment:0];
+	[self.historySegmentedControl setEnabled:[self canEnableForwardHistoryControl] forSegment:1];
 }
 
 - (void) resotreEntitySelectionForHistoryObject:(CoreDataHistoryObject *)historyObject {
@@ -251,7 +236,7 @@
         return nil;
     };
     
-    OutlineViewNode *node = find(self.rootNode, historyObject.entityName);
+    OutlineViewNode *node = find(self.rootNode, historyObject.name);
     
     if (node) {
         [self.dataSourceList selectRowIndexes:[NSIndexSet indexSetWithIndex:[self.dataSourceList rowForItem:node]] byExtendingSelection:NO];
@@ -289,6 +274,8 @@
                 }
                 
                 [self.coreDataIntrospection loadEntityDataAtIndex:selected];
+				[self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection entityAtIndex:selected] predicate:nil objectType:MFLObjectTypeEntity];
+
             } else if (selected >= 0 && section == 1)
 			{
 				NSFetchRequest *fetch = [self.coreDataIntrospection fetchRequest:selected];
@@ -298,10 +285,12 @@
                     [self addTableColumnWithIdentifier:name];
                 }
 				[self.coreDataIntrospection executeFetch:fetch];
+				[self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection fetchRequestAtIndex:selected]
+														predicate:[[self.coreDataIntrospection fetchRequest:selected] predicate]
+													   objectType:MFLObjectTypeFetchRequest];
 			}
             [self.entityContentTable reloadData];
             
-            [self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection entityAtIndex:selected] :nil];
             [self enableDisableHistorySegmentedControls];
         }
     }
@@ -770,21 +759,25 @@
 #pragma mark -
 #pragma mark IBActions
 
-- (void)reloadEntityDataTable:(NSString *)name :(NSPredicate *)predicate
+- (void)reloadEntityDataTable:(NSString *)name predicate:(NSPredicate *)predicate type:(MFLObjectType)type
 {
     [self removeColumns];
     [self.coreDataIntrospection clearEntityData];
     [self.entityContentTable reloadData];
-    
     self.sortType = Unsorted;
+	
+	if (type == MFLObjectTypeFetchRequest) {
+		NSFetchRequest *request = [self.coreDataIntrospection fetchRequestWithName:name];
+		name = [[request entity] name];
+	}
     
-    [self.coreDataIntrospection applyPredicate:name predicate:predicate];
-    NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:name];
-    for (NSString* columnName in columnNames)
-    {
-        [self addTableColumnWithIdentifier:columnName];
-    }
-    [self.coreDataIntrospection applyPredicate:name predicate:predicate];
+	[self.coreDataIntrospection applyPredicate:name predicate:predicate];
+	NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:name];
+	for (NSString* columnName in columnNames)
+	{
+		[self addTableColumnWithIdentifier:columnName];
+	}
+	[self.coreDataIntrospection applyPredicate:name predicate:predicate];
     
     [self.entityContentTable reloadData];
     [self.dataSourceList deselectRow:[self.dataSourceList selectedRow]];
@@ -804,24 +797,24 @@
         {
             NSManagedObject *managedObject = (NSManagedObject *)valueObj;
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF == %@", managedObject];
-            [self reloadEntityDataTable:[[managedObject entity] name] :predicate];
-            [self.coreDataIntrospection updateCoreDataHistory:[[managedObject entity] name] :predicate];
+            [self reloadEntityDataTable:[[managedObject entity] name] predicate:predicate type:MFLObjectTypeEntity];
+            [self.coreDataIntrospection updateCoreDataHistory:[[managedObject entity] name] predicate:predicate objectType:MFLObjectTypeEntity];
             [self enableDisableHistorySegmentedControls];
         }
         else if ([valueObj isKindOfClass:[NSArray class]])
         {
             NSArray *array = (NSArray *)valueObj;
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", array];
-            [self reloadEntityDataTable:[[array[0] entity] name] :predicate];
-            [self.coreDataIntrospection updateCoreDataHistory:[[array[0] entity] name] :predicate];
+            [self reloadEntityDataTable:[[array[0] entity] name] predicate:predicate type:MFLObjectTypeEntity];
+            [self.coreDataIntrospection updateCoreDataHistory:[[array[0] entity] name] predicate:predicate objectType:MFLObjectTypeEntity];
             [self enableDisableHistorySegmentedControls];
         }
         else if ([valueObj isKindOfClass:[NSSet class]])
         {
             NSSet *set = (NSSet *)valueObj;
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", set];
-            [self reloadEntityDataTable:[[[set anyObject] entity] name] :predicate];
-            [self.coreDataIntrospection updateCoreDataHistory:[[[set anyObject] entity] name] :predicate];
+            [self reloadEntityDataTable:[[[set anyObject] entity] name] predicate:predicate type:MFLObjectTypeEntity];
+            [self.coreDataIntrospection updateCoreDataHistory:[[[set anyObject] entity] name] predicate:predicate objectType:MFLObjectTypeEntity];
             [self enableDisableHistorySegmentedControls];
         }
     }
@@ -840,7 +833,7 @@
     {
         [self.coreDataIntrospection setCurrentHistoryIndex:currentIndex+1];
         historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
-        [self reloadEntityDataTable:historyObj.entityName :historyObj.predicate]; 
+        [self reloadEntityDataTable:historyObj.name predicate:historyObj.predicate type:historyObj.type];
         [self enableDisableHistorySegmentedControls];
     }
     // go forward
@@ -848,7 +841,7 @@
     {
         [self.coreDataIntrospection setCurrentHistoryIndex:currentIndex-1];
         historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
-        [self reloadEntityDataTable:historyObj.entityName :historyObj.predicate];
+        [self reloadEntityDataTable:historyObj.name predicate:historyObj.predicate type:historyObj.type];
         [self enableDisableHistorySegmentedControls];
     }
     
@@ -923,7 +916,7 @@
         if (self.coreDataIntrospection.coreDataHistory != nil && [self.coreDataIntrospection.coreDataHistory count] > 0)
         {
             CoreDataHistoryObject *historyObj = (self.coreDataIntrospection.coreDataHistory)[[self.coreDataIntrospection getCurrentHistoryIndex]];
-            entityDescription = [self.coreDataIntrospection entityDescriptionForName:historyObj.entityName];
+            entityDescription = [self.coreDataIntrospection entityDescriptionForName:historyObj.name];
         }
     }
     
@@ -984,7 +977,7 @@
 - (IBAction)closePredicateSheet:(id)sender
 {
     [self applyPredicate:sender];
-    [self.coreDataIntrospection updateCoreDataHistory:[[self getEntityForPredicateEditor] name] :[self.predicateEditor objectValue]];
+    [self.coreDataIntrospection updateCoreDataHistory:[[self getEntityForPredicateEditor] name] predicate:[self.predicateEditor objectValue] objectType:MFLObjectTypeEntity];
     [self enableDisableHistorySegmentedControls];
     
     [NSApp endSheet:self.predicateSheet];
