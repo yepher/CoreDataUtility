@@ -15,8 +15,9 @@
     if ([object isKindOfClass:[CoreDataHistoryObject class]])
     {
         CoreDataHistoryObject *historyObj = (CoreDataHistoryObject *)object;
-        if ([self.entityName isEqualToString:historyObj.entityName] &&
-            ((self.predicate == nil && historyObj.predicate == nil) || ([self.predicate isEqualTo:historyObj.predicate])))
+        if ([self.name isEqualToString:historyObj.name] &&
+            ((self.predicate == nil && historyObj.predicate == nil) || ([self.predicate isEqualTo:historyObj.predicate])) &&
+			self.type == historyObj.type)
         {
             return YES;
         }
