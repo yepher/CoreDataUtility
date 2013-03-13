@@ -348,12 +348,31 @@
          NSStringAttributeType          = 700,
          NSBooleanAttributeType         = 800,
          NSDateAttributeType            = 900,
+         
+         // Not sure how to support the following attribute types
          NSBinaryDataAttributeType      = 1000,
          NSTransformableAttributeType   = 1800,
          NSObjectIDAttributeType        = 2000
+         
          **/
-        if ([property isKindOfClass:NSAttributeDescription.class] && 
-            ([property attributeType] != NSObjectIDAttributeType && [property attributeType] != NSBinaryDataAttributeType)) {
+        if ([property isKindOfClass:NSAttributeDescription.class] && [property attributeType] == NSBinaryDataAttributeType) {
+            // Not sure how to handle NSTransformableAttributeType so exlude from key paths
+            //NSLog(@"Exclude NSTransformableAttributeType: %@", property);
+            
+        } else if ([property isKindOfClass:NSAttributeDescription.class] && [property attributeType] == NSTransformableAttributeType) {
+            /* 
+             If the attribute is of NSTransformableAttributeType, the attributeValueClassName
+             must be set or attribute value class must implement NSCopying.
+             */
+            
+            // Not sure how to handle NSObjectIDAttributeType so exlude from key paths
+            //NSLog(@"Exclude NSObjectIDAttributeType: %@", property);
+            
+        } else if ([property isKindOfClass:NSAttributeDescription.class] && [property attributeType] == NSObjectIDAttributeType) {
+            // Not sure how to handle NSBinaryDataAttributeType so exlude from key paths
+            //NSLog(@"Exclude NSBinaryDataAttributeType: %@", property);
+            
+        } else {
             [keyPaths addObject:[property name]];
         }
         
