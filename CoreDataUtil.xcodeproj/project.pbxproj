@@ -18,8 +18,39 @@
 		221254FD16EE5E8B009A7C95 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221254FB16EE5E8B009A7C95 /* Document.xib */; };
 		2212550016EE5E8B009A7C95 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 221254FE16EE5E8B009A7C95 /* MainMenu.xib */; };
 		2212550316EE5E8B009A7C95 /* Document.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2212550116EE5E8B009A7C95 /* Document.xcdatamodeld */; };
-		2212550A16EE638B009A7C95 /* OpenFileSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2E2AA41565A8AC00F6F6EA /* OpenFileSheetController.m */; };
-		2212550B16EE6392009A7C95 /* OpenFileSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2E2AA51565A8AC00F6F6EA /* OpenFileSheetController.xib */; };
+		22DF7AD816F1198A0062DACA /* FetchRequestInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D52574416EB66F100A91244 /* FetchRequestInfoController.m */; };
+		22DF7AD916F1198A0062DACA /* FetchRequestInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D52574516EB66F100A91244 /* FetchRequestInfoController.xib */; };
+		22DF7ADF16F119920062DACA /* MFLMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830D04EC1598CC4D003874CA /* MFLMainWindowController.xib */; };
+		22DF7AE016F119920062DACA /* OpenFileSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2E2AA41565A8AC00F6F6EA /* OpenFileSheetController.m */; };
+		22DF7AE116F119920062DACA /* OpenFileSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2E2AA51565A8AC00F6F6EA /* OpenFileSheetController.xib */; };
+		22DF7AE216F119920062DACA /* GetInfoSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AEF191576B67600DFD0D6 /* GetInfoSheetController.m */; };
+		22DF7AE316F119920062DACA /* GetInfoSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AEF1A1576B67600DFD0D6 /* GetInfoSheetController.xib */; };
+		22DF7AE416F119A00062DACA /* MFLCoreDataIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B158FC158F6AE2002B46C2 /* MFLCoreDataIntrospection.m */; };
+		22DF7AE516F119A00062DACA /* MFLCoreDataCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 835941211592351D0045B287 /* MFLCoreDataCommon.m */; };
+		22DF7AE616F119A00062DACA /* CoreDataHistoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2BA5C3159C9FEB00AFEC9D /* CoreDataHistoryObject.m */; };
+		22DF7AE716F119A50062DACA /* EntityDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B330A6F1590CB1E00D79D4D /* EntityDataTableViewCell.m */; };
+		22DF7AE816F119A50062DACA /* MFLButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7F21593556000793430 /* MFLButtonTableViewCell.m */; };
+		22DF7AE916F119A50062DACA /* MFLTextTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7FA1593718600793430 /* MFLTextTableCellView.m */; };
+		22DF7AEA16F119A50062DACA /* MFLEntityTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7FD1593836600793430 /* MFLEntityTableCellView.m */; };
+		22DF7AEB16F119A50062DACA /* MFLCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83922D371598F264004C273C /* MFLCellBuilder.m */; };
+		22DF7AEC16F119A90062DACA /* EntityTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE26B62157FE8EE00DC186E /* EntityTableView.m */; };
+		22DF7AED16F119A90062DACA /* EntityDataTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE26B66157FF22700DC186E /* EntityDataTableView.m */; };
+		22DF7AEE16F119AE0062DACA /* MFLCoreDataEditorProjectLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */; };
+		22DF7AEF16F11A0E0062DACA /* Fetch_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D52573C16EAA47400A91244 /* Fetch_Small.png */; };
+		22DF7AF016F11A0E0062DACA /* ApplicationIcon-CDP.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */; };
+		22DF7AF116F11A0E0062DACA /* ApplicationIcon-MOM.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */; };
+		22DF7AF216F11A0E0062DACA /* CoreDataPro.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 83052CAC159D4B3900BB2FC6 /* CoreDataPro.entitlements */; };
+		22DF7AF316F11A0E0062DACA /* CoreData.ext in Resources */ = {isa = PBXBuildFile; fileRef = 832C9695159BD69E00AC8FA8 /* CoreData.ext */; };
+		22DF7AF416F11A0E0062DACA /* Binary_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196A1594DEB600ADDF5D /* Binary_Small.png */; };
+		22DF7AF516F11A0E0062DACA /* Boolean_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196B1594DEB600ADDF5D /* Boolean_Small.png */; };
+		22DF7AF616F11A0E0062DACA /* Date_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196C1594DEB600ADDF5D /* Date_Small.png */; };
+		22DF7AF716F11A0E0062DACA /* Number_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196D1594DEB600ADDF5D /* Number_Small.png */; };
+		22DF7AF816F11A0E0062DACA /* Object_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196E1594DEB600ADDF5D /* Object_Small.png */; };
+		22DF7AF916F11A0E0062DACA /* String_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196F1594DEB600ADDF5D /* String_Small.png */; };
+		22DF7AFA16F11A0E0062DACA /* refreshButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8359411E159217770045B287 /* refreshButton.png */; };
+		22DF7AFB16F11A0E0062DACA /* Entity_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 830D8450158FE0780022F403 /* Entity_Small.png */; };
+		22DF7AFC16F11A0E0062DACA /* Entity_Small_Set.png in Resources */ = {isa = PBXBuildFile; fileRef = 830D8451158FE0780022F403 /* Entity_Small_Set.png */; };
+		22DF7AFD16F11A0E0062DACA /* ApplicationIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 834D1480156B52ED00317376 /* ApplicationIcon.icns */; };
 		5B2AEF1B1576B67600DFD0D6 /* GetInfoSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AEF191576B67600DFD0D6 /* GetInfoSheetController.m */; };
 		5B2AEF1C1576B67600DFD0D6 /* GetInfoSheetController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B2AEF1A1576B67600DFD0D6 /* GetInfoSheetController.xib */; };
 		5B2BA5C4159C9FEB00AFEC9D /* CoreDataHistoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2BA5C3159C9FEB00AFEC9D /* CoreDataHistoryObject.m */; };
@@ -570,7 +601,25 @@
 				221254F716EE5E8B009A7C95 /* Credits.rtf in Resources */,
 				221254FD16EE5E8B009A7C95 /* Document.xib in Resources */,
 				2212550016EE5E8B009A7C95 /* MainMenu.xib in Resources */,
-				2212550B16EE6392009A7C95 /* OpenFileSheetController.xib in Resources */,
+				22DF7AD916F1198A0062DACA /* FetchRequestInfoController.xib in Resources */,
+				22DF7ADF16F119920062DACA /* MFLMainWindowController.xib in Resources */,
+				22DF7AE116F119920062DACA /* OpenFileSheetController.xib in Resources */,
+				22DF7AE316F119920062DACA /* GetInfoSheetController.xib in Resources */,
+				22DF7AEF16F11A0E0062DACA /* Fetch_Small.png in Resources */,
+				22DF7AF016F11A0E0062DACA /* ApplicationIcon-CDP.icns in Resources */,
+				22DF7AF116F11A0E0062DACA /* ApplicationIcon-MOM.icns in Resources */,
+				22DF7AF216F11A0E0062DACA /* CoreDataPro.entitlements in Resources */,
+				22DF7AF316F11A0E0062DACA /* CoreData.ext in Resources */,
+				22DF7AF416F11A0E0062DACA /* Binary_Small.png in Resources */,
+				22DF7AF516F11A0E0062DACA /* Boolean_Small.png in Resources */,
+				22DF7AF616F11A0E0062DACA /* Date_Small.png in Resources */,
+				22DF7AF716F11A0E0062DACA /* Number_Small.png in Resources */,
+				22DF7AF816F11A0E0062DACA /* Object_Small.png in Resources */,
+				22DF7AF916F11A0E0062DACA /* String_Small.png in Resources */,
+				22DF7AFA16F11A0E0062DACA /* refreshButton.png in Resources */,
+				22DF7AFB16F11A0E0062DACA /* Entity_Small.png in Resources */,
+				22DF7AFC16F11A0E0062DACA /* Entity_Small_Set.png in Resources */,
+				22DF7AFD16F11A0E0062DACA /* ApplicationIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,7 +694,20 @@
 				221254F316EE5E8B009A7C95 /* main.m in Sources */,
 				221254FA16EE5E8B009A7C95 /* Document.m in Sources */,
 				2212550316EE5E8B009A7C95 /* Document.xcdatamodeld in Sources */,
-				2212550A16EE638B009A7C95 /* OpenFileSheetController.m in Sources */,
+				22DF7AD816F1198A0062DACA /* FetchRequestInfoController.m in Sources */,
+				22DF7AE016F119920062DACA /* OpenFileSheetController.m in Sources */,
+				22DF7AE216F119920062DACA /* GetInfoSheetController.m in Sources */,
+				22DF7AE416F119A00062DACA /* MFLCoreDataIntrospection.m in Sources */,
+				22DF7AE516F119A00062DACA /* MFLCoreDataCommon.m in Sources */,
+				22DF7AE616F119A00062DACA /* CoreDataHistoryObject.m in Sources */,
+				22DF7AE716F119A50062DACA /* EntityDataTableViewCell.m in Sources */,
+				22DF7AE816F119A50062DACA /* MFLButtonTableViewCell.m in Sources */,
+				22DF7AE916F119A50062DACA /* MFLTextTableCellView.m in Sources */,
+				22DF7AEA16F119A50062DACA /* MFLEntityTableCellView.m in Sources */,
+				22DF7AEB16F119A50062DACA /* MFLCellBuilder.m in Sources */,
+				22DF7AEC16F119A90062DACA /* EntityTableView.m in Sources */,
+				22DF7AED16F119A90062DACA /* EntityDataTableView.m in Sources */,
+				22DF7AEE16F119AE0062DACA /* MFLCoreDataEditorProjectLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -980,6 +1042,7 @@
 				2212550516EE5E8B009A7C95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C1CEFE4B1463779C00466EB3 /* Build configuration list for PBXProject "CoreDataUtil" */ = {
 			isa = XCConfigurationList;

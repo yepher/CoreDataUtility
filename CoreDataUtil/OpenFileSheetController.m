@@ -607,7 +607,8 @@
 {
     [self.delegate openFileSheetController:self
                          didSelectModelURL:self.selectedModelURL
-                                storageURL:self.selectedStorageURL];
+                                storageURL:self.selectedStorageURL
+                         persistFileFormat:[self persistFileFormat]];
 }
 
 - (IBAction)cancelButtonAction:(id)sender

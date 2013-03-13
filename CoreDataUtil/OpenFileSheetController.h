@@ -23,7 +23,8 @@ typedef enum
 
 - (void)openFileSheetController:(OpenFileSheetController *)controller
               didSelectModelURL:(NSURL *)modelURL
-                     storageURL:(NSURL *)storageURL;
+                     storageURL:(NSURL *)storageURL
+              persistFileFormat:(NSUInteger)format;
 @end
 
 @interface OpenFileSheetController : NSWindowController <NSTabViewDelegate>
