@@ -317,7 +317,7 @@
     {
         NSData* data = (NSData*) obj;
         
-        return [NSString stringWithFormat:@"%ld bytes", [data length]];;
+        return [NSString stringWithFormat:@"%ld bytes", [data length]];
     }
     else
     {

@@ -492,7 +492,26 @@
                 return textCell;
             }
         }
-        
+        else if ([valueObj isKindOfClass:[NSOrderedSet class]])
+        {
+            
+            if ([valueObj count] > 0)
+            {
+                NSManagedObject* object = [valueObj firstObject];
+                NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
+                
+                MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+                [[buttonCell infoField] setAlignment:NSRightTextAlignment];
+                [[buttonCell infoField] setTextColor:[NSColor blackColor]];
+                [[buttonCell infoField] setStringValue: cellText];
+                return buttonCell;
+            }
+            else // Empty NSSet
+            {
+                MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
+                return textCell;
+            }
+        }
         // Unhandled types of content
         else 
         {
@@ -819,6 +838,14 @@
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", set];
             [self reloadEntityDataTable:[[[set anyObject] entity] name] predicate:predicate type:MFLObjectTypeEntity];
             [self.coreDataIntrospection updateCoreDataHistory:[[[set anyObject] entity] name] predicate:predicate objectType:MFLObjectTypeEntity];
+            [self enableDisableHistorySegmentedControls];
+        }
+        else if ([valueObj isKindOfClass:[NSOrderedSet class]])
+        {
+            NSOrderedSet *set = (NSOrderedSet *)valueObj;
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF IN %@", set];
+            [self reloadEntityDataTable:[[[set firstObject] entity] name] predicate:predicate type:MFLObjectTypeEntity];
+            [self.coreDataIntrospection updateCoreDataHistory:[[[set firstObject] entity] name] predicate:predicate objectType:MFLObjectTypeEntity];
             [self enableDisableHistorySegmentedControls];
         }
     }
