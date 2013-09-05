@@ -19,15 +19,11 @@ This project was an internal tool. It was created because of the lack of good to
 make it easy to debug and develop applications that use Core Data. 
 
 
-Source Code
-===============
-
-I am working on it. It is coming soon...
 
 Getting Started
 ===============
 
-1. To get started using the CoreDataPro. Download the binary from here:
+1. To get started using the CoreDataPro. Download the binary from here: (It is best to build from the source code)
      https://github.com/downloads/yepher/CoreDataUtility/CoreDataPro.app.zip
      
 2. Unzip that into your Applications directory and run it.
