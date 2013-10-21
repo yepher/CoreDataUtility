@@ -1,9 +1,7 @@
 CoreDataPro - CoreDataUtility
 ===============
 
-CoreDataPro lets you view explore your datamodel and view data that your application has 
-stored. I am looking forward to your feedback and help making this project more powerful
-and useful.
+CoreDataPro lets you view explore your datamodel and view data that your application has stored. I am looking forward to your feedback and help making this project more powerful and useful.
 
 Background
 ===============
@@ -16,7 +14,32 @@ Sandbox limitations it would need to be changed in such ways that would make it 
 useless.
 
 This project was an internal tool. It was created because of the lack of good tools that 
-make it easy to debug and develop applications that use Core Data. 
+makes it easy to debug and develop applications that use Core Data. 
+
+
+View Your Data from Evernote
+========================
+
+For demonstration purposes I picked a free app (Evernote) from App Store that uses CoreData to store its data. Viewing your apps data will be done in the same way.
+
+To view EverNotes data do the following:
+
+1. Launch Evernote on your Mac
+2. Launch CoreDataPro
+3. Select Menu->File->New Project
+3. Select the "OSX Process" tab
+   * Or you could use file tab and browse to "/Applications/Evernote.app/Contents/Resources/LocalNoteStore.mom"
+4. Select "Evernote" from the drop down list
+5. Select "Evernote.app LocalNoteStore.mom" from the drop down list.
+6. Now find Evernote's persistence file
+7. Select "Application Support" button and browse up one directory level
+8. Browse to "~/Library/Containers/com.evernote.Evernote/Data/Library/Application%20Support/Evernote/accounts/Evernote/YOUR_USERNAME/Evernote.sql"
+9. Make sure "SQL" persistence Format is selected
+10. Select Open
+11. Browse your Evernote data
+
+![Selecting A File](https://raw.github.com/yepher/CoreDataUtility/develop/screenShots/newProj_osxApp.png)
+![Evernote Data](https://raw.github.com/yepher/CoreDataUtility/develop/screenShots/EverNote.png)
 
 
 
