@@ -236,7 +236,7 @@
 {
     NSLog(@"Scanning: %@", dir);
     
-    NSMutableSet *contents = [[NSMutableSet alloc] init];
+    NSMutableOrderedSet *contents = [[NSMutableOrderedSet alloc] init];
     NSFileManager *fm = [NSFileManager defaultManager];
     BOOL isDir;
     if (dir && ([fm fileExistsAtPath:dir isDirectory:&isDir] && isDir))
