@@ -47,7 +47,7 @@ Getting Started
 ===============
 
 1. To get started using the CoreDataPro. Download the binary from here: (It is best to build from the source code)
-     https://github.com/downloads/yepher/CoreDataUtility/CoreDataPro.app.zip
+     https://github.com/yepher/CoreDataUtility/wiki
      
 2. Unzip that into your Applications directory and run it.
 
