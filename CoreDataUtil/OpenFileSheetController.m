@@ -232,7 +232,7 @@
     }
 }
 
-- (NSSet *)filesWithExtension:(NSString*)dir :(NSString *)extension
+- (NSOrderedSet *)filesWithExtension:(NSString*)dir :(NSString *)extension
 {
     NSLog(@"Scanning: %@", dir);
     

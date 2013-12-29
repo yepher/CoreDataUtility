@@ -221,13 +221,15 @@
 }
 
 - (void) resotreEntitySelectionForHistoryObject:(CoreDataHistoryObject *)historyObject {
-    OutlineViewNode *(^__weak __block find)(OutlineViewNode *, NSString *) = ^OutlineViewNode *(OutlineViewNode *node, NSString *title) {
+    OutlineViewNode *(^find)(OutlineViewNode *, NSString *);
+    __block OutlineViewNode *(^ __weak findWeak)(OutlineViewNode *, NSString *);
+    findWeak = find = ^OutlineViewNode *(OutlineViewNode *node, NSString *title) {
         if ([node.title isEqualToString:title]) {
             return node;
         }
         
         for (OutlineViewNode *child in node.childs) {
-            OutlineViewNode *result = find(child, title);
+            OutlineViewNode *result = findWeak(child, title);
             if (result) {
                 return result;
             }
