@@ -514,6 +514,12 @@
                 return textCell;
             }
         }
+        else if ([valueObj isKindOfClass:[NSDictionary class]])
+        {
+            NSString* cellText = [NSString stringWithFormat:@"%@", @"NSDictionary Data"];
+            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner:self];
+            return textCell;
+        }
         // Unhandled types of content
         else 
         {

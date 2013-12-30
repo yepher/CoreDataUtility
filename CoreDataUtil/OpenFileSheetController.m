@@ -299,7 +299,7 @@
     return MFL_SQLiteStoreType;
  }
 
-- (void)handleMomSelection:(NSSet *)momFiles modelTextField:(NSTextField *)modelTextField
+- (void)handleMomSelection:(NSOrderedSet *)momFiles modelTextField:(NSTextField *)modelTextField
 {
     if ([momFiles count] <= 0)
     {
@@ -313,7 +313,7 @@
     }
     else if ([momFiles count] == 1)
     {
-        NSString* momFile = [momFiles anyObject];
+        NSString* momFile = [momFiles firstObject];
         if ([momFile hasPrefix:@"/"]) {
             self.momFileUrl = [NSURL fileURLWithPath:momFile];
         } else {
