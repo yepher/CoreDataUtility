@@ -12,6 +12,8 @@
 #import "OpenFileSheetController.h"
 #import "MFLCoreDataEditorProjectLoader.h"
 
+#define APPLICATIONS_DIR @"/Applications/"
+
 @interface MFLAppDelegate ()
 
 @property (strong) OpenFileSheetController *openFileSheetController;
@@ -44,6 +46,52 @@
         if (dbFilePath != nil) {
             dbUrl = [NSURL URLWithString:dbFilePath];
         }
+        
+        // if iOS, check if file exists otherwise search for it because it may have moved.
+        NSError *err;
+        if ([momUrl checkResourceIsReachableAndReturnError:&err] == NO) {
+            // is iOS Simulator?
+            NSRange pathRange = [momFilePath rangeOfString:APPLICATIONS_DIR];
+            if (pathRange.location != NSNotFound) {
+                // This is an iOS simpulator project
+                NSLog(@"momPath: %@", momFilePath);
+                NSString* applicationsPath = [self convertToIosApplicationsBasePath:momFilePath];
+                NSString* relativeMomPath = [self convertToApplicationPath:momFilePath];
+                NSString* relativeDBPath = [self convertToApplicationPath:dbFilePath];
+                
+                // Scan through UUID directories to see if any match our paths
+                // Search through each UUID to find our files
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                NSError* error;
+                NSArray* contents = [fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:applicationsPath] includingPropertiesForKeys:@[NSURLFileResourceTypeDirectory] options:0 error:&error];
+                for (NSString* content in contents) {
+                    NSLog(@"Found: %@", content);
+                    NSString* testMomPath = [NSString stringWithFormat:@"%@%@",content, relativeMomPath];
+                    NSURL* testMomUrl = [NSURL URLWithString:testMomPath];
+                    if ([testMomUrl checkResourceIsReachableAndReturnError:&err] == NO) {
+                        continue;
+                    }
+                    
+                    NSString* testDBPath = [NSString stringWithFormat:@"%@%@", content, relativeDBPath];
+                    NSURL* testDBUrl = [NSURL URLWithString:testDBPath];
+                    if ([testDBUrl checkResourceIsReachableAndReturnError:&err] == NO) {
+                        continue;
+                    }
+                    
+                    // Both files exist so use this path instead.
+                    momFilePath = testMomPath;
+                    dbFilePath = testDBPath;
+                    
+                    momUrl = [NSURL URLWithString:momFilePath];
+                    dbUrl = [NSURL URLWithString:dbFilePath];
+                    
+                    // Exit for loop
+                    break;
+                }
+            }
+        }
+        
+        
         BOOL result = [self.mainWindowController openFiles: momUrl persistenceFile:dbUrl persistenceType:[persistenceFormat intValue]];
         
         if (result)
@@ -358,5 +406,30 @@
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/yepher/CoreDataUtility/issues"]];
 }
+
+- (NSString*) convertToIosApplicationsBasePath:(NSString*) filePath {
+    NSRange pathRange = [filePath rangeOfString:APPLICATIONS_DIR];
+    if (pathRange.location == NSNotFound) {
+        return nil;
+    }
+    
+    return [filePath substringToIndex:pathRange.location+pathRange.length];
+}
+
+- (NSString*) convertToApplicationPath:(NSString*) filePath {
+    NSRange pathRange = [filePath rangeOfString:APPLICATIONS_DIR];
+    if (pathRange.location == NSNotFound) {
+        return nil;
+    }
+    
+    NSUInteger len = ((pathRange.location+pathRange.length) +36);
+    
+    if ([filePath length] <= len) {
+        return nil;
+    }
+    
+    return [filePath substringFromIndex:len];
+}
+
 
 @end
