@@ -8,7 +8,7 @@
 
 #import "EntityDataTableViewCell.h"
 
-#define CELL_ICON_MARGIN 3
+NSUInteger const MFL_CELL_ICON_MARGIN = 3;
 
 @interface EntityDataTableViewCell ()
 
@@ -103,7 +103,7 @@
         icon = [NSImage imageNamed:@"String_Small.png"];
     }
     
-    NSRect iconFrame = NSMakeRect(cellFrame.origin.x + CELL_ICON_MARGIN, cellFrame.origin.y, cellFrame.size.height - 1, cellFrame.size.height - 1);
+    NSRect iconFrame = NSMakeRect(cellFrame.origin.x + MFL_CELL_ICON_MARGIN, cellFrame.origin.y, cellFrame.size.height - 1, cellFrame.size.height - 1);
     [icon drawInRect:iconFrame fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1 respectFlipped:YES hints:nil];
 }
 
@@ -120,8 +120,8 @@
     else if (cellType == OutlineCellTypeBinary || cellType == OutlineCellTypeBoolean || cellType == OutlineCellTypeDate || cellType == OutlineCellTypeNumber || 
              cellType == OutlineCellTypeObject || cellType == OutlineCellTypeString)
     {
-        textOrigin.x = cellFrame.origin.x + cellFrame.size.height + CELL_ICON_MARGIN*2;
-        maxWidth = cellFrame.size.width - cellFrame.size.height - CELL_ICON_MARGIN*2;
+        textOrigin.x = cellFrame.origin.x + cellFrame.size.height + MFL_CELL_ICON_MARGIN*2;
+        maxWidth = cellFrame.size.width - cellFrame.size.height - MFL_CELL_ICON_MARGIN*2;
     }
     else
     {

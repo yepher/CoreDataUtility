@@ -9,8 +9,6 @@
 #import "OpenFileSheetController.h"
 #import "MFLConstants.h"
 
-#define URL_FILE_BEGINNING @"file://localhost"
-
 @interface OpenFileSheetController ()
 
 @property (strong) NSDictionary *initialValues;
@@ -725,7 +723,7 @@
     {
         self.savedFields = @{MFL_MOM_FILE_KEY: self.momFileUrl,
                             MFL_DB_FILE_KEY: self.dbFileUrl,
-                            MFL_DB_FORMAT_KEY: [NSNumber numberWithInt:[self persistFileFormat]]};
+                            MFL_DB_FORMAT_KEY: [NSNumber numberWithLong:[self persistFileFormat]]};
     }
     else
     {

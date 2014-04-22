@@ -12,7 +12,7 @@
 #import "OpenFileSheetController.h"
 #import "MFLCoreDataEditorProjectLoader.h"
 
-#define APPLICATIONS_DIR @"/Applications/"
+NSString* const APPLICATIONS_DIR = @"/Applications/";
 
 @interface MFLAppDelegate ()
 
@@ -34,7 +34,7 @@
         NSString* dbFilePath = project[MFL_DB_FILE_KEY];
         NSNumber* persistenceFormat = project[MFL_DB_FORMAT_KEY];
         if (persistenceFormat == nil) {
-            persistenceFormat = @MFL_SQLiteStoreType;
+            persistenceFormat = [NSNumber numberWithInt:MFL_SQLiteStoreType];
         }
         
         NSURL* momUrl = nil;
@@ -120,7 +120,7 @@
             
             NSNumber* persistenceFormat = newValues[MFL_DB_FORMAT_KEY];
             if (persistenceFormat == nil) {
-                persistenceFormat = @MFL_SQLiteStoreType;
+                persistenceFormat = [NSNumber numberWithInt:MFL_SQLiteStoreType];
             }
             
             BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] persistenceFile:newValues[MFL_DB_FILE_KEY] persistenceType:[persistenceFormat intValue]];
@@ -158,7 +158,7 @@
             
             NSNumber* persistenceFormat = newValues[MFL_DB_FORMAT_KEY];
             if (persistenceFormat == nil) {
-                persistenceFormat = @MFL_SQLiteStoreType;
+                persistenceFormat = [NSNumber numberWithInt:MFL_SQLiteStoreType];
             }
             
             BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] persistenceFile:newValues[MFL_DB_FILE_KEY] persistenceType:[persistenceFormat intValue]];
@@ -252,7 +252,7 @@
         
         NSNumber* persistenceFormat = newValues[MFL_DB_FORMAT_KEY];
         if (persistenceFormat == nil) {
-            persistenceFormat = @MFL_SQLiteStoreType;
+            persistenceFormat = [NSNumber numberWithInt:MFL_SQLiteStoreType];
         }
         
         BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] persistenceFile:newValues[MFL_DB_FILE_KEY] persistenceType:[persistenceFormat intValue]];

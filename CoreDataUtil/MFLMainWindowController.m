@@ -19,7 +19,7 @@
 #import "GetInfoSheetController.h"
 #import "FetchRequestInfoController.h"
 
-#define kEntitiesRootNode @"rootNode"
+NSString* const kEntitiesRootNode = @"rootNode";
 
 @interface OutlineViewNode : NSObject
 @property (strong) OutlineViewNode *parent;

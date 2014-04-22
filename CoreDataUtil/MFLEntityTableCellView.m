@@ -8,9 +8,9 @@
 
 #import "MFLEntityTableCellView.h"
 
-#define RIGHT_MARGIN 3
-#define X_RADIUS 7
-#define ICON_PADDING 5
+NSInteger const RIGHT_MARGIN = 3;
+NSInteger const X_RADIUS = 7;
+NSInteger const ICON_PADDING = 5;
 
 @implementation MFLEntityTableCellView
 

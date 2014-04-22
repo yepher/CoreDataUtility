@@ -8,7 +8,6 @@
 
 #import "MySpotlightImporter.h"
 
-#define YOUR_STORE_TYPE NSXMLStoreType
 
 @interface MySpotlightImporter ()
 @property (nonatomic, strong) NSURL *modelURL;
@@ -125,7 +124,7 @@ static NSDate				*cachedModelModificationDate =nil;
     NSError *error = nil;
         
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:YOUR_STORE_TYPE configuration:nil URL:self.storeURL options:nil error:&error]) {
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:self.storeURL options:nil error:&error]) {
         NSLog(@"%@:%@ unable to add persistent store coordinator - %@", [self class], NSStringFromSelector(_cmd), error);
     }    
 

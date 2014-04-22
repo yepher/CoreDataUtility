@@ -58,7 +58,7 @@
         NSURL* storeURL = [object valueForKey:@"storeURL"];
         
         NSLog(@"modelURL: %@\nstoreURL: %@",modelURL, storeURL);
-        NSDictionary* newValues = @{MFL_DB_FORMAT_KEY: @MFL_SQLiteStoreType,
+        NSDictionary* newValues = @{MFL_DB_FORMAT_KEY: [NSNumber numberWithInt:MFL_SQLiteStoreType],
                                    MFL_MOM_FILE_KEY: [modelURL path],
                                    MFL_DB_FILE_KEY: [storeURL path]};
         

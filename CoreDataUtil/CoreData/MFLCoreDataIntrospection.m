@@ -8,7 +8,7 @@
 
 #import "MFLCoreDataIntrospection.h"
 
-#define CORE_DATA_HISTORY_MAX 100
+NSInteger const CORE_DATA_HISTORY_MAX = 100;
 
 @interface MFLCoreDataIntrospection ()
 

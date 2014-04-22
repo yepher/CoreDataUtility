@@ -22,12 +22,12 @@
 		830D04EE1598CC4D003874CA /* MFLMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830D04EC1598CC4D003874CA /* MFLMainWindowController.xib */; };
 		830D8452158FE0780022F403 /* Entity_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 830D8450158FE0780022F403 /* Entity_Small.png */; };
 		830D8453158FE0780022F403 /* Entity_Small_Set.png in Resources */ = {isa = PBXBuildFile; fileRef = 830D8451158FE0780022F403 /* Entity_Small_Set.png */; };
-		83282A7D159CE13700C25041 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83282A7C159CE13600C25041 /* StoreKit.framework */; };
 		832C9696159BD69E00AC8FA8 /* CoreData.ext in Resources */ = {isa = PBXBuildFile; fileRef = 832C9695159BD69E00AC8FA8 /* CoreData.ext */; };
 		832C969B159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */; };
 		833DF7F31593556000793430 /* MFLButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7F21593556000793430 /* MFLButtonTableViewCell.m */; };
 		833DF7FB1593718600793430 /* MFLTextTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7FA1593718600793430 /* MFLTextTableCellView.m */; };
 		833DF7FE1593836600793430 /* MFLEntityTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7FD1593836600793430 /* MFLEntityTableCellView.m */; };
+		833FF6FD187860F1003ADCEA /* MFLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 833FF6FC187860F1003ADCEA /* MFLConstants.m */; };
 		834D1481156B52ED00317376 /* ApplicationIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 834D1480156B52ED00317376 /* ApplicationIcon.icns */; };
 		8359411F159217770045B287 /* refreshButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8359411E159217770045B287 /* refreshButton.png */; };
 		835941221592351D0045B287 /* MFLCoreDataCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 835941211592351D0045B287 /* MFLCoreDataCommon.m */; };
@@ -105,7 +105,6 @@
 		830D04EC1598CC4D003874CA /* MFLMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MFLMainWindowController.xib; sourceTree = "<group>"; };
 		830D8450158FE0780022F403 /* Entity_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Entity_Small.png; sourceTree = "<group>"; };
 		830D8451158FE0780022F403 /* Entity_Small_Set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Entity_Small_Set.png; sourceTree = "<group>"; };
-		83282A7C159CE13600C25041 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		832C9695159BD69E00AC8FA8 /* CoreData.ext */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CoreData.ext; sourceTree = "<group>"; };
 		832C9699159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCoreDataEditorProjectLoader.h; sourceTree = "<group>"; };
 		832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCoreDataEditorProjectLoader.m; sourceTree = "<group>"; };
@@ -115,13 +114,14 @@
 		833DF7FA1593718600793430 /* MFLTextTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLTextTableCellView.m; sourceTree = "<group>"; };
 		833DF7FC1593836600793430 /* MFLEntityTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLEntityTableCellView.h; sourceTree = "<group>"; };
 		833DF7FD1593836600793430 /* MFLEntityTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLEntityTableCellView.m; sourceTree = "<group>"; };
+		833FF6FB187860F1003ADCEA /* MFLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLConstants.h; sourceTree = "<group>"; };
+		833FF6FC187860F1003ADCEA /* MFLConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLConstants.m; sourceTree = "<group>"; };
 		834D1480156B52ED00317376 /* ApplicationIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ApplicationIcon.icns; sourceTree = "<group>"; };
 		8359411E159217770045B287 /* refreshButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshButton.png; sourceTree = "<group>"; };
 		835941201592351D0045B287 /* MFLCoreDataCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCoreDataCommon.h; sourceTree = "<group>"; };
 		835941211592351D0045B287 /* MFLCoreDataCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCoreDataCommon.m; sourceTree = "<group>"; };
 		838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-CDP.icns"; sourceTree = "<group>"; };
 		838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-MOM.icns"; sourceTree = "<group>"; };
-		83922D341598D4C4004C273C /* MFLConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MFLConstants.h; sourceTree = "<group>"; };
 		83922D361598F264004C273C /* MFLCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCellBuilder.h; sourceTree = "<group>"; };
 		83922D371598F264004C273C /* MFLCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCellBuilder.m; sourceTree = "<group>"; };
 		83A2196A1594DEB600ADDF5D /* Binary_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Binary_Small.png; sourceTree = "<group>"; };
@@ -172,7 +172,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83282A7D159CE13700C25041 /* StoreKit.framework in Frameworks */,
 				C1CEFE561463779D00466EB3 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,7 +274,6 @@
 		C1CEFE541463779D00466EB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				83282A7C159CE13600C25041 /* StoreKit.framework */,
 				C1CEFE551463779D00466EB3 /* Cocoa.framework */,
 				C1CEFE761463779D00466EB3 /* SenTestingKit.framework */,
 				C1CEFE8C1463779D00466EB3 /* CoreServices.framework */,
@@ -300,7 +298,6 @@
 		C1CEFE5B1463779D00466EB3 /* CoreDataUtil */ = {
 			isa = PBXGroup;
 			children = (
-				83922D341598D4C4004C273C /* MFLConstants.h */,
 				832C9698159BDB8600AC8FA8 /* Utils */,
 				83B566591593A550004DE9FC /* TableViews */,
 				83B566571593A531004DE9FC /* TableViewCells */,
@@ -321,6 +318,8 @@
 				1D52574316EB66F100A91244 /* FetchRequestInfoController.h */,
 				1D52574416EB66F100A91244 /* FetchRequestInfoController.m */,
 				1D52574516EB66F100A91244 /* FetchRequestInfoController.xib */,
+				833FF6FB187860F1003ADCEA /* MFLConstants.h */,
+				833FF6FC187860F1003ADCEA /* MFLConstants.m */,
 			);
 			path = CoreDataUtil;
 			sourceTree = "<group>";
@@ -459,6 +458,16 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "mFluent LLC";
+				TargetAttributes = {
+					C1CEFE501463779C00466EB3 = {
+						DevelopmentTeam = K386ENA6UZ;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = C1CEFE4B1463779C00466EB3 /* Build configuration list for PBXProject "CoreDataUtil" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -565,6 +574,7 @@
 				83922D381598F264004C273C /* MFLCellBuilder.m in Sources */,
 				832C969B159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m in Sources */,
 				5B2BA5C4159C9FEB00AFEC9D /* CoreDataHistoryObject.m in Sources */,
+				833FF6FD187860F1003ADCEA /* MFLConstants.m in Sources */,
 				1D52574616EB66F200A91244 /* FetchRequestInfoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,6 +661,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE = shallow;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -688,6 +699,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_STATIC_ANALYZER_MODE = shallow;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -751,12 +763,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CoreDataUtil/CoreDataPro.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreDataUtil/CoreDataUtil-Prefix.pch";
 				INFOPLIST_FILE = "CoreDataUtil/CoreDataPro-Info.plist";
 				PRODUCT_NAME = CoreDataPro;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -765,12 +779,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CoreDataUtil/CoreDataPro.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreDataUtil/CoreDataUtil-Prefix.pch";
 				INFOPLIST_FILE = "CoreDataUtil/CoreDataPro-Info.plist";
 				PRODUCT_NAME = CoreDataPro;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
