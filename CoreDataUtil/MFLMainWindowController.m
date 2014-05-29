@@ -460,33 +460,46 @@
         {
             if ([valueObj count] > 0)
             {
-                NSManagedObject* object = [valueObj anyObject];
-                NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
-                
-                MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
-                [[buttonCell infoField] setAlignment:NSRightTextAlignment];
-                [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-                [[buttonCell infoField] setStringValue: cellText];
-                return buttonCell;
+                id obj = [valueObj anyObject];
+                if ([obj isKindOfClass:[NSManagedObject class]]) {
+                    NSManagedObject* object = obj;
+                    NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
+                    MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+                    [[buttonCell infoField] setAlignment:NSRightTextAlignment];
+                    [[buttonCell infoField] setTextColor:[NSColor blackColor]];
+                    [[buttonCell infoField] setStringValue: cellText];
+                    return buttonCell;
+                } else {
+                    NSString *cellText = [NSString stringWithFormat:@"%@", valueObj];
+                    MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
+                    return textCell;
+                }
             }
             else // Empty NSSet
             {
                 MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
                 return textCell;
-            }            
+            }
         }
         else if ([valueObj isKindOfClass:[NSArray class]])
         {
             if ([valueObj count] > 0)
             {
-                NSManagedObject* object = [valueObj firstItem];
-                NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
-                
-                MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
-                [[buttonCell infoField] setAlignment:NSRightTextAlignment];
-                [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-                [[buttonCell infoField] setStringValue: cellText];
-                return buttonCell;
+                id obj = [valueObj firstItem];
+                if ([obj isKindOfClass:[NSManagedObject class]]) {
+                    NSManagedObject* object = obj;
+                    NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
+                    
+                    MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+                    [[buttonCell infoField] setAlignment:NSRightTextAlignment];
+                    [[buttonCell infoField] setTextColor:[NSColor blackColor]];
+                    [[buttonCell infoField] setStringValue: cellText];
+                    return buttonCell;
+                } else {
+                    NSString *cellText = [NSString stringWithFormat:@"%@", valueObj];
+                    MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
+                    return textCell;
+                }
             }
             else // Empty NSArray
             {
@@ -499,14 +512,21 @@
             
             if ([valueObj count] > 0)
             {
-                NSManagedObject* object = [valueObj firstObject];
-                NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
-                
-                MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
-                [[buttonCell infoField] setAlignment:NSRightTextAlignment];
-                [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-                [[buttonCell infoField] setStringValue: cellText];
-                return buttonCell;
+                id obj = [valueObj firstObject];
+                if ([obj isKindOfClass:[NSManagedObject class]]) {
+                    NSManagedObject* object = obj;
+                    NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
+                    
+                    MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+                    [[buttonCell infoField] setAlignment:NSRightTextAlignment];
+                    [[buttonCell infoField] setTextColor:[NSColor blackColor]];
+                    [[buttonCell infoField] setStringValue: cellText];
+                    return buttonCell;
+                } else {
+                    NSString *cellText = [NSString stringWithFormat:@"%@", valueObj];
+                    MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
+                    return textCell;
+                }
             }
             else // Empty NSSet
             {
@@ -521,7 +541,7 @@
             return textCell;
         }
         // Unhandled types of content
-        else 
+        else
         {
             NSLog(@"is Other");
             
@@ -530,7 +550,7 @@
             [[textCell infoField] setTextColor:[NSColor redColor]];
             
             return textCell;
-        } 
+        }
     }
     
     return nil;
