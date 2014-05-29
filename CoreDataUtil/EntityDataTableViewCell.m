@@ -7,6 +7,7 @@
 //
 
 #import "EntityDataTableViewCell.h"
+#import "CoreDataUtilityStyle.h"
 
 NSUInteger const MFL_CELL_ICON_MARGIN = 3;
 
@@ -58,11 +59,11 @@ NSUInteger const MFL_CELL_ICON_MARGIN = 3;
     NSImage *icon;
     if (cellType == CellTypeManagedObject)
     {
-        icon = [NSImage imageNamed:@"Entity_Small.png"];
+        icon = [CoreDataUtilityStyle imageOfEntity];
     }
     else // collection
     {
-        icon = [NSImage imageNamed:@"Entity_Small_Set.png"];
+        icon = [CoreDataUtilityStyle imageOfEntitySet];
     }
     
     NSRect iconFrame = NSMakeRect(cellFrame.origin.x, cellFrame.origin.y, cellFrame.size.height - 1, cellFrame.size.height - 1);
@@ -80,27 +81,27 @@ NSUInteger const MFL_CELL_ICON_MARGIN = 3;
     NSImage *icon;
     if (cellType == OutlineCellTypeBinary)
     {
-        icon = [NSImage imageNamed:@"Binary_Small.png"];
+        icon = [CoreDataUtilityStyle imageOfBinary];
     }
     else if (cellType == OutlineCellTypeBoolean)
     {
-        icon = [NSImage imageNamed:@"Boolean_Small.png"];
+        icon = [CoreDataUtilityStyle imageOfBoolean];
     }
     else if (cellType == OutlineCellTypeDate)
     {
-        icon = [NSImage imageNamed:@"Date_Small.png"];
+        icon =  [CoreDataUtilityStyle imageOfDate];
     }
     else if (cellType == OutlineCellTypeNumber)
     {
-        icon = [NSImage imageNamed:@"Number_Small.png"];
+        icon = [CoreDataUtilityStyle imageOfNumber];
     }
     else if (cellType == OutlineCellTypeObject)
     {
-        icon = [NSImage imageNamed:@"Object_Small.png"];
+        icon = [CoreDataUtilityStyle imageOfAnObject];
     }
     else //OutlineCellTypeString
     {
-        icon = [NSImage imageNamed:@"String_Small.png"];
+        icon = [CoreDataUtilityStyle imageOfAString];
     }
     
     NSRect iconFrame = NSMakeRect(cellFrame.origin.x + MFL_CELL_ICON_MARGIN, cellFrame.origin.y, cellFrame.size.height - 1, cellFrame.size.height - 1);

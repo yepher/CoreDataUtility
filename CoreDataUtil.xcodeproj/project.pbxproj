@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D52573D16EAA47400A91244 /* Fetch_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D52573C16EAA47400A91244 /* Fetch_Small.png */; };
 		1D52574616EB66F200A91244 /* FetchRequestInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D52574416EB66F100A91244 /* FetchRequestInfoController.m */; };
 		1D52574716EB66F200A91244 /* FetchRequestInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D52574516EB66F100A91244 /* FetchRequestInfoController.xib */; };
 		5B2AEF1B1576B67600DFD0D6 /* GetInfoSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AEF191576B67600DFD0D6 /* GetInfoSheetController.m */; };
@@ -20,8 +19,6 @@
 		5BE26B67157FF22700DC186E /* EntityDataTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE26B66157FF22700DC186E /* EntityDataTableView.m */; };
 		830D04ED1598CC4D003874CA /* MFLMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 830D04EB1598CC4D003874CA /* MFLMainWindowController.m */; };
 		830D04EE1598CC4D003874CA /* MFLMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830D04EC1598CC4D003874CA /* MFLMainWindowController.xib */; };
-		830D8452158FE0780022F403 /* Entity_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 830D8450158FE0780022F403 /* Entity_Small.png */; };
-		830D8453158FE0780022F403 /* Entity_Small_Set.png in Resources */ = {isa = PBXBuildFile; fileRef = 830D8451158FE0780022F403 /* Entity_Small_Set.png */; };
 		832C9696159BD69E00AC8FA8 /* CoreData.ext in Resources */ = {isa = PBXBuildFile; fileRef = 832C9695159BD69E00AC8FA8 /* CoreData.ext */; };
 		832C969B159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */; };
 		833DF7F31593556000793430 /* MFLButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7F21593556000793430 /* MFLButtonTableViewCell.m */; };
@@ -31,15 +28,10 @@
 		834D1481156B52ED00317376 /* ApplicationIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 834D1480156B52ED00317376 /* ApplicationIcon.icns */; };
 		8359411F159217770045B287 /* refreshButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8359411E159217770045B287 /* refreshButton.png */; };
 		835941221592351D0045B287 /* MFLCoreDataCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 835941211592351D0045B287 /* MFLCoreDataCommon.m */; };
+		83656E6619378FB7003D0E74 /* CoreDataUtilityStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83656E6519378FB7003D0E74 /* CoreDataUtilityStyle.m */; };
 		838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */; };
 		838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */; };
 		83922D381598F264004C273C /* MFLCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83922D371598F264004C273C /* MFLCellBuilder.m */; };
-		83A219701594DEB600ADDF5D /* Binary_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196A1594DEB600ADDF5D /* Binary_Small.png */; };
-		83A219711594DEB600ADDF5D /* Boolean_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196B1594DEB600ADDF5D /* Boolean_Small.png */; };
-		83A219721594DEB600ADDF5D /* Date_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196C1594DEB600ADDF5D /* Date_Small.png */; };
-		83A219731594DEB600ADDF5D /* Number_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196D1594DEB600ADDF5D /* Number_Small.png */; };
-		83A219741594DEB600ADDF5D /* Object_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196E1594DEB600ADDF5D /* Object_Small.png */; };
-		83A219751594DEB600ADDF5D /* String_Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 83A2196F1594DEB600ADDF5D /* String_Small.png */; };
 		83B158FD158F6AE2002B46C2 /* MFLCoreDataIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B158FC158F6AE2002B46C2 /* MFLCoreDataIntrospection.m */; };
 		C1CEFE561463779D00466EB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CEFE551463779D00466EB3 /* Cocoa.framework */; };
 		C1CEFE601463779D00466EB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1CEFE5E1463779D00466EB3 /* InfoPlist.strings */; };
@@ -81,7 +73,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D52573C16EAA47400A91244 /* Fetch_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fetch_Small.png; sourceTree = "<group>"; };
 		1D52574316EB66F100A91244 /* FetchRequestInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchRequestInfoController.h; sourceTree = "<group>"; };
 		1D52574416EB66F100A91244 /* FetchRequestInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchRequestInfoController.m; sourceTree = "<group>"; };
 		1D52574516EB66F100A91244 /* FetchRequestInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FetchRequestInfoController.xib; sourceTree = "<group>"; };
@@ -103,8 +94,6 @@
 		830D04EA1598CC4D003874CA /* MFLMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLMainWindowController.h; sourceTree = "<group>"; };
 		830D04EB1598CC4D003874CA /* MFLMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLMainWindowController.m; sourceTree = "<group>"; };
 		830D04EC1598CC4D003874CA /* MFLMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MFLMainWindowController.xib; sourceTree = "<group>"; };
-		830D8450158FE0780022F403 /* Entity_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Entity_Small.png; sourceTree = "<group>"; };
-		830D8451158FE0780022F403 /* Entity_Small_Set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Entity_Small_Set.png; sourceTree = "<group>"; };
 		832C9695159BD69E00AC8FA8 /* CoreData.ext */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CoreData.ext; sourceTree = "<group>"; };
 		832C9699159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCoreDataEditorProjectLoader.h; sourceTree = "<group>"; };
 		832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCoreDataEditorProjectLoader.m; sourceTree = "<group>"; };
@@ -120,16 +109,12 @@
 		8359411E159217770045B287 /* refreshButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshButton.png; sourceTree = "<group>"; };
 		835941201592351D0045B287 /* MFLCoreDataCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCoreDataCommon.h; sourceTree = "<group>"; };
 		835941211592351D0045B287 /* MFLCoreDataCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCoreDataCommon.m; sourceTree = "<group>"; };
+		83656E6419378FB7003D0E74 /* CoreDataUtilityStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUtilityStyle.h; sourceTree = "<group>"; };
+		83656E6519378FB7003D0E74 /* CoreDataUtilityStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtilityStyle.m; sourceTree = "<group>"; };
 		838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-CDP.icns"; sourceTree = "<group>"; };
 		838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-MOM.icns"; sourceTree = "<group>"; };
 		83922D361598F264004C273C /* MFLCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCellBuilder.h; sourceTree = "<group>"; };
 		83922D371598F264004C273C /* MFLCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCellBuilder.m; sourceTree = "<group>"; };
-		83A2196A1594DEB600ADDF5D /* Binary_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Binary_Small.png; sourceTree = "<group>"; };
-		83A2196B1594DEB600ADDF5D /* Boolean_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Boolean_Small.png; sourceTree = "<group>"; };
-		83A2196C1594DEB600ADDF5D /* Date_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Date_Small.png; sourceTree = "<group>"; };
-		83A2196D1594DEB600ADDF5D /* Number_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Number_Small.png; sourceTree = "<group>"; };
-		83A2196E1594DEB600ADDF5D /* Object_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Object_Small.png; sourceTree = "<group>"; };
-		83A2196F1594DEB600ADDF5D /* String_Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = String_Small.png; sourceTree = "<group>"; };
 		83B158FB158F6AE2002B46C2 /* MFLCoreDataIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCoreDataIntrospection.h; sourceTree = "<group>"; };
 		83B158FC158F6AE2002B46C2 /* MFLCoreDataIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCoreDataIntrospection.m; sourceTree = "<group>"; };
 		C1CEFE511463779C00466EB3 /* CoreDataPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +191,15 @@
 				832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		83656E6319378FB7003D0E74 /* paintCode */ = {
+			isa = PBXGroup;
+			children = (
+				83656E6419378FB7003D0E74 /* CoreDataUtilityStyle.h */,
+				83656E6519378FB7003D0E74 /* CoreDataUtilityStyle.m */,
+			);
+			path = paintCode;
 			sourceTree = "<group>";
 		};
 		83B566571593A531004DE9FC /* TableViewCells */ = {
@@ -298,6 +292,7 @@
 		C1CEFE5B1463779D00466EB3 /* CoreDataUtil */ = {
 			isa = PBXGroup;
 			children = (
+				83656E6319378FB7003D0E74 /* paintCode */,
 				832C9698159BDB8600AC8FA8 /* Utils */,
 				83B566591593A550004DE9FC /* TableViews */,
 				83B566571593A531004DE9FC /* TableViewCells */,
@@ -327,20 +322,11 @@
 		C1CEFE5C1463779D00466EB3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1D52573C16EAA47400A91244 /* Fetch_Small.png */,
 				838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */,
 				838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */,
 				83052CAC159D4B3900BB2FC6 /* CoreDataPro.entitlements */,
 				832C9695159BD69E00AC8FA8 /* CoreData.ext */,
-				83A2196A1594DEB600ADDF5D /* Binary_Small.png */,
-				83A2196B1594DEB600ADDF5D /* Boolean_Small.png */,
-				83A2196C1594DEB600ADDF5D /* Date_Small.png */,
-				83A2196D1594DEB600ADDF5D /* Number_Small.png */,
-				83A2196E1594DEB600ADDF5D /* Object_Small.png */,
-				83A2196F1594DEB600ADDF5D /* String_Small.png */,
 				8359411E159217770045B287 /* refreshButton.png */,
-				830D8450158FE0780022F403 /* Entity_Small.png */,
-				830D8451158FE0780022F403 /* Entity_Small_Set.png */,
 				834D1480156B52ED00317376 /* ApplicationIcon.icns */,
 				C1CEFE5D1463779D00466EB3 /* CoreDataPro-Info.plist */,
 				C1CEFE5E1463779D00466EB3 /* InfoPlist.strings */,
@@ -500,20 +486,11 @@
 				5B2E2AA71565A8AC00F6F6EA /* OpenFileSheetController.xib in Resources */,
 				834D1481156B52ED00317376 /* ApplicationIcon.icns in Resources */,
 				5B2AEF1C1576B67600DFD0D6 /* GetInfoSheetController.xib in Resources */,
-				830D8452158FE0780022F403 /* Entity_Small.png in Resources */,
-				830D8453158FE0780022F403 /* Entity_Small_Set.png in Resources */,
 				8359411F159217770045B287 /* refreshButton.png in Resources */,
-				83A219701594DEB600ADDF5D /* Binary_Small.png in Resources */,
-				83A219711594DEB600ADDF5D /* Boolean_Small.png in Resources */,
-				83A219721594DEB600ADDF5D /* Date_Small.png in Resources */,
-				83A219731594DEB600ADDF5D /* Number_Small.png in Resources */,
-				83A219741594DEB600ADDF5D /* Object_Small.png in Resources */,
-				83A219751594DEB600ADDF5D /* String_Small.png in Resources */,
 				830D04EE1598CC4D003874CA /* MFLMainWindowController.xib in Resources */,
 				832C9696159BD69E00AC8FA8 /* CoreData.ext in Resources */,
 				838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */,
 				838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */,
-				1D52573D16EAA47400A91244 /* Fetch_Small.png in Resources */,
 				1D52574716EB66F200A91244 /* FetchRequestInfoController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CEFE621463779D00466EB3 /* main.m in Sources */,
+				83656E6619378FB7003D0E74 /* CoreDataUtilityStyle.m in Sources */,
 				C1CEFE691463779D00466EB3 /* MFLAppDelegate.m in Sources */,
 				C1CEFE6F1463779D00466EB3 /* CoreDataUtil.xcdatamodeld in Sources */,
 				5B2E2AA61565A8AC00F6F6EA /* OpenFileSheetController.m in Sources */,

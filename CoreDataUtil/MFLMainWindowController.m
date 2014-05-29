@@ -7,6 +7,7 @@
 //
 
 #import "MFLMainWindowController.h"
+#import "CoreDataUtilityStyle.h"
 #import "MFLConstants.h"
 #import "MFLCoreDataIntrospection.h"
 #import "EntityTableView.h"
@@ -588,13 +589,13 @@ NSString* const kEntitiesRootNode = @"rootNode";
 		if ([self.rootNode.childs[1] hasChild:node]) {
 			cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
 			cell.textField.stringValue = node.title;
-			cell.imageView.image = [NSImage imageNamed:@"Fetch_Small"];
+			cell.imageView.image = [CoreDataUtilityStyle imageOfFetch];
 			NSButton *button = [cell viewWithTag:1];
 			[button removeFromSuperview];
 		} else {
 			cell = [outlineView makeViewWithIdentifier:@"DataCell" owner:self];
 			cell.textField.stringValue = node.title;
-			cell.imageView.image = [NSImage imageNamed:@"Entity_Small"];
+			cell.imageView.image = [CoreDataUtilityStyle imageOfEntity];
 			NSButton *button = [cell viewWithTag:1];
 			button.title = [NSString stringWithFormat:@"%d", node.badgeValue];
 		}
