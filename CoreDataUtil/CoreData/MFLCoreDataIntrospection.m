@@ -8,7 +8,7 @@
 
 #import "MFLCoreDataIntrospection.h"
 
-#define CORE_DATA_HISTORY_MAX 100
+NSInteger const CORE_DATA_HISTORY_MAX = 100;
 
 @interface MFLCoreDataIntrospection ()
 
@@ -372,8 +372,12 @@
             // Not sure how to handle NSBinaryDataAttributeType so exlude from key paths
             //NSLog(@"Exclude NSBinaryDataAttributeType: %@", property);
             
-        } else {
+        } else if ([property isKindOfClass:NSAttributeDescription.class]) {
             [keyPaths addObject:[property name]];
+        } else {
+            // Need to handle NSRelationshipDescription
+            
+            NSLog(@"Unhandled NSAttributeDescription (%@)", [property entity]);
         }
         
     }
