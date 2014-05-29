@@ -10,6 +10,7 @@
 #import "MFLConstants.h"
 #import "MFLTextTableCellView.h"
 #import "MFLButtonTableViewCell.h"
+#import "TransformableDataTableViewCell.h"
 
 @implementation MFLCellBuilder
 
@@ -52,6 +53,17 @@
 + (MFLButtonTableViewCell* ) objectCellWithString:(NSTableView *)tableView textToSet:(NSString*) textToSet owner:(id) owner {
     
     MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:owner];
+    [[buttonCell infoField] setAlignment:NSRightTextAlignment];
+    [[buttonCell infoField] setTextColor:[NSColor blackColor]];
+    [[buttonCell infoField] setStringValue:textToSet];
+    [buttonCell setToolTip:textToSet];
+    
+    return buttonCell;
+}
+
++ (TransformableDataTableViewCell* ) tranformableCellWithSTring:(NSTableView *)tableView textToSet:(NSString*) textToSet owner:(id) owner {
+    
+    TransformableDataTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_TRANSFORM_CELL owner:owner];
     [[buttonCell infoField] setAlignment:NSRightTextAlignment];
     [[buttonCell infoField] setTextColor:[NSColor blackColor]];
     [[buttonCell infoField] setStringValue:textToSet];

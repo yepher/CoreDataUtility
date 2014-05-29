@@ -15,10 +15,12 @@
 #import "MFLTextTableCellView.h"
 #import "MFLEntityTableCellView.h"
 #import "MFLButtonTableViewCell.h"
+#import "TransformableDataTableViewCell.h"
 #import "MFLCellBuilder.h"
 #import "OpenFileSheetController.h"
 #import "GetInfoSheetController.h"
 #import "FetchRequestInfoController.h"
+#import "ObjectInfoController.h"
 
 NSString* const kEntitiesRootNode = @"rootNode";
 
@@ -465,6 +467,7 @@ NSString* const kEntitiesRootNode = @"rootNode";
                 if ([obj isKindOfClass:[NSManagedObject class]]) {
                     NSManagedObject* object = obj;
                     NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
+                    
                     MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
                     [[buttonCell infoField] setAlignment:NSRightTextAlignment];
                     [[buttonCell infoField] setTextColor:[NSColor blackColor]];
@@ -538,8 +541,12 @@ NSString* const kEntitiesRootNode = @"rootNode";
         else if ([valueObj isKindOfClass:[NSDictionary class]])
         {
             NSString* cellText = [NSString stringWithFormat:@"%@", @"NSDictionary Data"];
-            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner:self];
-            return textCell;
+            TransformableDataTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_TRANSFORM_CELL owner:self];
+            [[buttonCell infoField] setAlignment:NSRightTextAlignment];
+            [[buttonCell infoField] setTextColor:[NSColor blackColor]];
+            [[buttonCell infoField] setStringValue: cellText];
+            
+            return buttonCell;
         }
         // Unhandled types of content
         else
@@ -547,10 +554,12 @@ NSString* const kEntitiesRootNode = @"rootNode";
             NSLog(@"is Other");
             
             NSString* cellText = [NSString stringWithFormat:@"??? %@ ???", [valueObj class]];
-            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner:self];
-            [[textCell infoField] setTextColor:[NSColor redColor]];
+            TransformableDataTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_TRANSFORM_CELL owner:self];
+            [[buttonCell infoField] setAlignment:NSRightTextAlignment];
+            [[buttonCell infoField] setTextColor:[NSColor blackColor]];
+            [[buttonCell infoField] setStringValue: cellText];
             
-            return textCell;
+            return buttonCell;
         }
     }
     
@@ -834,6 +843,21 @@ NSString* const kEntitiesRootNode = @"rootNode";
     [self.entityContentTable reloadData];
     [self.dataSourceList deselectRow:[self.dataSourceList selectedRow]];
 }
+
+- (IBAction)infoCellButtonClicked:(id)sender
+{
+    NSInteger row = [self.entityContentTable rowForView:sender];
+    NSInteger column = [self.dataSourceList columnForView:sender];
+    NSArray *columns = [self.entityContentTable tableColumns];
+    
+    id valueObj = [self getValueObjFromDataRows:self.entityContentTable :row :columns[column]];
+    
+    if (valueObj != nil) {
+        ObjectInfoController* infoSheetController = [[ObjectInfoController alloc] initWithWindowNibName:@"ObjectInfoController"];
+        [infoSheetController show:self.window objectDescription:[valueObj description]];
+    }
+}
+
 
 - (IBAction)entityCellButtonClicked:(id)sender
 {

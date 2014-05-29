@@ -15,6 +15,7 @@ NSString* const DATE_STYLE_KEY_NAME = @"dateStyleKey";
 
 NSString* const MFL_TEXT_CELL = @"MFLTextTableViewCell";
 NSString* const MFL_BUTTON_CELL = @"MFLButtonTableViewCell";
+NSString* const MFL_TRANSFORM_CELL = @"TransformableDataTableViewCell";
 NSString* const MFL_ENTITY_CELL = @"MFLEntityTableCellView";
 
 NSString* const MFL_MOM_FILE_EXTENSION = @".mom";

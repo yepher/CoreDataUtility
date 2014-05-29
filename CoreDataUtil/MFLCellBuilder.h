@@ -10,6 +10,7 @@
 
 @class MFLTextTableCellView;
 @class MFLButtonTableViewCell;
+@class TransformableDataTableViewCell;
 
 @interface MFLCellBuilder : NSObject
 
@@ -17,5 +18,6 @@
 + (MFLTextTableCellView* ) numberCellWithString:(NSTableView *)tableView textToSet: (NSString*) textToSet owner:(id) owner;
 + (MFLTextTableCellView* ) nullCell:(NSTableView *)tableView owner:(id) owner;
 + (MFLButtonTableViewCell* ) objectCellWithString:(NSTableView *)tableView textToSet:(NSString*) textToSet owner:(id) owner;
++ (TransformableDataTableViewCell*) tranformableCellWithSTring:(NSTableView *)tableView textToSet:(NSString*) textToSet owner:(id) owner;
 
 @end

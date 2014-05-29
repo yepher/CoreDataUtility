@@ -15,6 +15,7 @@ extern NSString* const DATE_STYLE_KEY_NAME;
 
 extern NSString* const MFL_TEXT_CELL;
 extern NSString* const MFL_BUTTON_CELL;
+extern NSString* const MFL_TRANSFORM_CELL;
 extern NSString* const MFL_ENTITY_CELL;
 
 extern NSString* const MFL_MOM_FILE_EXTENSION;

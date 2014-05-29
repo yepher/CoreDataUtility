@@ -8,6 +8,7 @@
 
 #import "EntityDataTableView.h"
 #import "MFLButtonTableViewCell.h"
+#import "TransformableDataTableViewCell.h"
 #import "MFLMainWindowController.h"
 
 @implementation EntityDataTableView
