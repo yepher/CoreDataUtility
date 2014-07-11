@@ -185,8 +185,10 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
         self.mainWindowController = [[MFLMainWindowController alloc] initWithWindowNibName:@"MFLMainWindowController"];
     }
     
-    [self setWindow:[self.mainWindowController window]];
+    [self handleLaunchArguments:[ [NSProcessInfo processInfo] arguments] ];
     
+    [self setWindow:[self.mainWindowController window]];
+
     // Open previously opened file
     if ([self.mainWindowController momFileUrl] == nil) {
         NSDocumentController *controller = [NSDocumentController sharedDocumentController];
@@ -208,6 +210,90 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
     }
 }
 
++ (NSUInteger)indexOfArgument:(NSString *)argumentName inArguments:(NSArray *)arguments
+{
+    NSUInteger result = NSNotFound;
+    for (NSUInteger index = 0; index < arguments.count; index ++)
+    {
+        NSString *argument;
+        if ( [ [arguments objectAtIndex:index] isKindOfClass:[NSString class] ] )
+        {
+            argument = [arguments objectAtIndex:index];
+        }
+        
+        if ( [argument isEqualToString:argumentName] )
+        {
+            result = index;
+            break;
+        }
+    }
+    return result;
+}
+
++ (NSString *)getValueForArgument:(NSString *)argumentName inArguments:(NSArray *)arguments
+{
+    NSString *result;
+    
+    NSUInteger argumentIndex = [self indexOfArgument:argumentName inArguments:arguments];
+    if (argumentIndex != NSNotFound)
+    {
+        if (argumentIndex + 1 < arguments.count)
+        {
+            if ( [ [arguments objectAtIndex:argumentIndex + 1] isKindOfClass:[NSString class] ] )
+            {
+                result = [arguments objectAtIndex:argumentIndex + 1];
+            }
+        }
+    }
+    
+    return result;
+}
+
+- (void)handleLaunchArguments:(NSArray *)launchArguments
+{
+    NSUInteger helpIndex = [MFLAppDelegate indexOfArgument:@"--help" inArguments:launchArguments];
+    if (helpIndex != NSNotFound)
+    {
+        NSLog(@"Command Line Usage:");
+        NSLog(@"--model FILE \t\t (Required) Specify the location of the model file");
+        NSLog(@"--store FILE \t\t (Required) Specify the location of the persistent store file");
+        NSLog(@"--storeType TYPE \t\t (Required) Specify the type of the persistent store file, types include: SQLite, XML, Binary");
+        exit(0);
+    } else
+    {
+        NSURL *model = [NSURL URLWithString:[MFLAppDelegate getValueForArgument:@"--model" inArguments:launchArguments] ];
+        NSURL *store = [NSURL URLWithString:[MFLAppDelegate getValueForArgument:@"--store" inArguments:launchArguments] ];
+        MFL_StoreTypes storeFormat = 0;
+        BOOL storeFormatSet = NO;
+
+        NSString *storeFormatString = [MFLAppDelegate getValueForArgument:@"--storeType" inArguments:launchArguments];
+        if (storeFormatString)
+        {
+            if ( [storeFormatString isEqualToString:@"SQLite"] )
+            {
+                storeFormat = MFL_SQLiteStoreType;
+                storeFormatSet = YES;
+            } else if ( [storeFormatString isEqualToString:@"XML"] )
+            {
+                storeFormat = MFL_XMLStoreType;
+                storeFormatSet = YES;
+            } else if ( [storeFormatString isEqualToString:@"Binary"] )
+            {
+                storeFormat = MFL_BinaryStoreType;
+                storeFormatSet = YES;
+            }
+        }
+        
+        if (model && store && storeFormatSet)
+        {
+            BOOL result = [self.mainWindowController openFiles:model persistenceFile:store persistenceType:(NSInteger)storeFormat];
+            
+            if (result) {
+                self.projectHasChanged = true;
+            }
+        }
+    }
+}
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
 {
