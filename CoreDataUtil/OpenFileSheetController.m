@@ -733,6 +733,13 @@
 	return self.savedFields;
 }
 
+- (IBAction) simulatorInfo: (id) sender {
+    NSLog(@"SimulatorInfo selected");
+    
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/yepher/CoreDataUtility#xcode-6-and-ios-simulator-project-files"]];
+    
+}
+
 #pragma mark
 #pragma NSTabViewDelegate
 

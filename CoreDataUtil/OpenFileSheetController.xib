@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="OpenFileSheetController">
@@ -33,7 +33,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Open File" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" visibleAtLaunch="NO" animationBehavior="default" id="1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -69,7 +69,7 @@ Gw
                         </connections>
                     </button>
                     <tabView initialItem="553" id="552">
-                        <rect key="frame" x="13" y="44.000000063771544" width="526" height="345"/>
+                        <rect key="frame" x="13" y="44" width="526" height="345"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
@@ -134,7 +134,7 @@ Gw
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="SQL" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1278" id="1276">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="1277">
                                                     <items>
                                                         <menuItem title="SQL" state="on" id="1278"/>
@@ -227,7 +227,7 @@ Gw
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="SQL" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1290" id="1286">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="1287">
                                                     <items>
                                                         <menuItem title="SQL" state="on" id="1290"/>
@@ -251,7 +251,7 @@ Gw
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="1313">
                                                 <font key="font" metaFont="system"/>
-                                                <mutableString key="title">Setting up an OSX project requires the following steps:     1. Make sure the application is running      2. Select the application from the list of apps     3. Select the storage file usually in the Application Support folder     4. Select the storage format</mutableString>
+                                                <string key="title">Setting up an OSX project requires the following steps:     1. Make sure the application is running      2. Select the application from the list of apps     3. Select the storage file usually in the Application Support folder     4. Select the storage format</string>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -262,7 +262,7 @@ Gw
                             <tabViewItem label="iOS Simulator" identifier="3" id="571">
                                 <view key="view" id="572">
                                     <rect key="frame" x="10" y="33" width="506" height="299"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="667">
                                             <rect key="frame" x="17" y="106" width="467" height="22"/>
@@ -310,7 +310,7 @@ Gw
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="SQL" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1298" id="1294">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="1295">
                                                     <items>
                                                         <menuItem title="SQL" state="on" id="1298"/>
@@ -329,15 +329,25 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="1310">
-                                            <rect key="frame" x="17" y="207" width="478" height="89"/>
+                                            <rect key="frame" x="17" y="234" width="478" height="62"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="1311">
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Important read the following for help setting up your simulator project: " id="1311">
                                                 <font key="font" metaFont="system"/>
-                                                <mutableString key="title">Setting up an iOS project requires the following steps:     1. Make sure you have run your project in the simulator at least once      2. Select the application from the list of apps     3. Select the storage file usually in the ../Documents folder     4. Select the storage format</mutableString>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="VgW-Wo-6Mp">
+                                            <rect key="frame" x="14" y="252" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d9b-IC-Uef">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="simulatorInfo:" target="-2" id="8wC-iY-wkq"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
