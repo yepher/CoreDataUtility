@@ -37,6 +37,58 @@ Output
 `````
 
 
+## XCode 6 and iOS Simulator project files
+
+With the release of XCode 6 the simulator changes the name of the persistence storage location. Until there is a deterministic way to locate the files the project file is broken for the simulator. Here is a work around, that is probably better than the oringal way:
+
+Add this code to your iOS application:
+
+`````
+#if TARGET_IPHONE_SIMULATOR
++ (void) createCoreDataDebugProjectWithType: (NSNumber*) storeFormat storeUrl:(NSString*) storeURL modelFilePath:(NSString*) modelFilePath {
+    NSDictionary* project = @{
+                              @"storeFilePath": storeURL,
+                              @"storeFormat" : storeFormat,
+                              @"modelFilePath": modelFilePath,
+                              @"v" : @(1)
+                              };
+    
+    NSString* projectFile = [NSString stringWithFormat:@"/tmp/%@.cdp", [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey]];
+    
+    [project writeToFile:projectFile atomically:YES];
+    
+}
+#endif
+`````
+
+Now call that code where you initialize your CoreData persistent store. 
+
+Something like this:
+
+`````
+#if TARGET_IPHONE_SIMULATOR
+    // @(1) is NSSQLiteStoreType
+    [self createCoreDataDebugProjectWithType:@(1) storeUrl:[storeURL absoluteString] modelFilePath:[modelUrl absoluteString]];
+#endif
+`````
+
+Now you can just open the /tmp/YourAppName.cdp file and it will open CoreDataUtility with your app's data loaded.
+
+
+This is CoreDataUtilities storage types:
+`````
+typedef NS_ENUM(NSInteger, MFL_StoreTypes) {
+    MFL_SQLiteStoreType = 1,
+    MFL_XMLStoreType = 2,
+    MFL_BinaryStoreType = 3,
+    MFL_InMemoryStoreType = 4,
+};
+
+````
+
+
+
+
 ## GUI Getting Started
 
 
