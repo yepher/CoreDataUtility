@@ -44,7 +44,7 @@ With the release of XCode 6 the simulator changes the name of the persistence st
 Add this code to your iOS application:
 
 `````
-#if TARGET_IPHONE_SIMULATOR
+#if !(TARGET_OS_EMBEDDED)  // This will work for Mac or Simulator but excludes physical iOS devices
 + (void) createCoreDataDebugProjectWithType: (NSNumber*) storeFormat storeUrl:(NSString*) storeURL modelFilePath:(NSString*) modelFilePath {
     NSDictionary* project = @{
                               @"storeFilePath": storeURL,
@@ -66,7 +66,7 @@ Now call that code where you initialize your CoreData persistent store.
 Something like this:
 
 `````
-#if TARGET_IPHONE_SIMULATOR
+#if !(TARGET_OS_EMBEDDED)  // This will work for Mac or Simulator but excludes physical iOS devices
     // @(1) is NSSQLiteStoreType
     [self createCoreDataDebugProjectWithType:@(1) storeUrl:[storeURL absoluteString] modelFilePath:[modelUrl absoluteString]];
 #endif
