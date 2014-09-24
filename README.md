@@ -45,7 +45,7 @@ Add this code to your iOS application:
 
 `````
 #if !(TARGET_OS_EMBEDDED)  // This will work for Mac or Simulator but excludes physical iOS devices
-+ (void) createCoreDataDebugProjectWithType: (NSNumber*) storeFormat storeUrl:(NSString*) storeURL modelFilePath:(NSString*) modelFilePath {
+- (void) createCoreDataDebugProjectWithType: (NSNumber*) storeFormat storeUrl:(NSString*) storeURL modelFilePath:(NSString*) modelFilePath {
     NSDictionary* project = @{
                               @"storeFilePath": storeURL,
                               @"storeFormat" : storeFormat,
