@@ -28,8 +28,7 @@
 }
 
 - (NSDictionary*) decodeProjectFile: (NSString*) projectFilePath {
-    NSLog(@"TODO: decode core data editor project file...");
-    
+   
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CoreData" withExtension:@"ext"];
     NSManagedObjectModel* managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     if (!managedObjectModel) {

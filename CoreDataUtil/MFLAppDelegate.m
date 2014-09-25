@@ -97,7 +97,7 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
         if (result)
         {
             [self addRecentDocument:[NSURL fileURLWithPath:filename]];
-            self.projectHasChanged = true;
+            self.projectHasChanged = NO;
         }
         
         return result;
@@ -128,7 +128,7 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
             if (result)
             {
                 [self addRecentDocument:[NSURL fileURLWithPath:filename]];
-                self.projectHasChanged = true;
+                self.projectHasChanged = YES;
             }
         }
         
@@ -148,6 +148,8 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
         if (project == nil) {
             NSBeep();
             return NO;
+        } else {
+            self.projectHasChanged = NO;
         }
         
         self.openFileSheetController = [[OpenFileSheetController alloc] initWithWindowNibName:@"OpenFileSheetController"];
@@ -166,7 +168,7 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
             if (result)
             {
                 [self addRecentDocument:[NSURL fileURLWithPath:filename]];
-                self.projectHasChanged = true;
+                self.projectHasChanged = YES;
             }
         }
         
@@ -200,7 +202,7 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
             [self openFileHelper:[documents[0] path]];
             if ([[documents[0] absoluteString] hasSuffix:MFL_COREDATA_PROJECT_EXTENSION])
             {
-                self.projectHasChanged = false;
+                self.projectHasChanged = NO;
             }
         }
         else
@@ -289,7 +291,7 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
             BOOL result = [self.mainWindowController openFiles:model persistenceFile:store persistenceType:(NSInteger)storeFormat];
             
             if (result) {
-                self.projectHasChanged = true;
+                self.projectHasChanged = YES;
             }
         }
     }
@@ -344,7 +346,7 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
         BOOL result = [self.mainWindowController openFiles:newValues[MFL_MOM_FILE_KEY] persistenceFile:newValues[MFL_DB_FILE_KEY] persistenceType:[persistenceFormat intValue]];
 
         if (result) {
-            self.projectHasChanged = true;
+            self.projectHasChanged = YES;
         }
     }
 }

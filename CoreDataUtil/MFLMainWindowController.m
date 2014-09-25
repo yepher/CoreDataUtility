@@ -648,11 +648,11 @@ NSString* const kEntitiesRootNode = @"rootNode";
     [self.rootNode addChild:entitiesNode];
 	
     NSUInteger entityCount = self.coreDataIntrospection.entityCount;
-    for(NSUInteger i=0; i<entityCount; i++) {
+    for(int i=0; i<entityCount; i++) {
         OutlineViewNode *node = [OutlineViewNode new];
         node.title = [self.coreDataIntrospection entityAtIndex:i];
         node.index = i;
-        node.badgeValue = [self.coreDataIntrospection entityDataCountAtIndex:i];
+        node.badgeValue = (int)[self.coreDataIntrospection entityDataCountAtIndex:i];
         [entitiesNode addChild:node];
     }
     
@@ -661,7 +661,7 @@ NSString* const kEntitiesRootNode = @"rootNode";
     fetchRequestNode.index = 1;
     [self.rootNode addChild:fetchRequestNode];
 	
-	for(NSUInteger i=0; i<self.coreDataIntrospection.fetchRequestCount; i++) {
+	for(int i=0; i<self.coreDataIntrospection.fetchRequestCount; i++) {
         OutlineViewNode *node = [OutlineViewNode new];
         node.title = [self.coreDataIntrospection fetchRequestAtIndex:i];
         node.index = i;
