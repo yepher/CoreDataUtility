@@ -67,8 +67,10 @@ Something like this:
 
 `````
 #if !(TARGET_OS_EMBEDDED)  // This will work for Mac or Simulator but excludes physical iOS devices
+#ifdef DEBUG
     // @(1) is NSSQLiteStoreType
     [self createCoreDataDebugProjectWithType:@(1) storeUrl:[storeURL absoluteString] modelFilePath:[modelUrl absoluteString]];
+#endif
 #endif
 `````
 
