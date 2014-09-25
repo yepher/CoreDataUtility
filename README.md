@@ -86,6 +86,15 @@ typedef NS_ENUM(NSInteger, MFL_StoreTypes) {
 
 ````
 
+If you Mac app is sandboxed you may need to create a debug entitilment file and add the following for your project file to get created
+
+`````
+<key>com.apple.security.temporary-exception.files.absolute-path.read-write</key>
+	<array>
+		<string>/tmp/</string>
+	</array>
+`````
+
 
 
 
