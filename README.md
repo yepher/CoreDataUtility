@@ -154,8 +154,8 @@ To view EverNotes data do the following:
 ## Similar Tools
 
 
-In many ways CoreDataUtility is similar to CoreDataEditor.
-    http://itunes.apple.com/app/core-data-editor/id403025957?mt=12&ign-mpt=uo%3D4
+CoreDataEditor is a good CoreData utility.
+    https://github.com/ChristianKienle/Core-Data-Editor
     
 This tool looks really cool but I never quite figured it out:
     http://pmougin.wordpress.com/2010/04/11/core-data-browser-app/
