@@ -39,7 +39,7 @@ Output
 
 ## XCode 6 and iOS Simulator project files
 
-With the release of XCode 6 the simulator changes the name of the persistence storage location. Until there is a deterministic way to locate the files the project file is broken for the simulator. Here is a work around, that is probably better than the oringal way:
+With the release of XCode 6 the simulator changes the name of the persistence storage location. Until there is a deterministic way to locate the files the project file is broken for the simulator. Here is a work around, that is probably better than the original way:
 
 Add this code to your iOS application:
 
