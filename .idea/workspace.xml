@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efa34072-75b8-4401-8e62-69b89e25700d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CoreDataUtil/MFLConstants.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/EntityDataTableViewCell.m" afterPath="$PROJECT_DIR$/CoreDataUtil/EntityDataTableViewCell.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/EntityTableView.m" afterPath="$PROJECT_DIR$/CoreDataUtil/EntityTableView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.h" afterPath="$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.m" afterPath="$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/MFLConstants.h" afterPath="$PROJECT_DIR$/CoreDataUtil/MFLConstants.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/Utils/MFLCoreDataEditorProjectLoader.m" afterPath="$PROJECT_DIR$/CoreDataUtil/Utils/MFLCoreDataEditorProjectLoader.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/CoreData/MFLCoreDataIntrospection.m" afterPath="$PROJECT_DIR$/CoreDataUtil/CoreData/MFLCoreDataIntrospection.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/MFLEntityTableCellView.m" afterPath="$PROJECT_DIR$/CoreDataUtil/MFLEntityTableCellView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.h" afterPath="$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.m" afterPath="$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtilImporter/MySpotlightImporter.m" afterPath="$PROJECT_DIR$/CoreDataUtilImporter/MySpotlightImporter.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/OpenFileSheetController.m" afterPath="$PROJECT_DIR$/CoreDataUtil/OpenFileSheetController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/CoreDataUtil.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.xib" afterPath="$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CoreDataUtility.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,64 +33,29 @@
       <file leaf-file-name="MFLCoreDataIntrospection.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreData/MFLCoreDataIntrospection.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="115" column="21" selection-start="3878" selection-end="3878" vertical-scroll-proportion="0.0" vertical-offset="1605" max-vertical-offset="7365">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2017" max-vertical-offset="8347">
+              <caret line="134" column="9" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MFLCoreDataEditorProjectLoader.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CoreDataUtil/Utils/MFLCoreDataEditorProjectLoader.m">
+      <file leaf-file-name="MFLMainWindowController.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="23" selection-start="2487" selection-end="2495" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1155">
+            <state vertical-scroll-proportion="0.48407644" vertical-offset="3870" max-vertical-offset="20961">
+              <caret line="250" column="0" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MFLAppDelegate.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.m">
+      <file leaf-file-name="MFLConstants.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLConstants.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="394" column="16" selection-start="15126" selection-end="15126" vertical-scroll-proportion="0.0" vertical-offset="5730" max-vertical-offset="6555">
+            <state vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="816">
+              <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OpenFileSheetController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CoreDataUtil/OpenFileSheetController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="12" selection-start="2107" selection-end="2107" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="11430">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoreDataHistoryObject.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreDataHistoryObject.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="18" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoreDataHistoryObject.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreDataHistoryObject.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FetchRequestInfoController.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CoreDataUtil/FetchRequestInfoController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="10" selection-start="2090" selection-end="2090" vertical-scroll-proportion="0.25" vertical-offset="1155" max-vertical-offset="2220">
-              <folding>
-                <element signature="e#157#195#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -116,11 +75,20 @@
       <MyDateState />
     </option>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.h" />
+        <option value="$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.h" />
+        <option value="$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.m" />
+        <option value="$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.m" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="39" />
-    <option name="y" value="31" />
-    <option name="width" value="1241" />
-    <option name="height" value="760" />
+    <option name="y" value="22" />
+    <option name="width" value="2556" />
+    <option name="height" value="1418" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -136,7 +104,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -148,6 +116,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -194,7 +163,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -205,22 +173,24 @@
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.CoreDataUtil">
-    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="CoreDataUtil" TARGET_NAME="CoreDataUtil" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="CoreDataUtil" RUN_TARGET_NAME="CoreDataUtil" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+    <configuration default="false" name="CoreDataUtil" type="AppleRunConfiguration" factoryName="Application" temporary="true" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="CoreDataUtil" TARGET_NAME="CoreDataUtil" CONFIG_NAME="Debug" SCHEME_NAME="CoreDataUtil" RUN_TARGET_PROJECT_NAME="CoreDataUtil" RUN_TARGET_NAME="CoreDataUtil" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <RunnerSettings RunnerId="AppRunner" />
+      <ConfigurationWrapper RunnerId="AppRunner" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="CoreDataUtil" TARGET_NAME="CoreDataUtil" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="CoreDataUtil" RUN_TARGET_NAME="CoreDataUtil" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="CoreDataUtil" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="CoreDataUtil" PROJECT_NAME="CoreDataUtil" TARGET_NAME="CoreDataUtil" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="CoreDataUtil" RUN_TARGET_NAME="CoreDataUtil" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="CoreDataUtilDBA" type="AppleRunConfiguration" factoryName="Application" SCHEME_NAME="CoreDataUtilDBA" PROJECT_NAME="CoreDataUtil" TARGET_NAME="CoreDataUtilDBA" CONFIG_NAME="Debug" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="CoreDataUtil" RUN_TARGET_NAME="CoreDataUtilDBA" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
-      <envs />
-      <method />
-    </configuration>
-    <list size="2">
+    <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Application.CoreDataUtil" />
-      <item index="1" class="java.lang.String" itemvalue="Application.CoreDataUtilDBA" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.CoreDataUtil" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
@@ -244,31 +214,44 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="efa34072-75b8-4401-8e62-69b89e25700d" name="Default" comment="" />
       <created>1391186012944</created>
+      <option name="number" value="Default" />
       <updated>1391186012944</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="39" y="31" width="1241" height="760" extended-state="0" />
+    <frame x="0" y="22" width="2556" height="1418" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39866865" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293944" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24958949" sideWeight="0.6002994" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3997006" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12490056" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13206047" sideWeight="0.6002994" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988167" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3997006" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -279,57 +262,238 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreDataHistoryObject.h">
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreData/MFLCoreDataIntrospection.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="640">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8347">
+          <caret line="134" column="9" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreDataHistoryObject.m">
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="18" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3853" max-vertical-offset="20961">
+          <caret line="248" column="5" selection-start-line="248" selection-start-column="5" selection-end-line="248" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CoreDataUtil/OpenFileSheetController.m">
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLConstants.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="12" selection-start="2107" selection-end="2107" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="11430">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="394" column="16" selection-start="15126" selection-end="15126" vertical-scroll-proportion="0.0" vertical-offset="5730" max-vertical-offset="6555">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CoreDataUtil/Utils/MFLCoreDataEditorProjectLoader.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="23" selection-start="2487" selection-end="2495" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1155">
+        <state vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="816">
+          <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreData/MFLCoreDataIntrospection.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="21" selection-start="3878" selection-end="3878" vertical-scroll-proportion="0.0" vertical-offset="1605" max-vertical-offset="7365">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8347">
+          <caret line="134" column="9" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15558" max-vertical-offset="20961">
+          <caret line="938" column="0" selection-start-line="938" selection-start-column="0" selection-end-line="938" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLConstants.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="816">
+          <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6885" max-vertical-offset="8993">
+          <caret line="405" column="4" selection-start-line="405" selection-start-column="4" selection-end-line="405" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreData/MFLCoreDataIntrospection.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1955" max-vertical-offset="8347">
+          <caret line="115" column="21" selection-start-line="115" selection-start-column="21" selection-end-line="115" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/Utils/MFLCoreDataEditorProjectLoader.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="1326">
+          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6698" max-vertical-offset="8959">
+          <caret line="394" column="16" selection-start-line="394" selection-start-column="16" selection-end-line="394" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/OpenFileSheetController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="13090">
+          <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreDataHistoryObject.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="595">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreDataHistoryObject.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CoreDataUtil/FetchRequestInfoController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="10" selection-start="2090" selection-end="2090" vertical-scroll-proportion="0.25" vertical-offset="1155" max-vertical-offset="2220">
-          <folding>
-            <element signature="e#157#195#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="1411" max-vertical-offset="2516">
+          <caret line="83" column="8" selection-start-line="83" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreDataHistoryObject.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="640">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreDataHistoryObject.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="595">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/OpenFileSheetController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="13090">
+          <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/FetchRequestInfoController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34917045" vertical-offset="1169" max-vertical-offset="2516">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/Utils/MFLCoreDataEditorProjectLoader.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+          <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLConstants.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/EntityTableView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43367347" vertical-offset="0" max-vertical-offset="784">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework/Headers/NSTableView.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28923476" vertical-offset="6730" max-vertical-offset="15147">
+          <caret line="409" column="24" selection-start-line="409" selection-start-column="8" selection-end-line="409" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3469388" vertical-offset="0" max-vertical-offset="784">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/CoreData/MFLCoreDataIntrospection.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2017" max-vertical-offset="8347">
+          <caret line="134" column="9" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/EntityTableViewCell.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5261959" vertical-offset="133" max-vertical-offset="2754">
+          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.xib">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3921335" vertical-offset="8273" max-vertical-offset="9112">
+          <caret line="506" column="29" selection-start-line="506" selection-start-column="29" selection-end-line="506" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLAppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.094387755" vertical-offset="5570" max-vertical-offset="7565">
+          <caret line="332" column="1" selection-start-line="332" selection-start-column="1" selection-end-line="332" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39688715" vertical-offset="0" max-vertical-offset="867">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLConstants.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33257404" vertical-offset="133" max-vertical-offset="1088">
+          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CoreDataUtil/MFLMainWindowController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48407644" vertical-offset="3870" max-vertical-offset="20961">
+          <caret line="250" column="0" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

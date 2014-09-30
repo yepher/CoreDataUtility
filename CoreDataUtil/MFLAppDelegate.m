@@ -26,74 +26,8 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
 
 
 - (BOOL) openFileHelper: (NSString*) filename {
-    if ([filename hasSuffix:MFL_COREDATA_PROJECT_EXTENSION]) {        
-        
-        NSLog(@"Load Project File: [%@]", filename);
-        NSDictionary* project = [NSDictionary dictionaryWithContentsOfFile:filename];
-        NSString* momFilePath = project[MFL_MOM_FILE_KEY];
-        NSString* dbFilePath = project[MFL_DB_FILE_KEY];
-        NSNumber* persistenceFormat = project[MFL_DB_FORMAT_KEY];
-        if (persistenceFormat == nil) {
-            persistenceFormat = [NSNumber numberWithInt:MFL_SQLiteStoreType];
-        }
-        
-        NSURL* momUrl = nil;
-        NSURL* dbUrl = nil;
-        if (momFilePath != nil) {
-            momUrl = [NSURL URLWithString:momFilePath];
-        }
-        
-        if (dbFilePath != nil) {
-            dbUrl = [NSURL URLWithString:dbFilePath];
-        }
-        
-        // if iOS, check if file exists otherwise search for it because it may have moved.
-        NSError *err;
-        if ([momUrl checkResourceIsReachableAndReturnError:&err] == NO) {
-            // is iOS Simulator?
-            NSRange pathRange = [momFilePath rangeOfString:APPLICATIONS_DIR];
-            if (pathRange.location != NSNotFound) {
-                // This is an iOS simpulator project
-                NSLog(@"momPath: %@", momFilePath);
-                NSString* applicationsPath = [self convertToIosApplicationsBasePath:momFilePath];
-                NSString* relativeMomPath = [self convertToApplicationPath:momFilePath];
-                NSString* relativeDBPath = [self convertToApplicationPath:dbFilePath];
-                
-                // Scan through UUID directories to see if any match our paths
-                // Search through each UUID to find our files
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-                NSError* error;
-                NSArray* contents = [fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:applicationsPath] includingPropertiesForKeys:@[NSURLFileResourceTypeDirectory] options:0 error:&error];
-                for (NSString* content in contents) {
-                    NSLog(@"Found: %@", content);
-                    NSString* testMomPath = [NSString stringWithFormat:@"%@%@",content, relativeMomPath];
-                    NSURL* testMomUrl = [NSURL URLWithString:testMomPath];
-                    if ([testMomUrl checkResourceIsReachableAndReturnError:&err] == NO) {
-                        continue;
-                    }
-                    
-                    NSString* testDBPath = [NSString stringWithFormat:@"%@%@", content, relativeDBPath];
-                    NSURL* testDBUrl = [NSURL URLWithString:testDBPath];
-                    if ([testDBUrl checkResourceIsReachableAndReturnError:&err] == NO) {
-                        continue;
-                    }
-                    
-                    // Both files exist so use this path instead.
-                    momFilePath = testMomPath;
-                    dbFilePath = testDBPath;
-                    
-                    momUrl = [NSURL URLWithString:momFilePath];
-                    dbUrl = [NSURL URLWithString:dbFilePath];
-                    
-                    // Exit for loop
-                    break;
-                }
-            }
-        }
-        
-        
-        BOOL result = [self.mainWindowController openFiles: momUrl persistenceFile:dbUrl persistenceType:[persistenceFormat intValue]];
-        
+    if ([filename hasSuffix:MFL_COREDATA_PROJECT_EXTENSION]) {
+        BOOL result = [self.mainWindowController openProject:filename];
         if (result)
         {
             [self addRecentDocument:[NSURL fileURLWithPath:filename]];
@@ -210,6 +144,9 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
             [self newAction:aNotification];
         }
     }
+
+    // bring app to foreground
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 + (NSUInteger)indexOfArgument:(NSString *)argumentName inArguments:(NSArray *)arguments
@@ -421,14 +358,17 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
                                          MFL_MOM_FILE_KEY: [momfileUrl absoluteString],
                                          MFL_DB_FORMAT_KEY: @((int)persistenceType),
                                          MFL_DB_FILE_KEY: [persistenceUrl absoluteString]};
-            
-            if (![stuffToSave writeToURL:[saveDlg URL] atomically:NO])
+
+            NSURL *saveUrl = [saveDlg URL];
+            if (![stuffToSave writeToURL:saveUrl atomically:NO])
             {
                 NSLog(@"Error in saving file!");
             }
             else
             {
-                [self addRecentDocument:[saveDlg URL]];
+                [self addRecentDocument:saveUrl];
+
+                [self.mainWindowController setProjectFile:saveUrl.absoluteString];
             }
             self.projectHasChanged = NO;
         } else {
@@ -441,7 +381,7 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
     if (self.projectHasChanged) {
-        //Promt user to save project before exiting
+        //Prompt user to save project before exiting
         NSString *question = NSLocalizedString(@"Core Data Pro project not saved. Quit without saving?", @"UnsavedProjectChanges");
         NSString *info = NSLocalizedString(@"Quitting now will lose any changes you have made since the last successful save", @"QuitDiscardsChangesText");
         NSString *quitButton = NSLocalizedString(@"Exit", @"QuitAnywayButtonText");
@@ -493,30 +433,6 @@ NSString* const APPLICATIONS_DIR = @"/Applications/";
 - (IBAction)reportAnIssueAction:(id)sender
 {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/yepher/CoreDataUtility/issues"]];
-}
-
-- (NSString*) convertToIosApplicationsBasePath:(NSString*) filePath {
-    NSRange pathRange = [filePath rangeOfString:APPLICATIONS_DIR];
-    if (pathRange.location == NSNotFound) {
-        return nil;
-    }
-    
-    return [filePath substringToIndex:pathRange.location+pathRange.length];
-}
-
-- (NSString*) convertToApplicationPath:(NSString*) filePath {
-    NSRange pathRange = [filePath rangeOfString:APPLICATIONS_DIR];
-    if (pathRange.location == NSNotFound) {
-        return nil;
-    }
-    
-    NSUInteger len = ((pathRange.location+pathRange.length) +36);
-    
-    if ([filePath length] <= len) {
-        return nil;
-    }
-    
-    return [filePath substringFromIndex:len];
 }
 
 
