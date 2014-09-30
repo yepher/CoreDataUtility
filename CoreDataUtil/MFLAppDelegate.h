@@ -13,6 +13,7 @@
 
 @class MFLMainWindowController;
 
+extern NSString* const APPLICATIONS_DIR;
 
 @interface MFLAppDelegate : NSObject <NSApplicationDelegate>
 

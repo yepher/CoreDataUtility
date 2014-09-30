@@ -9,8 +9,6 @@
 #import "MFLMainWindowController.h"
 #import "CoreDataUtilityStyle.h"
 #import "MFLConstants.h"
-#import "MFLCoreDataIntrospection.h"
-#import "EntityTableView.h"
 #import "EntityDataTableView.h"
 #import "MFLTextTableCellView.h"
 #import "MFLEntityTableCellView.h"
@@ -21,8 +19,6 @@
 #import "GetInfoSheetController.h"
 #import "FetchRequestInfoController.h"
 #import "ObjectInfoController.h"
-
-NSString* const kEntitiesRootNode = @"rootNode";
 
 @interface OutlineViewNode : NSObject
 @property (strong) OutlineViewNode *parent;
@@ -66,13 +62,6 @@ NSString* const kEntitiesRootNode = @"rootNode";
 @property (strong) NSArray* baseRowTemplates;
 @property (weak) IBOutlet NSPredicateEditor *predicateEditor;
 @property (strong) OutlineViewNode *rootNode;
-
-- (void) loadUserDefinedDateFormat;
-- (BOOL)canEnableBackHistoryControl;
-- (BOOL)canEnableForwardHistoryControl;
-- (void)enableDisableHistorySegmentedControls;
-- (void)reloadEntityDataTable:(NSString *)name predicate:(NSPredicate *)predicate type:(MFLObjectType)type;
-- (NSEntityDescription *)getEntityForPredicateEditor;
 
 @end
 
@@ -254,50 +243,53 @@ NSString* const kEntitiesRootNode = @"rootNode";
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
     //NSLog(@"- (void)tableViewSelectionDidChange:[%@]", aNotification);
-    
     if ([self.dataSourceList isEqualTo:[aNotification object]])
     {
-        if ([self.dataSourceList selectedRow] >= 0)
-        {
-            [self removeColumns];
-            [self.coreDataIntrospection clearEntityData];
-            [self.entityContentTable reloadData];
-            
-            self.sortType = Unsorted;
-            OutlineViewNode *selectedNode = [self.dataSourceList itemAtRow:[self.dataSourceList selectedRow]];
-            
-            NSInteger selected = selectedNode.index;
-			NSInteger section = selectedNode.parent.index;
-            NSLog(@"Selected idx=%ld", selected);
-            if (selected >= 0 && section == 0)
-            {
-                [self.coreDataIntrospection loadEntityDataAtIndex:selected];
-                NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:[self.coreDataIntrospection entityAtIndex:selected]];
-                for (NSString* name in columnNames)
-                {
-                    [self addTableColumnWithIdentifier:name];
-                }
-                
-                [self.coreDataIntrospection loadEntityDataAtIndex:selected];
-				[self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection entityAtIndex:selected] predicate:nil objectType:MFLObjectTypeEntity];
+        [self onEntitySelected];
+    }
+}
 
-            } else if (selected >= 0 && section == 1)
-			{
-				NSFetchRequest *fetch = [self.coreDataIntrospection fetchRequest:selected];
-                NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:[fetch.entity name]];
-                for (NSString* name in columnNames)
-                {
-                    [self addTableColumnWithIdentifier:name];
-                }
-				[self.coreDataIntrospection executeFetch:fetch];
-				[self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection fetchRequestAtIndex:selected]
-														predicate:[[self.coreDataIntrospection fetchRequest:selected] predicate]
-													   objectType:MFLObjectTypeFetchRequest];
-			}
-            [self.entityContentTable reloadData];
-            
-            [self enableDisableHistorySegmentedControls];
+- (void)onEntitySelected {
+    if ([self.dataSourceList selectedRow] >= 0)
+    {
+        [self removeColumns];
+        [self.coreDataIntrospection clearEntityData];
+        [self.entityContentTable reloadData];
+
+        self.sortType = Unsorted;
+        OutlineViewNode *selectedNode = [self.dataSourceList itemAtRow:[self.dataSourceList selectedRow]];
+
+        NSInteger selected = selectedNode.index;
+        NSInteger section = selectedNode.parent.index;
+        NSLog(@"Selected idx=%ld", selected);
+        if (selected >= 0 && section == 0)
+        {
+            [self.coreDataIntrospection loadEntityDataAtIndex:selected];
+            NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:[self.coreDataIntrospection entityAtIndex:selected]];
+            for (NSString* name in columnNames)
+            {
+                [self addTableColumnWithIdentifier:name];
+            }
+
+            [self.coreDataIntrospection loadEntityDataAtIndex:selected];
+            [self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection entityAtIndex:selected] predicate:nil objectType:MFLObjectTypeEntity];
+
+        } else if (selected >= 0 && section == 1)
+        {
+            NSFetchRequest *fetch = [self.coreDataIntrospection fetchRequest:selected];
+            NSArray* columnNames = [self.coreDataIntrospection entityFieldNames:[fetch.entity name]];
+            for (NSString* name in columnNames)
+            {
+                [self addTableColumnWithIdentifier:name];
+            }
+            [self.coreDataIntrospection executeFetch:fetch];
+            [self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection fetchRequestAtIndex:selected]
+                                                    predicate:[[self.coreDataIntrospection fetchRequest:selected] predicate]
+                                                   objectType:MFLObjectTypeFetchRequest];
         }
+        [self.entityContentTable reloadData];
+
+        [self enableDisableHistorySegmentedControls];
     }
 }
 
@@ -685,8 +677,106 @@ NSString* const kEntitiesRootNode = @"rootNode";
 
     [self.entityContentTable reloadData];
     [self enableDisableHistorySegmentedControls];
-    
+
+    self.projectFile = nil;
+
     return YES;
+}
+
+- (BOOL) openProject:(NSString *)filename
+{
+    NSLog(@"Load Project File: [%@]", filename);
+    NSDictionary* project = [NSDictionary dictionaryWithContentsOfFile:filename];
+    NSString* momFilePath = project[MFL_MOM_FILE_KEY];
+    NSString* dbFilePath = project[MFL_DB_FILE_KEY];
+    NSNumber* persistenceFormat = project[MFL_DB_FORMAT_KEY];
+    if (persistenceFormat == nil) {
+        persistenceFormat = @(MFL_SQLiteStoreType);
+    }
+
+    NSURL* momUrl = nil;
+    NSURL* dbUrl = nil;
+    if (momFilePath != nil) {
+        momUrl = [NSURL URLWithString:momFilePath];
+    }
+
+    if (dbFilePath != nil) {
+        dbUrl = [NSURL URLWithString:dbFilePath];
+    }
+
+    // if iOS, check if file exists otherwise search for it because it may have moved.
+    NSError *err;
+    if (![momUrl checkResourceIsReachableAndReturnError:&err]) {
+        // is iOS Simulator?
+        NSRange pathRange = [momFilePath rangeOfString:APPLICATIONS_DIR];
+        if (pathRange.location != NSNotFound) {
+            // This is an iOS simulator project
+            NSLog(@"momPath: %@", momFilePath);
+            NSString* applicationsPath = [self convertToIosApplicationsBasePath:momFilePath];
+            NSString* relativeMomPath = [self convertToApplicationPath:momFilePath];
+            NSString* relativeDBPath = [self convertToApplicationPath:dbFilePath];
+
+            // Scan through UUID directories to see if any match our paths
+            // Search through each UUID to find our files
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSError* error;
+            NSArray* contents = [fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:applicationsPath] includingPropertiesForKeys:@[NSURLFileResourceTypeDirectory] options:0 error:&error];
+            for (NSString* content in contents) {
+                NSLog(@"Found: %@", content);
+                NSString* testMomPath = [NSString stringWithFormat:@"%@%@",content, relativeMomPath];
+                NSURL* testMomUrl = [NSURL URLWithString:testMomPath];
+                if ([testMomUrl checkResourceIsReachableAndReturnError:&err] == NO) {
+                    continue;
+                }
+
+                NSString* testDBPath = [NSString stringWithFormat:@"%@%@", content, relativeDBPath];
+                NSURL* testDBUrl = [NSURL URLWithString:testDBPath];
+                if ([testDBUrl checkResourceIsReachableAndReturnError:&err] == NO) {
+                    continue;
+                }
+
+                // Both files exist so use this path instead.
+                momFilePath = testMomPath;
+                dbFilePath = testDBPath;
+
+                momUrl = [NSURL URLWithString:momFilePath];
+                dbUrl = [NSURL URLWithString:dbFilePath];
+
+                // Exit for loop
+                break;
+            }
+        }
+    }
+
+    BOOL isOk = [self openFiles:momUrl persistenceFile:dbUrl persistenceType:persistenceFormat];
+    if (isOk) {
+        self.projectFile = filename;
+    }
+    return isOk;
+}
+
+- (NSString*) convertToIosApplicationsBasePath:(NSString*) filePath {
+    NSRange pathRange = [filePath rangeOfString:APPLICATIONS_DIR];
+    if (pathRange.location == NSNotFound) {
+        return nil;
+    }
+
+    return [filePath substringToIndex:pathRange.location+pathRange.length];
+}
+
+- (NSString*) convertToApplicationPath:(NSString*) filePath {
+    NSRange pathRange = [filePath rangeOfString:APPLICATIONS_DIR];
+    if (pathRange.location == NSNotFound) {
+        return nil;
+    }
+
+    NSUInteger len = ((pathRange.location+pathRange.length) +36);
+
+    if ([filePath length] <= len) {
+        return nil;
+    }
+
+    return [filePath substringFromIndex:len];
 }
 
 - (void) openCoreDataIntrospectionWithUrls: (NSURL*) momFileUrl persistFileUrl:(NSURL*) persistFileUrl persistFormat:(NSInteger) persistFormat {
@@ -802,6 +892,10 @@ NSString* const kEntitiesRootNode = @"rootNode";
 {
     //NSLog(@"getInfoAction");
     NSInteger selected = [[self dataSourceList] getRightClickedRow] - 1;
+    if (selected < 0) {
+        NSLog(@"getInfoAction: bad index:%d", (int)selected);
+        return;
+    }
     NSEntityDescription* entityDescription = [self.coreDataIntrospection entityDescription:selected];
     
     GetInfoSheetController* infoSheetController = [[GetInfoSheetController alloc] initWithWindowNibName:@"GetInfoSheetController"];
@@ -934,13 +1028,29 @@ NSString* const kEntitiesRootNode = @"rootNode";
 
 - (IBAction) refreshItemSelected:(id)sender
 {
-    //NSLog(@"refreshItemSelected [%@]", sender);
-    if (self.coreDataIntrospection != nil)
-    {
+    if (self.coreDataIntrospection == nil) {
+        return;
+    }
+    // backup last selected entity
+    NSInteger selectedRow = [self.dataSourceList selectedRow];
+
+    NSLog(@"refreshItemSelected: selectedRow:%d", (int)selectedRow);
+
+    // if loaded from project file, reload from same file. allows updating URL's in project file while running
+    if (self.projectFile != nil) {
+        [self openProject:self.projectFile];
+    }
+    else {
         [self.coreDataIntrospection reloadObjectModel];
-		[self configureOutlineViewNodes];
+        [self configureOutlineViewNodes];
         [self.entityContentTable reloadData];
         [self enableDisableHistorySegmentedControls];
+    }
+
+    if (selectedRow >= 0) {
+        // restore selection
+        [self.dataSourceList selectRowIndexes:[NSIndexSet indexSetWithIndex:(NSUInteger) selectedRow] byExtendingSelection:NO];
+        [self onEntitySelected];
     }
 }
 
