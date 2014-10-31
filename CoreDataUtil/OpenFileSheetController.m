@@ -8,6 +8,7 @@
 
 #import "OpenFileSheetController.h"
 #import "MFLConstants.h"
+#import "SimulatorItem.h"
 
 @interface OpenFileSheetController ()
 
@@ -17,6 +18,7 @@
 @property (strong) NSDictionary *savedFields;
 @property (strong) NSArray *processList;
 @property (strong) NSMutableArray *simulatorUrlList;
+@property (weak) IBOutlet NSOutlineView *simulatorSourceList;
 
 - (void)initializeTab;
 - (void)showOrHideOpenButton;
@@ -93,7 +95,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    NSLog(@"windowDidLoad");
+    NSLog(@"%s", __FUNCTION__);
     
     if (self.initialValues != nil)
     {
@@ -760,5 +762,40 @@
     
     [self initializeTab];
 }
+
+#pragma mark - NSOutlineView
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
+    NSInteger rowCount =  (item == nil) ? 1 : [item numberOfChildren];
+    return rowCount;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+    BOOL result = (item == nil) ? YES : ([item numberOfChildren] != -1);
+    return result;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
+    id result = (item == nil) ? [SimulatorItem rootItem] : [(SimulatorItem *)item childAtIndex:index];
+    //NSLog(@"%s: %@", __FUNCTION__, result);
+    return result;
+}
+
+- (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
+    NSTableCellView* result = [outlineView makeViewWithIdentifier:@"simulatorRow" owner:self];
+    SimulatorItem* simItem = (SimulatorItem*) item;
+    result.textField.stringValue = simItem.label;
+    if ([item itemType] == MFLRootItem) {
+        //[outlineView expandItem:item];
+    }
+    return result;
+}
+
+// Delegate methods
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item {
+    return NO;
+}
+
 
 @end

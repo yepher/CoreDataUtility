@@ -18,7 +18,7 @@ typedef enum
 
 @class MFLAppDelegate;
 
-@interface OpenFileSheetController : NSWindowController <NSTabViewDelegate>
+@interface OpenFileSheetController : NSWindowController <NSTabViewDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate>
 {
     TabName currentTab;
     BOOL didSubmit;

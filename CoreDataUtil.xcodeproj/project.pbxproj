@@ -35,6 +35,8 @@
 		838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */; };
 		838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */; };
 		83922D381598F264004C273C /* MFLCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83922D371598F264004C273C /* MFLCellBuilder.m */; };
+		83AE7D3019FF1AB400DD152B /* SimulatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE7D2F19FF1AB400DD152B /* SimulatorItem.m */; };
+		83AE7D3219FF1CE900DD152B /* simulatorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83AE7D3119FF1CE900DD152B /* simulatorIcon.png */; };
 		83B158FD158F6AE2002B46C2 /* MFLCoreDataIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B158FC158F6AE2002B46C2 /* MFLCoreDataIntrospection.m */; };
 		C1CEFE561463779D00466EB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CEFE551463779D00466EB3 /* Cocoa.framework */; };
 		C1CEFE601463779D00466EB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1CEFE5E1463779D00466EB3 /* InfoPlist.strings */; };
@@ -123,6 +125,9 @@
 		838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-MOM.icns"; sourceTree = "<group>"; };
 		83922D361598F264004C273C /* MFLCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCellBuilder.h; sourceTree = "<group>"; };
 		83922D371598F264004C273C /* MFLCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCellBuilder.m; sourceTree = "<group>"; };
+		83AE7D2E19FF1AB400DD152B /* SimulatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorItem.h; sourceTree = "<group>"; };
+		83AE7D2F19FF1AB400DD152B /* SimulatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulatorItem.m; sourceTree = "<group>"; };
+		83AE7D3119FF1CE900DD152B /* simulatorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simulatorIcon.png; sourceTree = "<group>"; };
 		83B158FB158F6AE2002B46C2 /* MFLCoreDataIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCoreDataIntrospection.h; sourceTree = "<group>"; };
 		83B158FC158F6AE2002B46C2 /* MFLCoreDataIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCoreDataIntrospection.m; sourceTree = "<group>"; };
 		C1CEFE511463779C00466EB3 /* CoreDataPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +220,7 @@
 		83656E6A1937A637003D0E74 /* windows */ = {
 			isa = PBXGroup;
 			children = (
+				83AE7D2D19FF1A9500DD152B /* simulator */,
 				1D52574316EB66F100A91244 /* FetchRequestInfoController.h */,
 				1D52574416EB66F100A91244 /* FetchRequestInfoController.m */,
 				1D52574516EB66F100A91244 /* FetchRequestInfoController.xib */,
@@ -235,6 +241,15 @@
 				5B2E2AA51565A8AC00F6F6EA /* OpenFileSheetController.xib */,
 			);
 			name = windows;
+			sourceTree = "<group>";
+		};
+		83AE7D2D19FF1A9500DD152B /* simulator */ = {
+			isa = PBXGroup;
+			children = (
+				83AE7D2E19FF1AB400DD152B /* SimulatorItem.h */,
+				83AE7D2F19FF1AB400DD152B /* SimulatorItem.m */,
+			);
+			name = simulator;
 			sourceTree = "<group>";
 		};
 		83B566571593A531004DE9FC /* TableViewCells */ = {
@@ -345,15 +360,16 @@
 			children = (
 				838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */,
 				838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */,
-				83052CAC159D4B3900BB2FC6 /* CoreDataPro.entitlements */,
-				832C9695159BD69E00AC8FA8 /* CoreData.ext */,
-				8359411E159217770045B287 /* refreshButton.png */,
 				834D1480156B52ED00317376 /* ApplicationIcon.icns */,
+				832C9695159BD69E00AC8FA8 /* CoreData.ext */,
 				C1CEFE5D1463779D00466EB3 /* CoreDataPro-Info.plist */,
-				C1CEFE5E1463779D00466EB3 /* InfoPlist.strings */,
-				C1CEFE611463779D00466EB3 /* main.m */,
+				83052CAC159D4B3900BB2FC6 /* CoreDataPro.entitlements */,
 				C1CEFE631463779D00466EB3 /* CoreDataUtil-Prefix.pch */,
 				C1CEFE641463779D00466EB3 /* Credits.rtf */,
+				C1CEFE5E1463779D00466EB3 /* InfoPlist.strings */,
+				C1CEFE611463779D00466EB3 /* main.m */,
+				8359411E159217770045B287 /* refreshButton.png */,
+				83AE7D3119FF1CE900DD152B /* simulatorIcon.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -508,6 +524,7 @@
 				5B2E2AA71565A8AC00F6F6EA /* OpenFileSheetController.xib in Resources */,
 				834D1481156B52ED00317376 /* ApplicationIcon.icns in Resources */,
 				5B2AEF1C1576B67600DFD0D6 /* GetInfoSheetController.xib in Resources */,
+				83AE7D3219FF1CE900DD152B /* simulatorIcon.png in Resources */,
 				8359411F159217770045B287 /* refreshButton.png in Resources */,
 				830D04EE1598CC4D003874CA /* MFLMainWindowController.xib in Resources */,
 				832C9696159BD69E00AC8FA8 /* CoreData.ext in Resources */,
@@ -565,6 +582,7 @@
 				5B2E2AA61565A8AC00F6F6EA /* OpenFileSheetController.m in Sources */,
 				5B2AEF1B1576B67600DFD0D6 /* GetInfoSheetController.m in Sources */,
 				5BE26B63157FE8EE00DC186E /* EntityTableView.m in Sources */,
+				83AE7D3019FF1AB400DD152B /* SimulatorItem.m in Sources */,
 				5BE26B67157FF22700DC186E /* EntityDataTableView.m in Sources */,
 				83B158FD158F6AE2002B46C2 /* MFLCoreDataIntrospection.m in Sources */,
 				5B330A701590CB1E00D79D4D /* EntityDataTableViewCell.m in Sources */,
