@@ -62,6 +62,7 @@
 @property (strong) NSArray* baseRowTemplates;
 @property (weak) IBOutlet NSPredicateEditor *predicateEditor;
 @property (strong) OutlineViewNode *rootNode;
+@property NSDateFormatter *dateFormatter;
 
 @end
 
@@ -411,22 +412,32 @@
         else if ([valueObj isKindOfClass:[NSString class]])
         {
             NSString* cellText = [NSString stringWithFormat:@"%@", valueObj];
-            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
-            return textCell;
+            if ([cellText hasPrefix:@"http"]) {
+                MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+                [[buttonCell infoField] setTextColor:[NSColor blackColor]];
+                [[buttonCell infoField] setStringValue: cellText];
+                return buttonCell;
+            }
+            else {
+                MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
+                return textCell;
+            }
         }
         else if ([valueObj isKindOfClass:[NSURL class]])
         {
             NSURL* url = (NSURL*) valueObj;
             NSString* cellText = [NSString stringWithFormat:@"%@", [url absoluteString]];
-            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
-            return textCell;
+            MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+            [[buttonCell infoField] setTextColor:[NSColor blackColor]];
+            [[buttonCell infoField] setStringValue: cellText];
+            return buttonCell;
+//            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
+//            return textCell;
         }
         else if ([valueObj isKindOfClass:[NSDate class]])
         {
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateStyle:self.dateStyle];
-            [dateFormatter setTimeStyle:self.dateStyle];
-            NSString *cellText = [dateFormatter stringFromDate:valueObj];
+            [self setupDateFormatter];
+            NSString *cellText = [self.dateFormatter stringFromDate:valueObj];
             MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
             
             return textCell;
@@ -439,7 +450,15 @@
         }
         else if ([valueObj isKindOfClass:[NSNumber class]])
         {
-            NSString* cellText = [NSString stringWithFormat:@"%@", valueObj];
+            NSString* cellText;
+            NSNumber *number = valueObj;
+            // get 'type' of NSNumber to determine if this is a Boolean data type
+            if (strcmp(number.objCType, @encode(BOOL)) == 0) {
+                cellText = [NSString stringWithFormat:@"%@", number.boolValue ? @"YES" : @"NO"];
+            }
+            else {
+                cellText = [NSString stringWithFormat:@"%@", valueObj];
+            }
             MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner:self];
             return textCell;
         }
@@ -556,6 +575,25 @@
     }
     
     return nil;
+}
+
+- (void)setupDateFormatter {
+    if (self.dateFormatter == nil) {
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+    }
+    switch (self.dateStyle) {
+        case NSDateFormatterShortStyle:
+            [self.dateFormatter setDateFormat:@"M/d/YY h:mm a"];
+            break;
+        case NSDateFormatterMediumStyle:
+            [self.dateFormatter setDateFormat:@"MM/dd/YY hh:mm a"];
+            break;
+        default:
+            // use original formatting
+            [self.dateFormatter setDateStyle:self.dateStyle];
+            [self.dateFormatter setTimeStyle:self.dateStyle];
+            break;
+    }
 }
 
 #pragma mark - Outline view
@@ -994,6 +1032,16 @@
             [self reloadEntityDataTable:[[[set firstObject] entity] name] predicate:predicate type:MFLObjectTypeEntity];
             [self.coreDataIntrospection updateCoreDataHistory:[[[set firstObject] entity] name] predicate:predicate objectType:MFLObjectTypeEntity];
             [self enableDisableHistorySegmentedControls];
+        }
+        else if ([valueObj isKindOfClass:[NSString class]]) {
+            NSString *string = valueObj;
+            if ([string hasPrefix:@"http"]) {
+                [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:string]];
+            }
+        }
+        else if ([valueObj isKindOfClass:[NSURL class]]) {
+            NSURL *url = valueObj;
+            [[NSWorkspace sharedWorkspace] openURL:url];
         }
     }
 }

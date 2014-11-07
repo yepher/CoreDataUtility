@@ -7,9 +7,8 @@
 //
 
 #import "EntityDataTableView.h"
-#import "MFLButtonTableViewCell.h"
-#import "TransformableDataTableViewCell.h"
 #import "MFLMainWindowController.h"
+#import "MFLTextTableCellView.h"
 
 @implementation EntityDataTableView
 
@@ -21,6 +20,25 @@
 - (NSInteger)getRightClickedRow
 {
     return rightClickedRow;
+}
+
+- (void)rightMouseDown:(NSEvent *)theEvent {
+    NSPoint eventLocation = [theEvent locationInWindow];
+    eventLocation = [self convertPoint:eventLocation fromView:nil];
+    rightClickedRow = [self rowAtPoint:eventLocation];
+    rightClickedCol = [self columnAtPoint:eventLocation];
+
+    // get currently selected rows
+    NSIndexSet* indexSet = [self selectedRowIndexes];
+    //NSLog(@"Right clicked at row:%d, col:%d, point:%@, selected:%d", (int)rightClickedRow, (int)rightClickedCol, NSStringFromPoint(eventLocation), (int)indexSet.firstIndex);
+
+    // if user right-clicks on a non-selected row, select that row
+    if (![indexSet containsIndex:(NSUInteger)rightClickedRow]) {
+        [self selectRowIndexes:[NSIndexSet indexSetWithIndex:(NSUInteger)rightClickedRow] byExtendingSelection:NO];
+    }
+
+    // now, show menu for newly selected row
+    [super rightMouseDown:theEvent];
 }
 
 - (NSMenu *)menuForEvent:(NSEvent *)event
@@ -38,8 +56,14 @@
         copyRowItem = [[NSMenuItem alloc] initWithTitle:@"Copy Formated" action:@selector(copyFormatted:) keyEquivalent:@"C"];
         [copyRowItem setKeyEquivalentModifierMask:0];
         [copyRowItem setKeyEquivalentModifierMask:NSCommandKeyMask];
-        [menu addItem:copyRowItem]; 
-        
+        [menu addItem:copyRowItem];
+
+        // if only 1 row selected, offer 'copy cell' option
+        if (indexSet.count == 1) {
+            copyRowItem = [[NSMenuItem alloc] initWithTitle:@"Copy Cell" action:@selector(copyCell:) keyEquivalent:@"C"];
+            [copyRowItem setKeyEquivalentModifierMask:NSAlternateKeyMask];
+            [menu addItem:copyRowItem];
+        }
     }
     
     return menu;
@@ -136,6 +160,15 @@
 {
     NSLog(@"copyFormated Selected entityDataTable items. [%@]", sender);
     [self copySelectedRow:YES];
+}
+
+- (IBAction) copyCell:(id)sender {
+    MFLTextTableCellView *cell = [self viewAtColumn:rightClickedCol row:rightClickedRow makeIfNecessary:NO];
+    NSLog(@"copyCell: r:%d, c:%d, %@", (int)rightClickedRow, (int)rightClickedCol, cell.infoField.stringValue);
+
+    NSPasteboard *pb = [NSPasteboard generalPasteboard];
+    [pb declareTypes:@[NSStringPboardType] owner:nil];
+    [pb setString:cell.infoField.stringValue forType:NSStringPboardType];
 }
 
 @end
