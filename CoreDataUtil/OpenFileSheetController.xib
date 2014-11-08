@@ -266,19 +266,19 @@ Gw
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="667">
-                                            <rect key="frame" x="155" y="104" width="307" height="22"/>
+                                            <rect key="frame" x="17" y="78" width="472" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <string key="toolTip">Select the "File" button and navigate to where your application stores it's persistence file. This is usually in YourApp.app/../Documents</string>
-                                            <textFieldCell key="cell" lineBreakMode="truncatingHead" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Step 3: Persistence file to load" drawsBackground="YES" id="668">
+                                            <textFieldCell key="cell" lineBreakMode="truncatingHead" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="Step 3. Select apps persistence file" placeholderString="Step 3: Persistence file to load" drawsBackground="YES" id="668">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" id="672">
-                                            <rect key="frame" x="152" y="63" width="82" height="32"/>
+                                            <rect key="frame" x="11" y="42" width="196" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="674">
+                                            <buttonCell key="cell" type="push" title="3. Select Persistence File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="674">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -287,7 +287,7 @@ Gw
                                             </connections>
                                         </button>
                                         <textField toolTip="Select the &quot;Simulator App&quot; button and select your application from the list." verticalHuggingPriority="750" id="691">
-                                            <rect key="frame" x="155" y="182" width="315" height="22"/>
+                                            <rect key="frame" x="17" y="150" width="472" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="truncatingHead" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Step 2: Simulator app to load" drawsBackground="YES" id="692">
                                                 <font key="font" metaFont="system"/>
@@ -296,9 +296,9 @@ Gw
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" id="697">
-                                            <rect key="frame" x="149" y="139" width="130" height="32"/>
+                                            <rect key="frame" x="11" y="114" width="162" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Simulator App" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="698">
+                                            <buttonCell key="cell" type="push" title="2. Select Model File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="698">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -306,52 +306,29 @@ Gw
                                                 <action selector="simulatorTabSimulatorAppButtonAction:" target="-2" id="743"/>
                                             </connections>
                                         </button>
-                                        <popUpButton verticalHuggingPriority="750" id="1291">
-                                            <rect key="frame" x="286" y="31" width="133" height="26"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="SQL" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1298" id="1294">
-                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
-                                                <menu key="menu" title="OtherViews" id="1295">
-                                                    <items>
-                                                        <menuItem title="SQL" state="on" id="1298"/>
-                                                        <menuItem title="BINARY" id="1296"/>
-                                                    </items>
-                                                </menu>
-                                            </popUpButtonCell>
-                                        </popUpButton>
                                         <textField verticalHuggingPriority="750" id="1292">
-                                            <rect key="frame" x="156" y="37" width="124" height="17"/>
+                                            <rect key="frame" x="15" y="14" width="221" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Persistence Format" id="1293">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="1310">
-                                            <rect key="frame" x="17" y="234" width="478" height="62"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Important read the following for help setting up your simulator project: " id="1311">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="4. Selecg Apps Persistence Format" id="1293">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="2zO-XG-Cgp">
-                                            <rect key="frame" x="-3" y="-3" width="150" height="273"/>
+                                            <rect key="frame" x="17" y="186" width="472" height="92"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <clipView key="contentView" drawsBackground="NO" id="nND-ar-MfW">
                                                 <rect key="frame" x="1" y="1" width="148" height="398"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="M4U-v5-9Q1" id="SOS-aC-JWX">
+                                                    <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="M4U-v5-9Q1" id="SOS-aC-JWX">
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="145" minWidth="16" maxWidth="1000" id="M4U-v5-9Q1">
+                                                            <tableColumn width="467" minWidth="16" maxWidth="1000" id="M4U-v5-9Q1">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -365,11 +342,11 @@ Gw
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView identifier="HeaderCell" id="yBa-Xw-Yg6">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="145" height="17"/>
+                                                                        <rect key="frame" x="1" y="1" width="467" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" id="yRM-sZ-G7B">
-                                                                                <rect key="frame" x="0.0" y="1" width="145" height="14"/>
+                                                                                <rect key="frame" x="0.0" y="1" width="467" height="14"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Simulator" id="hOk-6S-qOY">
                                                                                     <font key="font" metaFont="smallSystemBold"/>
@@ -383,7 +360,7 @@ Gw
                                                                         </connections>
                                                                     </tableCellView>
                                                                     <tableCellView identifier="simulatorRow" id="GHB-Uu-m0Y">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="145" height="17"/>
+                                                                        <rect key="frame" x="1" y="20" width="467" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <imageView id="WtR-BB-Dca">
@@ -392,7 +369,7 @@ Gw
                                                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="simulatorIcon" id="1Uo-NW-zaL"/>
                                                                             </imageView>
                                                                             <textField identifier="simulatorRow" verticalHuggingPriority="750" id="nJN-tE-qFM">
-                                                                                <rect key="frame" x="25" y="0.0" width="120" height="17"/>
+                                                                                <rect key="frame" x="25" y="0.0" width="442" height="17"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Simulator Name" id="6uF-JE-7C2">
                                                                                     <font key="font" metaFont="system"/>
@@ -426,17 +403,29 @@ Gw
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
-                                        <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="VgW-Wo-6Mp">
-                                            <rect key="frame" x="466" y="272" width="25" height="25"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Jjp-vF-cVe">
+                                            <rect key="frame" x="15" y="280" width="476" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d9b-IC-Uef">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1. Select your simulator type and the app you want to view" id="DWw-WD-sSU">
                                                 <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="simulatorInfo:" target="-2" id="8wC-iY-wkq"/>
-                                            </connections>
-                                        </button>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <popUpButton verticalHuggingPriority="750" id="1291">
+                                            <rect key="frame" x="240" y="9" width="133" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="SQL" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1298" id="1294">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" title="OtherViews" id="1295">
+                                                    <items>
+                                                        <menuItem title="SQL" state="on" id="1298"/>
+                                                        <menuItem title="BINARY" id="1296"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                        </popUpButton>
                                     </subviews>
                                 </view>
                             </tabViewItem>

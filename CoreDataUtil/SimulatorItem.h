@@ -23,6 +23,8 @@ typedef NS_ENUM(NSInteger, MFLItemType) {
 @property (nonatomic) SimulatorItem* parent;
 @property (nonatomic) NSMutableArray* children;
 @property (nonatomic) NSDictionary* simInfo;
+@property (nonatomic) NSString* fullAppPath;
+@property (nonatomic) NSString* appPackage;
 
 - (NSInteger) numberOfChildren;
 
@@ -35,5 +37,7 @@ typedef NS_ENUM(NSInteger, MFLItemType) {
 - (NSString *)relativePath;
 
 - (NSString*) label;
+
+- (NSString*) documentsFolder;
 
 @end
