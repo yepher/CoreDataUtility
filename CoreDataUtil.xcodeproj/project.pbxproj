@@ -32,6 +32,7 @@
 		83656E6919379D0C003D0E74 /* TransformableDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83656E6819379D0C003D0E74 /* TransformableDataTableViewCell.m */; };
 		83656E6E1937A73B003D0E74 /* ObjectInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83656E6C1937A73B003D0E74 /* ObjectInfoController.m */; };
 		83656E6F1937A73B003D0E74 /* ObjectInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83656E6D1937A73B003D0E74 /* ObjectInfoController.xib */; };
+		837C067B1A0E646600F4D5D4 /* MFLBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C067A1A0E646600F4D5D4 /* MFLBuild.m */; };
 		838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */; };
 		838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */; };
 		83922D381598F264004C273C /* MFLCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83922D371598F264004C273C /* MFLCellBuilder.m */; };
@@ -121,6 +122,8 @@
 		83656E6B1937A73B003D0E74 /* ObjectInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectInfoController.h; sourceTree = "<group>"; };
 		83656E6C1937A73B003D0E74 /* ObjectInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectInfoController.m; sourceTree = "<group>"; };
 		83656E6D1937A73B003D0E74 /* ObjectInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObjectInfoController.xib; sourceTree = "<group>"; };
+		837C06791A0E646600F4D5D4 /* MFLBuild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLBuild.h; sourceTree = "<group>"; };
+		837C067A1A0E646600F4D5D4 /* MFLBuild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLBuild.m; sourceTree = "<group>"; };
 		838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-CDP.icns"; sourceTree = "<group>"; };
 		838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-MOM.icns"; sourceTree = "<group>"; };
 		83922D361598F264004C273C /* MFLCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCellBuilder.h; sourceTree = "<group>"; };
@@ -344,6 +347,8 @@
 		C1CEFE5B1463779D00466EB3 /* CoreDataUtil */ = {
 			isa = PBXGroup;
 			children = (
+				837C06791A0E646600F4D5D4 /* MFLBuild.h */,
+				837C067A1A0E646600F4D5D4 /* MFLBuild.m */,
 				C1AAB8781491629B002C1973 /* CoreData */,
 				83656E6319378FB7003D0E74 /* paintCode */,
 				C1CEFE5C1463779D00466EB3 /* Supporting Files */,
@@ -423,9 +428,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1CEFEA81463779D00466EB3 /* Build configuration list for PBXNativeTarget "CoreDataUtil" */;
 			buildPhases = (
+				837C067C1A0E657900F4D5D4 /* Set Build Version */,
 				C1CEFE4D1463779C00466EB3 /* Sources */,
 				C1CEFE4E1463779C00466EB3 /* Frameworks */,
 				C1CEFE4F1463779C00466EB3 /* Resources */,
+				837C067D1A0E659500F4D5D4 /* Reset Build Version */,
 			);
 			buildRules = (
 			);
@@ -484,7 +491,7 @@
 				ORGANIZATIONNAME = "mFluent LLC";
 				TargetAttributes = {
 					C1CEFE501463779C00466EB3 = {
-						DevelopmentTeam = K386ENA6UZ;
+						DevelopmentTeam = WDCGJTU726;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -554,6 +561,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		837C067C1A0E657900F4D5D4 /* Set Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n# Copyright Chris Wilson 2014\n\n# This script automatically sets the version and short version string of\n# an Xcode project from the GIT repository containing the project.\n#\n# To use this script in Xcode 4, add the contents to a \"Run Script\" build\n# phase for your application target.\n\nset -o errexit\nset -o nounset\n\n# Get the original MFLBuild from git\n#git checkout \"$SRCROOT/MFLBuild.m\"\n\n# Populate GIT Hash\nGIT_HASH=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}\" rev-parse HEAD)\necho \"GIT_HASH: $GIT_HASH\"\nsed -i -e \"s/BUILD_GENERATED_GIT_HASH/$GIT_HASH/g\" \"$SRCROOT/CoreDataUtil/MFLBuild.m\"\n\n# Populate last commit date and branch name\n\nGIT_LAST_COMMIT=$(git log -1 --format=%cd)\necho \"GIT_LAST_COMMIT: $GIT_LAST_COMMIT\"\n\n#echo \"before branch\"\n#GIT_BANCH_NAME=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}\" symbolic-ref --short HEAD)\n#echo \"after branch\"\n#echo \"GIT_BANCH_NAME: $GIT_BANCH_NAME\"\n\nsed -i -e \"s/BUILD_LAST_COMMIT/$GIT_LAST_COMMIT/g\" \"$SRCROOT/CoreDataUtil/MFLBuild.m\"\n\n\nBUILD_DATE=`date -u`\nsed -i -e \"s/BUILD_GENERATED_DATE/$BUILD_DATE/g\" \"$SRCROOT/CoreDataUtil/MFLBuild.m\"\n\n\nBUILD_VERSION=`git rev-list HEAD --count`\nsed -i -e \"s/BUILD_GENERATED_VERSION/$BUILD_VERSION/g\" \"$SRCROOT/CoreDataUtil/MFLBuild.m\"\n\n# Write APP_VERSION in MFLBuild.m from CFBundleShortVersionString in info.plist\necho \"Read Plist: ${PROJECT_DIR}/CoreDataUtil/Info.plist\"\nAPP_VERSION=`/usr/libexec/PlistBuddy -c \"print :CFBundleShortVersionString\" \"${PROJECT_DIR}/CoreDataUtil/CoreDataPro-Info.plist\"`\necho \"APP_VERSION: $APP_VERSION\"\nsed -i -e \"s/APP_VERSION/$APP_VERSION/g\" \"$SRCROOT/CoreDataUtil/MFLBuild.m\"\n\n\n";
+		};
+		837C067D1A0E659500F4D5D4 /* Reset Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Reset Build Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git checkout \"$SRCROOT/CoreDataUtil/MFLBuild.m\"";
+		};
 		C1CEFE731463779D00466EB3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -578,6 +613,7 @@
 				83656E6919379D0C003D0E74 /* TransformableDataTableViewCell.m in Sources */,
 				83656E6619378FB7003D0E74 /* CoreDataUtilityStyle.m in Sources */,
 				C1CEFE691463779D00466EB3 /* MFLAppDelegate.m in Sources */,
+				837C067B1A0E646600F4D5D4 /* MFLBuild.m in Sources */,
 				C1CEFE6F1463779D00466EB3 /* CoreDataUtil.xcdatamodeld in Sources */,
 				5B2E2AA61565A8AC00F6F6EA /* OpenFileSheetController.m in Sources */,
 				5B2AEF1B1576B67600DFD0D6 /* GetInfoSheetController.m in Sources */,
