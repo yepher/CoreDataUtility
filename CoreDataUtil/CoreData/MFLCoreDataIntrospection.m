@@ -319,6 +319,10 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
         
         return [NSString stringWithFormat:@"%ld bytes", [data length]];
     }
+    else if ([obj isKindOfClass:[NSNumber class]]) {
+        NSNumber *number = obj;
+        return [NSString stringWithFormat:@"%f", number.floatValue];
+    }
     else
     {
         return obj;
