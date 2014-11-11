@@ -59,6 +59,7 @@
 		C1CEFE9B1463779D00466EB3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE9A1463779D00466EB3 /* main.c */; };
 		C1CEFE9D1463779D00466EB3 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE9C1463779D00466EB3 /* GetMetadataForFile.m */; };
 		C1CEFEA01463779D00466EB3 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE9F1463779D00466EB3 /* MySpotlightImporter.m */; };
+		DB4F5F561A1257D300ED506D /* CoreDataPro.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1CEFE511463779C00466EB3 /* CoreDataPro.app */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,19 @@
 			remoteInfo = CoreDataUtilImporter;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DB4F5F551A1257C700ED506D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /Applications;
+			dstSubfolderSpec = 0;
+			files = (
+				DB4F5F561A1257D300ED506D /* CoreDataPro.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D52574316EB66F100A91244 /* FetchRequestInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchRequestInfoController.h; sourceTree = "<group>"; };
@@ -433,6 +447,7 @@
 				C1CEFE4E1463779C00466EB3 /* Frameworks */,
 				C1CEFE4F1463779C00466EB3 /* Resources */,
 				837C067D1A0E659500F4D5D4 /* Reset Build Version */,
+				DB4F5F551A1257C700ED506D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -491,7 +506,7 @@
 				ORGANIZATIONNAME = "mFluent LLC";
 				TargetAttributes = {
 					C1CEFE501463779C00466EB3 = {
-						DevelopmentTeam = WDCGJTU726;
+						DevelopmentTeam = K386ENA6UZ;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
