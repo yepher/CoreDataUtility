@@ -417,7 +417,7 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
         return (self.entityData)[row];
     }
     else {
-        NSLog(@"getDataAtRow: bad row:%d", (int)row);
+        NSLog(@"getDataAtRow: bad row:%d, #rows:%d", (int)row, (int)[self entityDataCount]);
         return nil;
     }
 }
@@ -434,7 +434,6 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
 
 - (void)updateCoreDataHistory:(NSString *)name predicate:(NSPredicate *)predicate objectType:(MFLObjectType)type
 {
-    NSTimeInterval startTime = [[NSDate date] timeIntervalSince1970];
     if (self.coreDataHistory == nil)
     {
         self.coreDataHistory = [[NSMutableArray alloc] initWithCapacity:CORE_DATA_HISTORY_MAX];
@@ -468,7 +467,6 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
             [self.coreDataHistory removeObjectAtIndex:currentHistoryIndex + 1];
         }
     }
-    NSLog(@"updateCoreDataHistory: %@, %@ms", name, [MFLUtils duration:startTime]);
 }
 
 @end

@@ -250,10 +250,9 @@
     if ([self.dataSourceList selectedRow] >= 0)
     {
         NSTimeInterval startTime = [[NSDate date] timeIntervalSince1970];
-
-        [self removeColumns];
         [self.coreDataIntrospection clearEntityData];
         [self.entityContentTable reloadData];
+        [self removeColumns];
 
         self.sortType = Unsorted;
         OutlineViewNode *selectedNode = [self.dataSourceList itemAtRow:[self.dataSourceList selectedRow]];
@@ -286,7 +285,11 @@
                                                     predicate:[[self.coreDataIntrospection fetchRequest:selected] predicate]
                                                    objectType:MFLObjectTypeFetchRequest];
         }
-        [self.entityContentTable reloadData];
+
+        // allow main thread to return before calling reloadData again. user will see a faster table selection & an empty table view - then data will populate
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.entityContentTable reloadData];
+        }];
 
         [self enableDisableHistorySegmentedControls];
         NSLog(@"Selected %@, selected=%d, section:%d, %@ms", selectedNode.title, (int)selected, (int)section, [MFLUtils duration:startTime]);
