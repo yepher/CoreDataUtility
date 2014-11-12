@@ -19,6 +19,7 @@
 #import "GetInfoSheetController.h"
 #import "FetchRequestInfoController.h"
 #import "ObjectInfoController.h"
+#import "MFLUtils.h"
 
 @interface OutlineViewNode : NSObject
 @property (strong) OutlineViewNode *parent;
@@ -143,14 +144,9 @@
     [[newColumn headerCell] setTextColor:[NSColor darkGrayColor]];
     [[newColumn headerCell] setAlignment:NSCenterTextAlignment];
     
-    
-    CGFloat defaultColWidth = [newColumn width];
+    //CGFloat defaultColWidth = [newColumn width];
     [newColumn sizeToFit];
-    if ([newColumn width] < defaultColWidth)
-    {
-        [newColumn setMinWidth:defaultColWidth];
-    }
-    
+
     [[self entityContentTable] addTableColumn:newColumn];
     
     // TODO: we should set the cells up with proper types when we allow users to edit data
@@ -253,6 +249,8 @@
 - (void)onEntitySelected {
     if ([self.dataSourceList selectedRow] >= 0)
     {
+        NSTimeInterval startTime = [[NSDate date] timeIntervalSince1970];
+
         [self removeColumns];
         [self.coreDataIntrospection clearEntityData];
         [self.entityContentTable reloadData];
@@ -262,7 +260,6 @@
 
         NSInteger selected = selectedNode.index;
         NSInteger section = selectedNode.parent.index;
-        NSLog(@"Selected idx=%ld", selected);
         if (selected >= 0 && section == 0)
         {
             [self.coreDataIntrospection loadEntityDataAtIndex:selected];
@@ -272,7 +269,8 @@
                 [self addTableColumnWithIdentifier:name];
             }
 
-            [self.coreDataIntrospection loadEntityDataAtIndex:selected];
+            // TODO - why was this called twice?
+            //[self.coreDataIntrospection loadEntityDataAtIndex:selected];
             [self.coreDataIntrospection updateCoreDataHistory:[self.coreDataIntrospection entityAtIndex:selected] predicate:nil objectType:MFLObjectTypeEntity];
 
         } else if (selected >= 0 && section == 1)
@@ -291,6 +289,7 @@
         [self.entityContentTable reloadData];
 
         [self enableDisableHistorySegmentedControls];
+        NSLog(@"Selected %@, selected=%d, section:%d, %@ms", selectedNode.title, (int)selected, (int)section, [MFLUtils duration:startTime]);
     }
 }
 
@@ -353,24 +352,9 @@
 
 - (id)getValueObjFromDataRows:(NSTableView *)tableView :(NSInteger)row :(NSTableColumn *)tableColumn
 {
-    NSArray* dataRow;
     NSInteger normalizedRow = [self sortOrderedRow:tableView row:row];
-    
-    id valueObj = nil;
-    @try
-    {
-        dataRow = [self.coreDataIntrospection getDataAtRow:normalizedRow];
-        
-        valueObj = [dataRow valueForKey:[tableColumn identifier]];
-    }
-    @catch (NSException *exception)
-    {
-        // Not sure what is going on here. This happens sometimes. We need to sort this one out...
-        NSLog(@"Row=%ld, normalizedRow=%ld, numRows=%ld, entityCount=%ld", row, normalizedRow, [self.entityContentTable numberOfRows], [self.coreDataIntrospection entityDataCount]);
-        NSLog(@"Row[%ld]: Caught Exception: %@ [%@], %@",row, exception, tableColumn, dataRow);
-        valueObj = nil;
-    }
-    
+    NSArray *dataRow = [self.coreDataIntrospection getDataAtRow:(NSUInteger)normalizedRow];
+    id valueObj = [dataRow valueForKey:[tableColumn identifier]];
     return valueObj;
 }
 
@@ -382,6 +366,10 @@
     }
     
     return normalizedRow;
+}
+
+- (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
+    return 20;
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
@@ -399,11 +387,9 @@
         
         return entityCell;
     }
-    
-    if (tableView == [self entityContentTable])
+    else if (tableView == [self entityContentTable])
     {
         id valueObj = [self getValueObjFromDataRows:tableView :row :tableColumn];
-        
         if (valueObj == nil)
         {
             MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
@@ -414,6 +400,7 @@
             NSString* cellText = [NSString stringWithFormat:@"%@", valueObj];
             if ([cellText hasPrefix:@"http"]) {
                 MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+                buttonCell.wantsLayer = YES;
                 [[buttonCell infoField] setTextColor:[NSColor blackColor]];
                 [[buttonCell infoField] setStringValue: cellText];
                 return buttonCell;
@@ -428,24 +415,23 @@
             NSURL* url = (NSURL*) valueObj;
             NSString* cellText = [NSString stringWithFormat:@"%@", [url absoluteString]];
             MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+            buttonCell.wantsLayer = YES;
             [[buttonCell infoField] setTextColor:[NSColor blackColor]];
             [[buttonCell infoField] setStringValue: cellText];
             return buttonCell;
-//            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
-//            return textCell;
         }
         else if ([valueObj isKindOfClass:[NSDate class]])
         {
             [self setupDateFormatter];
             NSString *cellText = [self.dateFormatter stringFromDate:valueObj];
             MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
-            
             return textCell;
         }
         else if ([valueObj isKindOfClass:[NSData class]])
         {
             NSString* cellText = [NSString stringWithFormat:@"%ld", [valueObj length]];
             MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner: self];
+            textCell.wantsLayer = YES;
             return textCell;
         }
         else if ([valueObj isKindOfClass:[NSNumber class]])
@@ -460,14 +446,14 @@
                 cellText = [NSString stringWithFormat:@"%@", valueObj];
             }
             MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner:self];
+            textCell.wantsLayer = YES;
             return textCell;
         }
-        
-        // Button Cells
         else if ([valueObj isKindOfClass:[NSManagedObject class]])
         {
             NSString* cellText = [NSString stringWithFormat:@"%@", [[valueObj entity] name]];
             MFLButtonTableViewCell* buttonCell = [MFLCellBuilder objectCellWithString:tableView textToSet:cellText owner:self];
+            buttonCell.wantsLayer = YES;
             return buttonCell;
         }
         else if ([valueObj isKindOfClass:[NSSet class]])
@@ -480,6 +466,7 @@
                     NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
                     
                     MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+                    buttonCell.wantsLayer = YES;
                     [[buttonCell infoField] setAlignment:NSRightTextAlignment];
                     [[buttonCell infoField] setTextColor:[NSColor blackColor]];
                     [[buttonCell infoField] setStringValue: cellText];
@@ -506,6 +493,7 @@
                     NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
                     
                     MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+                    buttonCell.wantsLayer = YES;
                     [[buttonCell infoField] setAlignment:NSRightTextAlignment];
                     [[buttonCell infoField] setTextColor:[NSColor blackColor]];
                     [[buttonCell infoField] setStringValue: cellText];
@@ -513,6 +501,7 @@
                 } else {
                     NSString *cellText = [NSString stringWithFormat:@"%@", valueObj];
                     MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
+                    textCell.wantsLayer = YES;
                     return textCell;
                 }
             }
@@ -524,7 +513,6 @@
         }
         else if ([valueObj isKindOfClass:[NSOrderedSet class]])
         {
-            
             if ([valueObj count] > 0)
             {
                 id obj = [valueObj firstObject];
@@ -533,6 +521,7 @@
                     NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
                     
                     MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
+                    buttonCell.wantsLayer = YES;
                     [[buttonCell infoField] setAlignment:NSRightTextAlignment];
                     [[buttonCell infoField] setTextColor:[NSColor blackColor]];
                     [[buttonCell infoField] setStringValue: cellText];
@@ -540,6 +529,7 @@
                 } else {
                     NSString *cellText = [NSString stringWithFormat:@"%@", valueObj];
                     MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
+                    textCell.wantsLayer = YES;
                     return textCell;
                 }
             }
@@ -553,23 +543,22 @@
         {
             NSString* cellText = [NSString stringWithFormat:@"%@", @"NSDictionary Data"];
             TransformableDataTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_TRANSFORM_CELL owner:self];
+            buttonCell.wantsLayer = YES;
             [[buttonCell infoField] setAlignment:NSRightTextAlignment];
             [[buttonCell infoField] setTextColor:[NSColor blackColor]];
             [[buttonCell infoField] setStringValue: cellText];
-            
             return buttonCell;
         }
         // Unhandled types of content
         else
         {
-            NSLog(@"is Other");
-            
+            NSLog(@"Unknown content: %@", valueObj);
             NSString* cellText = [NSString stringWithFormat:@"??? %@ ???", [valueObj class]];
             TransformableDataTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_TRANSFORM_CELL owner:self];
+            buttonCell.wantsLayer = YES;
             [[buttonCell infoField] setAlignment:NSRightTextAlignment];
             [[buttonCell infoField] setTextColor:[NSColor blackColor]];
             [[buttonCell infoField] setStringValue: cellText];
-            
             return buttonCell;
         }
     }

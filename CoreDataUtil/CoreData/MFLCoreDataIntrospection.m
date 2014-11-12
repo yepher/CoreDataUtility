@@ -7,6 +7,7 @@
 //
 
 #import "MFLCoreDataIntrospection.h"
+#import "MFLUtils.h"
 
 NSInteger const CORE_DATA_HISTORY_MAX = 100;
 
@@ -388,7 +389,9 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
 }
 
 - (void) loadEntityDataAtIndex: (NSUInteger) index {
+    NSTimeInterval startTime = [[NSDate date] timeIntervalSince1970];
     self.entityData = [self fetchObjectsByEntityName:[self entityAtIndex:index]];
+    NSLog(@"loadEntityDataAtIndex: %@ms", [MFLUtils duration:startTime]);
 }
 
 - (NSString*) entityAtIndex:(NSUInteger) index {
@@ -410,7 +413,13 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
 }
 
 - (NSArray*) getDataAtRow: (NSUInteger) row {
-    return (self.entityData)[row];
+    if (row >= 0 && row < [self entityDataCount]) {
+        return (self.entityData)[row];
+    }
+    else {
+        NSLog(@"getDataAtRow: bad row:%d", (int)row);
+        return nil;
+    }
 }
 
 - (NSInteger)getCurrentHistoryIndex
@@ -425,6 +434,7 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
 
 - (void)updateCoreDataHistory:(NSString *)name predicate:(NSPredicate *)predicate objectType:(MFLObjectType)type
 {
+    NSTimeInterval startTime = [[NSDate date] timeIntervalSince1970];
     if (self.coreDataHistory == nil)
     {
         self.coreDataHistory = [[NSMutableArray alloc] initWithCapacity:CORE_DATA_HISTORY_MAX];
@@ -458,6 +468,7 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
             [self.coreDataHistory removeObjectAtIndex:currentHistoryIndex + 1];
         }
     }
+    NSLog(@"updateCoreDataHistory: %@, %@ms", name, [MFLUtils duration:startTime]);
 }
 
 @end

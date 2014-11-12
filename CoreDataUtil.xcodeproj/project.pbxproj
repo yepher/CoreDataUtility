@@ -39,6 +39,7 @@
 		83AE7D3019FF1AB400DD152B /* SimulatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE7D2F19FF1AB400DD152B /* SimulatorItem.m */; };
 		83AE7D3219FF1CE900DD152B /* simulatorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83AE7D3119FF1CE900DD152B /* simulatorIcon.png */; };
 		83B158FD158F6AE2002B46C2 /* MFLCoreDataIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B158FC158F6AE2002B46C2 /* MFLCoreDataIntrospection.m */; };
+		9780EDFFBC753AD96BBF64A1 /* MFLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780E6C8A039EE9C6DDC7B83 /* MFLUtils.m */; };
 		C1CEFE561463779D00466EB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CEFE551463779D00466EB3 /* Cocoa.framework */; };
 		C1CEFE601463779D00466EB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1CEFE5E1463779D00466EB3 /* InfoPlist.strings */; };
 		C1CEFE621463779D00466EB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE611463779D00466EB3 /* main.m */; };
@@ -59,6 +60,7 @@
 		C1CEFE9B1463779D00466EB3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE9A1463779D00466EB3 /* main.c */; };
 		C1CEFE9D1463779D00466EB3 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE9C1463779D00466EB3 /* GetMetadataForFile.m */; };
 		C1CEFEA01463779D00466EB3 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE9F1463779D00466EB3 /* MySpotlightImporter.m */; };
+		DB2F1D8D1A13D0470021E081 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2F1D8C1A13D0470021E081 /* QuartzCore.framework */; };
 		DB4F5F561A1257D300ED506D /* CoreDataPro.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1CEFE511463779C00466EB3 /* CoreDataPro.app */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +149,8 @@
 		83AE7D3119FF1CE900DD152B /* simulatorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simulatorIcon.png; sourceTree = "<group>"; };
 		83B158FB158F6AE2002B46C2 /* MFLCoreDataIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCoreDataIntrospection.h; sourceTree = "<group>"; };
 		83B158FC158F6AE2002B46C2 /* MFLCoreDataIntrospection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCoreDataIntrospection.m; sourceTree = "<group>"; };
+		9780E6C8A039EE9C6DDC7B83 /* MFLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLUtils.m; sourceTree = "<group>"; };
+		9780E887DE002F72EABD10EF /* MFLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLUtils.h; sourceTree = "<group>"; };
 		C1CEFE511463779C00466EB3 /* CoreDataPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CEFE551463779D00466EB3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		C1CEFE581463779D00466EB3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -180,6 +184,7 @@
 		C1CEFE9F1463779D00466EB3 /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
 		C1CEFEA11463779D00466EB3 /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
 		C1CEFEA21463779D00466EB3 /* CoreDataUtilImporter-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataUtilImporter-Prefix.pch"; sourceTree = "<group>"; };
+		DB2F1D8C1A13D0470021E081 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB2F1D8D1A13D0470021E081 /* QuartzCore.framework in Frameworks */,
 				C1CEFE561463779D00466EB3 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +227,8 @@
 				833FF6FC187860F1003ADCEA /* MFLConstants.m */,
 				832C9699159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.h */,
 				832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */,
+				9780E6C8A039EE9C6DDC7B83 /* MFLUtils.m */,
+				9780E887DE002F72EABD10EF /* MFLUtils.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -337,6 +345,7 @@
 		C1CEFE541463779D00466EB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB2F1D8C1A13D0470021E081 /* QuartzCore.framework */,
 				C1CEFE551463779D00466EB3 /* Cocoa.framework */,
 				C1CEFE761463779D00466EB3 /* SenTestingKit.framework */,
 				C1CEFE8C1463779D00466EB3 /* CoreServices.framework */,
@@ -648,6 +657,7 @@
 				5B2BA5C4159C9FEB00AFEC9D /* CoreDataHistoryObject.m in Sources */,
 				833FF6FD187860F1003ADCEA /* MFLConstants.m in Sources */,
 				1D52574616EB66F200A91244 /* FetchRequestInfoController.m in Sources */,
+				9780EDFFBC753AD96BBF64A1 /* MFLUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
