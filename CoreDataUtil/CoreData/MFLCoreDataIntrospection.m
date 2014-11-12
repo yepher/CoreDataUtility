@@ -70,13 +70,16 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
             // Success
             [self.delegate onLoadObjectModelSuccess];
         } else if (self.momFileUrl == nil) {
+            NSLog(@"Could not load Object File because it was nil!");
             NSError* error = [self  errnoErrorWithReason:@"Could not load Object File because it was nil!"];
             [self.delegate onLoadObjectModelFailedWithError:error];
+            return;
         } else {
             // Unknow Failure. Maybe the file was not a valid object model file
+            NSLog(@"Could not load Object File: %@", self.momFileUrl);
             NSError* error = [self errnoErrorWithReason:[NSString stringWithFormat:@"Failed to load: %@. Make sure it is a valid Object Model file.", self.momFileUrl]];
             [self.delegate onLoadObjectModelFailedWithError:error];
-            
+            return;
         }
     }
     
@@ -229,104 +232,75 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
 	self.entityData = [self.context executeFetchRequest:fetch error:NULL];
 }
 
-- (void)sortEntityData:(NSString *)fieldName
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:self.dateStyle];
-    [formatter setTimeStyle:self.dateStyle];
-    
-    SEL comparisonSelector = nil;
-    
+- (void)sortEntityData:(NSString *)fieldName {
+    BOOL isStringColumn = NO;
+
     // Put values for selected column into a dictionary with their current row number as the key
-    NSMutableDictionary *columnObjs = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *columnObjs = [[NSMutableDictionary alloc] initWithCapacity:[self.entityData count]];
     NSInteger rowNum = 0;
-    for (NSArray *row in self.entityData)
-    {
-        id valueObj = [MFLCoreDataIntrospection getDisplayValueForObject:[row valueForKey:fieldName] dateStyle:self.dateStyle];
-        if ([valueObj isKindOfClass:[NSString class]] && [formatter dateFromString:valueObj])
-        {
-            valueObj = [formatter dateFromString:valueObj];
+    for (NSArray *row in self.entityData) {
+        id obj = [row valueForKey:fieldName];
+        // check if this is column is NSString
+        if (!isStringColumn && [obj isKindOfClass:[NSString class]]) {
+            isStringColumn = YES;
         }
-        
-        if (comparisonSelector == nil && [valueObj isKindOfClass:[NSString class]]) {
-            comparisonSelector = @selector(caseInsensitiveCompare:);
+
+        id valueObj = obj;
+
+        // change values of non-native/sortable objects for easier sorting
+        if (obj == nil) {
+            valueObj = [NSNull null];
         }
-        
-        columnObjs[[NSString stringWithFormat:@"%ld", rowNum]] = valueObj;
+        if ([obj isKindOfClass:[NSSet class]]) {
+            NSSet* mySet = obj;
+            valueObj = @([mySet count]);
+        }
+        else if ([obj isKindOfClass:[NSArray class]]) {
+            NSArray* myArray = obj;
+            valueObj = @([myArray count]);
+        }
+        else if ([obj isKindOfClass:[NSManagedObject class]]) {
+            valueObj = [[obj entity] name];
+        }
+        else if ([obj isKindOfClass:[NSData class]]) {
+            NSData* data = (NSData*) obj;
+            valueObj = @([data length]);
+        }
+
+        // add valueObj to array for sorting
+        columnObjs[@(rowNum)] = valueObj;
         rowNum++;
     }
     
-    if (comparisonSelector == nil) {
-        comparisonSelector = @selector(compare:);
-    }
-    
     // sort!
-    NSArray *sortedColumns = [columnObjs keysSortedByValueUsingSelector:comparisonSelector];
-    
+    NSArray *sortedColumns = [columnObjs keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        // handle nil objects by putting them above any non-nil object
+        if (obj1 == NSNull.null && obj2 == NSNull.null) {
+            return NSOrderedSame;
+        }
+        else if (obj1 == NSNull.null) {
+            return NSOrderedAscending;
+        }
+        else if (obj2 == NSNull.null) {
+            return NSOrderedDescending;
+        }
+        // both objects are NOT nil
+        else if (isStringColumn) {
+            return [obj1 caseInsensitiveCompare:obj2];
+        }
+        else {
+            return [obj1 compare:obj2];
+        }
+    }];
+
+
     // Move the sorted values back into an array
     NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for (NSString *oldRowNum in sortedColumns)
+    for (NSNumber *oldRowNum in sortedColumns)
     {
-        [temp addObject:(self.entityData)[[oldRowNum integerValue]]];
+        [temp addObject:(self.entityData)[(NSUInteger)[oldRowNum integerValue]]];
     }
     self.entityData = temp;
-}
-
-+ (id)getDisplayValueForObject:(id)obj dateStyle:(NSDateFormatterStyle) dateStyle
-{
-    if (obj == nil)
-    {
-        return @"";
-    }
-    else if ([obj isKindOfClass:[NSSet class]])
-    {
-        NSSet* mySet = obj;
-        NSString *cellText = @"0";
-        if (mySet && [mySet count] > 0)
-        {
-            cellText = [NSString stringWithFormat:@"%lu", [mySet count]];
-        }
-        
-        return cellText;
-    }
-    else if ([obj isKindOfClass:[NSArray class]])
-    {
-        NSArray* myArray = obj;
-        NSString *cellText = @"0";
-        if (myArray && [myArray count] > 0)
-        {
-            cellText = [NSString stringWithFormat:@"%lu", [myArray count]];
-        }
-        
-        return cellText;
-    }
-    else if ([obj isKindOfClass:[NSManagedObject class]])
-    {
-        return [[obj entity] name];
-    }
-    else if ([obj isKindOfClass:[NSDate class]])
-    {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:dateStyle];
-        [dateFormatter setTimeStyle:dateStyle];
-        
-        NSString *dateString = [dateFormatter stringFromDate:obj];
-        return dateString;
-    }
-    else if ([obj isKindOfClass:[NSData class]])
-    {
-        NSData* data = (NSData*) obj;
-        
-        return [NSString stringWithFormat:@"%ld bytes", [data length]];
-    }
-    else if ([obj isKindOfClass:[NSNumber class]]) {
-        NSNumber *number = obj;
-        return [NSString stringWithFormat:@"%f", number.floatValue];
-    }
-    else
-    {
-        return obj;
-    }
 }
 
 - (NSArray*) keyPathsForEntity:(NSEntityDescription*) entityDescription {
