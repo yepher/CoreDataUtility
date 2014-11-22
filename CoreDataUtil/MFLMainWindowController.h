@@ -15,6 +15,14 @@
 @class EntityTableView;
 @class EntityDataTableView;
 
+typedef NS_ENUM(NSUInteger, EViewType) {
+ ViewTypeString = 0,
+ ViewTypeNumber,
+ ViewTypeDate,
+ ViewTypeLink,
+ ViewTypeTransformable,
+};
+
 @interface MFLMainWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, MFLCoreDataIntrospectionDelegate, NSOutlineViewDataSource, NSOutlineViewDelegate, NSSplitViewDelegate, EntityTableViewDataSource>
 
 @property (weak) IBOutlet EntityTableView *dataSourceList;

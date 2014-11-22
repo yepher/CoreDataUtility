@@ -12,14 +12,22 @@
 #import "EntityDataTableView.h"
 #import "MFLTextTableCellView.h"
 #import "MFLEntityTableCellView.h"
-#import "MFLButtonTableViewCell.h"
-#import "TransformableDataTableViewCell.h"
-#import "MFLCellBuilder.h"
 #import "OpenFileSheetController.h"
 #import "GetInfoSheetController.h"
 #import "FetchRequestInfoController.h"
 #import "ObjectInfoController.h"
 #import "MFLUtils.h"
+
+// max length of text to display in cell
+static const int MAX_TEXT_LENGTH = 255;
+
+@interface ViewData : NSObject
+@property NSString *text;
+@property EViewType viewType;
+@end
+
+@implementation ViewData
+@end
 
 @interface OutlineViewNode : NSObject
 @property (strong) OutlineViewNode *parent;
@@ -65,6 +73,9 @@
 @property (strong) OutlineViewNode *rootNode;
 @property NSDateFormatter *dateFormatter;
 
+// map of row (NSNumber) to NSMutableDictionary (which is a map of column name to ViewData)
+@property NSMutableDictionary *cachedRows;
+
 @end
 
 @implementation MFLMainWindowController
@@ -74,13 +85,10 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        
         self.sortType = Unsorted;
     }
-    
     return self;
 }
-
 
 - (void) loadUserDefinedDateFormat {
     NSInteger dateStyleDefault = [[NSUserDefaults standardUserDefaults] integerForKey:DATE_STYLE_KEY_NAME]; 
@@ -114,7 +122,6 @@
     }
 }
 
-
 - (void)windowDidLoad
 {
     [super windowDidLoad];
@@ -128,6 +135,8 @@
     [self.historySegmentedControl setEnabled:NO forSegment:1];
     
     [self loadUserDefinedDateFormat];
+
+    self.cachedRows = [NSMutableDictionary new];
 }
 
 #pragma mark -
@@ -174,6 +183,9 @@
     {
         [self.entityContentTable removeTableColumn:[self.entityContentTable tableColumns][0]];
     }
+
+    // clear cache
+    [self.cachedRows removeAllObjects];
     //NSLog(@"There are now %ld columns", [[self entityContentTable] numberOfColumns]);
 }
 
@@ -252,6 +264,8 @@
         NSTimeInterval startTime = [[NSDate date] timeIntervalSince1970];
         [self.coreDataIntrospection clearEntityData];
         [self.entityContentTable reloadData];
+
+        [self.entityContentTable beginUpdates];
         [self removeColumns];
 
         self.sortType = Unsorted;
@@ -285,6 +299,8 @@
                                                     predicate:[[self.coreDataIntrospection fetchRequest:selected] predicate]
                                                    objectType:MFLObjectTypeFetchRequest];
         }
+
+        [self.entityContentTable endUpdates];
 
         // allow main thread to return before calling reloadData again. user will see a faster table selection & an empty table view - then data will populate
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -322,7 +338,10 @@
         [self.coreDataIntrospection setDateStyle:self.dateStyle];
         [self.coreDataIntrospection sortEntityData:[tableColumn identifier]];
     }
-    
+
+    // clear cache
+    [self.cachedRows removeAllObjects];
+
     [self.entityContentTable setIndicatorImage:[NSImage imageNamed:arrowImageName] inTableColumn:tableColumn];
     [self.entityContentTable reloadData];
 }
@@ -376,215 +395,178 @@
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{    
+{
     if (tableView == [self dataSourceList])
     {
         MFLEntityTableCellView* entityCell = [tableView makeViewWithIdentifier:MFL_ENTITY_CELL owner:self];
         NSString* lblTxt = [self.coreDataIntrospection entityAtIndex:row];
-        
+
         [[entityCell label] setStringValue:lblTxt];
         //[entityCell setDataCount:[NSString stringWithFormat:@"%ld", [self.coreDataIntrospection entityDataCountAtIndex:row]]];
         [[entityCell countButton] setTitle: [NSString stringWithFormat:@"%ld", [self.coreDataIntrospection entityDataCountAtIndex:row]]];
         //[[entityCell countButton] sizeToFit];
         [[entityCell countButton] setEnabled:NO];
-        
         return entityCell;
     }
-    else if (tableView == [self entityContentTable])
-    {
-        id valueObj = [self getValueObjFromDataRows:tableView :row :tableColumn];
-        if (valueObj == nil)
-        {
-            MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
-            return textCell;
-        }
-        else if ([valueObj isKindOfClass:[NSString class]])
-        {
-            NSString* cellText = [NSString stringWithFormat:@"%@", valueObj];
-            if ([cellText hasPrefix:@"http"]) {
-                MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
-                buttonCell.wantsLayer = YES;
-                [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-                [[buttonCell infoField] setStringValue: cellText];
-                return buttonCell;
-            }
-            else {
-                MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
-                return textCell;
-            }
-        }
-        else if ([valueObj isKindOfClass:[NSURL class]])
-        {
-            NSURL* url = (NSURL*) valueObj;
-            NSString* cellText = [NSString stringWithFormat:@"%@", [url absoluteString]];
-            MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
-            buttonCell.wantsLayer = YES;
-            [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-            [[buttonCell infoField] setStringValue: cellText];
-            return buttonCell;
-        }
-        else if ([valueObj isKindOfClass:[NSDate class]])
-        {
-            [self setupDateFormatter];
-            NSString *cellText = [self.dateFormatter stringFromDate:valueObj];
-            MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
-            return textCell;
-        }
-        else if ([valueObj isKindOfClass:[NSData class]])
-        {
-            NSString* cellText = [NSString stringWithFormat:@"%ld", [valueObj length]];
-            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner: self];
-            textCell.wantsLayer = YES;
-            return textCell;
-        }
-        else if ([valueObj isKindOfClass:[NSNumber class]])
-        {
-            NSString* cellText;
-            NSNumber *number = valueObj;
-            // get 'type' of NSNumber to determine if this is a Boolean data type
-            if (strcmp(number.objCType, @encode(BOOL)) == 0) {
-                cellText = [NSString stringWithFormat:@"%@", number.boolValue ? @"YES" : @"NO"];
-            }
-            else {
-                cellText = [NSString stringWithFormat:@"%@", valueObj];
-            }
-            MFLTextTableCellView* textCell = [MFLCellBuilder numberCellWithString:tableView textToSet:cellText owner:self];
-            textCell.wantsLayer = YES;
-            return textCell;
-        }
-        else if ([valueObj isKindOfClass:[NSManagedObject class]])
-        {
-            NSString* cellText = [NSString stringWithFormat:@"%@", [[valueObj entity] name]];
-            MFLButtonTableViewCell* buttonCell = [MFLCellBuilder objectCellWithString:tableView textToSet:cellText owner:self];
-            buttonCell.wantsLayer = YES;
-            return buttonCell;
-        }
-        else if ([valueObj isKindOfClass:[NSSet class]])
-        {
-            if ([valueObj count] > 0)
-            {
-                id obj = [valueObj anyObject];
-                if ([obj isKindOfClass:[NSManagedObject class]]) {
-                    NSManagedObject* object = obj;
-                    NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
-                    
-                    MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
-                    buttonCell.wantsLayer = YES;
-                    [[buttonCell infoField] setAlignment:NSRightTextAlignment];
-                    [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-                    [[buttonCell infoField] setStringValue: cellText];
-                    return buttonCell;
-                } else {
-                    NSString *cellText = [NSString stringWithFormat:@"%@", valueObj];
-                    MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
-                    return textCell;
-                }
-            }
-            else // Empty NSSet
-            {
-                MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
-                return textCell;
-            }
-        }
-        else if ([valueObj isKindOfClass:[NSArray class]])
-        {
-            if ([valueObj count] > 0)
-            {
-                id obj = [valueObj firstItem];
-                if ([obj isKindOfClass:[NSManagedObject class]]) {
-                    NSManagedObject* object = obj;
-                    NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
-                    
-                    MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
-                    buttonCell.wantsLayer = YES;
-                    [[buttonCell infoField] setAlignment:NSRightTextAlignment];
-                    [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-                    [[buttonCell infoField] setStringValue: cellText];
-                    return buttonCell;
-                } else {
-                    NSString *cellText = [NSString stringWithFormat:@"%@", valueObj];
-                    MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
-                    textCell.wantsLayer = YES;
-                    return textCell;
-                }
-            }
-            else // Empty NSArray
-            {
-                MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
-                return textCell;
-            }
-        }
-        else if ([valueObj isKindOfClass:[NSOrderedSet class]])
-        {
-            if ([valueObj count] > 0)
-            {
-                id obj = [valueObj firstObject];
-                if ([obj isKindOfClass:[NSManagedObject class]]) {
-                    NSManagedObject* object = obj;
-                    NSString *cellText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
-                    
-                    MFLButtonTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_BUTTON_CELL owner:self];
-                    buttonCell.wantsLayer = YES;
-                    [[buttonCell infoField] setAlignment:NSRightTextAlignment];
-                    [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-                    [[buttonCell infoField] setStringValue: cellText];
-                    return buttonCell;
-                } else {
-                    NSString *cellText = [NSString stringWithFormat:@"%@", valueObj];
-                    MFLTextTableCellView* textCell = [MFLCellBuilder textCellWithString:tableView textToSet:cellText owner:self];
-                    textCell.wantsLayer = YES;
-                    return textCell;
-                }
-            }
-            else // Empty NSSet
-            {
-                MFLTextTableCellView* textCell = [MFLCellBuilder nullCell:tableView owner:self];
-                return textCell;
-            }
-        }
-        else if ([valueObj isKindOfClass:[NSDictionary class]])
-        {
-            NSString* cellText = [NSString stringWithFormat:@"%@", @"NSDictionary Data"];
-            TransformableDataTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_TRANSFORM_CELL owner:self];
-            buttonCell.wantsLayer = YES;
-            [[buttonCell infoField] setAlignment:NSRightTextAlignment];
-            [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-            [[buttonCell infoField] setStringValue: cellText];
-            return buttonCell;
-        }
-        // Unhandled types of content
-        else
-        {
-            NSLog(@"Unknown content: %@", valueObj);
-            NSString* cellText = [NSString stringWithFormat:@"??? %@ ???", [valueObj class]];
-            TransformableDataTableViewCell* buttonCell = [tableView makeViewWithIdentifier:MFL_TRANSFORM_CELL owner:self];
-            buttonCell.wantsLayer = YES;
-            [[buttonCell infoField] setAlignment:NSRightTextAlignment];
-            [[buttonCell infoField] setTextColor:[NSColor blackColor]];
-            [[buttonCell infoField] setStringValue: cellText];
-            return buttonCell;
+
+    // -- entity table --
+
+    // check cache for view data
+    NSMutableDictionary *columnMap = self.cachedRows[@(row)];
+    if (columnMap != nil) {
+        ViewData *viewData = columnMap[tableColumn.identifier];
+        if (viewData != nil) {
+            return [self createCell:viewData.text withType:viewData.viewType];
         }
     }
-    
-    return nil;
+
+    NSString *viewText = nil;
+    EViewType viewType = ViewTypeString;
+
+    id valueObj = [self getValueObjFromDataRows:tableView :row :tableColumn];
+    if (valueObj == nil) {
+        // do nothing..
+    }
+    else if ([valueObj isKindOfClass:[NSString class]]) {
+        viewType = ViewTypeString;
+        viewText = valueObj;
+        if (viewText.length > MAX_TEXT_LENGTH) {
+            viewText = [viewText substringToIndex:MAX_TEXT_LENGTH];
+        }
+
+        if ([viewText hasPrefix:@"http"]) {
+            viewType = ViewTypeLink;
+        }
+    }
+    else if ([valueObj isKindOfClass:[NSNumber class]]) {
+        viewType = ViewTypeNumber;
+        NSNumber *number = valueObj;
+        // get 'type' of NSNumber to determine if this is a Boolean data type
+        if (strcmp(number.objCType, @encode(BOOL)) == 0) {
+            viewText = [NSString stringWithFormat:@"%@", number.boolValue ? @"YES" : @"NO"];
+        }
+        else {
+            viewText = [NSString stringWithFormat:@"%@", valueObj];
+        }
+    }
+    else if ([valueObj isKindOfClass:[NSDate class]]) {
+        viewType = ViewTypeDate;
+        [self setupDateFormatter];
+        viewText = [self.dateFormatter stringFromDate:valueObj];
+    }
+    else if ([valueObj isKindOfClass:[NSURL class]]) {
+        viewType = ViewTypeLink;
+        NSURL* url = (NSURL*) valueObj;
+        viewText = [NSString stringWithFormat:@"%@", [url absoluteString]];
+    }
+    else if ([valueObj isKindOfClass:[NSData class]]) {
+        viewType = ViewTypeNumber;
+        viewText = [NSString stringWithFormat:@"%ld", [valueObj length]];
+    }
+    else if ([valueObj isKindOfClass:[NSManagedObject class]]) {
+        viewText = [NSString stringWithFormat:@"%@", [[valueObj entity] name]];
+    }
+    else if ([valueObj isKindOfClass:[NSSet class]]) {
+        if ([valueObj count] > 0) {
+            id obj = [valueObj anyObject];
+            if ([obj isKindOfClass:[NSManagedObject class]]) {
+                viewType = ViewTypeLink;
+                NSManagedObject* object = obj;
+                viewText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
+            } else {
+                viewText = [NSString stringWithFormat:@"%@", valueObj];
+            }
+        }
+    }
+    else if ([valueObj isKindOfClass:[NSArray class]]) {
+        if ([valueObj count] > 0) {
+            id obj = [valueObj firstItem];
+            if ([obj isKindOfClass:[NSManagedObject class]]) {
+                viewType = ViewTypeLink;
+                NSManagedObject* object = obj;
+                viewText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
+            } else {
+                viewText = [NSString stringWithFormat:@"%@", valueObj];
+            }
+        }
+    }
+    else if ([valueObj isKindOfClass:[NSOrderedSet class]]) {
+        if ([valueObj count] > 0) {
+            id obj = [valueObj firstObject];
+            if ([obj isKindOfClass:[NSManagedObject class]]) {
+                viewType = ViewTypeLink;
+                NSManagedObject* object = obj;
+                viewText = [NSString stringWithFormat:@"%@[%ld]", [[object entity] name], [valueObj count]];
+            } else {
+                viewText = [NSString stringWithFormat:@"%@", valueObj];
+            }
+        }
+    }
+    else if ([valueObj isKindOfClass:[NSDictionary class]]) {
+        viewType = ViewTypeTransformable;
+        viewText = [NSString stringWithFormat:@"%@", @"NSDictionary Data"];
+    }
+    else {
+        NSLog(@"Unknown content: %@", valueObj);
+        viewText = [NSString stringWithFormat:@"??? %@ ???", [valueObj class]];
+    }
+
+    // cache text and type
+    if (columnMap == nil) {
+        columnMap = [NSMutableDictionary new];
+        self.cachedRows[@(row)] = columnMap;
+    }
+    ViewData *viewData = [ViewData new];
+    viewData.text = viewText;
+    viewData.viewType = viewType;
+    columnMap[tableColumn.identifier] = viewData;
+
+    // create cell from text and type
+    return [self createCell:viewText withType:viewType];
+}
+
+- (NSTableCellView *)createCell:(NSString *)text withType:(EViewType)type {
+    // using different identifiers for view types to minimize changes to a cells layout for reuse
+    NSString *identifier;
+    if (type == ViewTypeLink) {
+        identifier = @"LINK";
+    }
+    else if (type == ViewTypeTransformable) {
+        identifier = @"TRANSFORM";
+    }
+    else {
+        identifier = @"TEXT";
+    }
+    MFLTextTableCellView *textCell = [self.entityContentTable makeViewWithIdentifier:identifier owner:self];
+    if (textCell == nil) {
+        NSLog(@"creating: %d", (int)type);
+        textCell = [MFLTextTableCellView new];
+        textCell.identifier = identifier;
+        textCell.wantsLayer = YES;
+    }
+
+    textCell.viewType = type;
+    textCell.text = text;
+
+    return textCell;
 }
 
 - (void)setupDateFormatter {
     if (self.dateFormatter == nil) {
         self.dateFormatter = [[NSDateFormatter alloc] init];
-    }
-    switch (self.dateStyle) {
-        case NSDateFormatterShortStyle:
-            [self.dateFormatter setDateFormat:@"M/d/YY h:mm a"];
-            break;
-        case NSDateFormatterMediumStyle:
-            [self.dateFormatter setDateFormat:@"MM/dd/YY hh:mm a"];
-            break;
-        default:
-            // use original formatting
-            [self.dateFormatter setDateStyle:self.dateStyle];
-            [self.dateFormatter setTimeStyle:self.dateStyle];
-            break;
+        switch (self.dateStyle) {
+            case NSDateFormatterShortStyle:
+                [self.dateFormatter setDateFormat:@"M/d/YY h:mm a"];
+                break;
+            case NSDateFormatterMediumStyle:
+                [self.dateFormatter setDateFormat:@"MM/dd/YY hh:mm a"];
+                break;
+            default:
+                // use original formatting
+                [self.dateFormatter setDateStyle:self.dateStyle];
+                [self.dateFormatter setTimeStyle:self.dateStyle];
+                break;
+        }
     }
 }
 
@@ -1131,6 +1113,11 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setInteger:self.dateStyle forKey:DATE_STYLE_KEY_NAME];
+
+    // clear cache
+    [self.cachedRows removeAllObjects];
+
+    self.dateFormatter = nil;
     
     if (self.entityContentTable != nil) {
         [self.entityContentTable reloadData];

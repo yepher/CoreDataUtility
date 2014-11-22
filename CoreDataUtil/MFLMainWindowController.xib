@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -164,23 +164,14 @@
                                                             </customCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
-                                                                <tableCellView identifier="MFLButtonTableViewCell" wantsLayer="YES" id="30" userLabel="MFLButtonTableViewCell" customClass="MFLButtonTableViewCell">
+                                                                <tableCellView identifier="LINK" wantsLayer="YES" id="30" userLabel="MFLButtonTableViewCell" customClass="MFLTextTableCellView">
                                                                     <rect key="frame" x="1" y="1" width="125.5" height="24"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="32">
-                                                                            <rect key="frame" x="0.0" y="4" width="109" height="17"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" userInterfaceLayoutDirection="rightToLeft" alignment="right" title="Value" id="35">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
                                                                         <button id="33">
                                                                             <rect key="frame" x="107" y="3" width="16" height="18"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="only" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="34">
+                                                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSFollowLinkFreestandingTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="34">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="system"/>
                                                                             </buttonCell>
@@ -189,10 +180,6 @@
                                                                             </connections>
                                                                         </button>
                                                                     </subviews>
-                                                                    <connections>
-                                                                        <outlet property="infoField" destination="32" id="51"/>
-                                                                        <outlet property="textField" destination="32" id="50"/>
-                                                                    </connections>
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
@@ -209,23 +196,11 @@
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
-                                                                <tableCellView identifier="MFLTextTableViewCell" wantsLayer="YES" id="36" userLabel="MFLTextTableViewCell" customClass="MFLTextTableCellView">
+                                                                <tableCellView identifier="TEXT" wantsLayer="YES" id="36" userLabel="MFLTextTableViewCell" customClass="MFLTextTableCellView">
                                                                     <rect key="frame" x="130" y="1" width="97.5" height="24"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="38">
-                                                                            <rect key="frame" x="0.0" y="4" width="98" height="17"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Value" id="39">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                    </subviews>
                                                                     <connections>
-                                                                        <outlet property="infoField" destination="38" id="52"/>
-                                                                        <outlet property="textField" destination="38" id="53"/>
+                                                                        <outlet property="cellButton" destination="33" id="aGb-lk-PwL"/>
                                                                     </connections>
                                                                 </tableCellView>
                                                             </prototypeCellViews>
@@ -241,19 +216,10 @@
                                                             </customCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
-                                                                <tableCellView identifier="TransformableDataTableViewCell" wantsLayer="YES" id="BVB-Xy-e0g" userLabel="TransformableDataTableViewCell" customClass="TransformableDataTableViewCell">
+                                                                <tableCellView identifier="TRANSFORM" wantsLayer="YES" id="BVB-Xy-e0g" userLabel="TransformableDataTableViewCell" customClass="MFLTextTableCellView">
                                                                     <rect key="frame" x="231" y="1" width="354" height="24"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField wantsLayer="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="b2x-JR-Ssu">
-                                                                            <rect key="frame" x="0.0" y="4" width="337" height="17"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" userInterfaceLayoutDirection="rightToLeft" alignment="right" title="Value" id="DUh-iU-ixd">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
                                                                         <button id="mJK-WD-ffl">
                                                                             <rect key="frame" x="335" y="3" width="16" height="18"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
@@ -266,10 +232,6 @@
                                                                             </connections>
                                                                         </button>
                                                                     </subviews>
-                                                                    <connections>
-                                                                        <outlet property="infoField" destination="b2x-JR-Ssu" id="3Sk-UR-9kc"/>
-                                                                        <outlet property="textField" destination="b2x-JR-Ssu" id="eB5-rr-Ruu"/>
-                                                                    </connections>
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
@@ -286,7 +248,7 @@
                                             <rect key="frame" x="1" y="510" width="587" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="24">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="24">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>

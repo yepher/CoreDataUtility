@@ -21,7 +21,6 @@
 		830D04EE1598CC4D003874CA /* MFLMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 830D04EC1598CC4D003874CA /* MFLMainWindowController.xib */; };
 		832C9696159BD69E00AC8FA8 /* CoreData.ext in Resources */ = {isa = PBXBuildFile; fileRef = 832C9695159BD69E00AC8FA8 /* CoreData.ext */; };
 		832C969B159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */; };
-		833DF7F31593556000793430 /* MFLButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7F21593556000793430 /* MFLButtonTableViewCell.m */; };
 		833DF7FB1593718600793430 /* MFLTextTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7FA1593718600793430 /* MFLTextTableCellView.m */; };
 		833DF7FE1593836600793430 /* MFLEntityTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 833DF7FD1593836600793430 /* MFLEntityTableCellView.m */; };
 		833FF6FD187860F1003ADCEA /* MFLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 833FF6FC187860F1003ADCEA /* MFLConstants.m */; };
@@ -29,13 +28,11 @@
 		8359411F159217770045B287 /* refreshButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8359411E159217770045B287 /* refreshButton.png */; };
 		835941221592351D0045B287 /* MFLCoreDataCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 835941211592351D0045B287 /* MFLCoreDataCommon.m */; };
 		83656E6619378FB7003D0E74 /* CoreDataUtilityStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83656E6519378FB7003D0E74 /* CoreDataUtilityStyle.m */; };
-		83656E6919379D0C003D0E74 /* TransformableDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83656E6819379D0C003D0E74 /* TransformableDataTableViewCell.m */; };
 		83656E6E1937A73B003D0E74 /* ObjectInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83656E6C1937A73B003D0E74 /* ObjectInfoController.m */; };
 		83656E6F1937A73B003D0E74 /* ObjectInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83656E6D1937A73B003D0E74 /* ObjectInfoController.xib */; };
 		837C067B1A0E646600F4D5D4 /* MFLBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C067A1A0E646600F4D5D4 /* MFLBuild.m */; };
 		838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */; };
 		838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */; };
-		83922D381598F264004C273C /* MFLCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83922D371598F264004C273C /* MFLCellBuilder.m */; };
 		83AE7D3019FF1AB400DD152B /* SimulatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE7D2F19FF1AB400DD152B /* SimulatorItem.m */; };
 		83AE7D3219FF1CE900DD152B /* simulatorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 83AE7D3119FF1CE900DD152B /* simulatorIcon.png */; };
 		83B158FD158F6AE2002B46C2 /* MFLCoreDataIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B158FC158F6AE2002B46C2 /* MFLCoreDataIntrospection.m */; };
@@ -119,8 +116,6 @@
 		832C9695159BD69E00AC8FA8 /* CoreData.ext */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CoreData.ext; sourceTree = "<group>"; };
 		832C9699159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCoreDataEditorProjectLoader.h; sourceTree = "<group>"; };
 		832C969A159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCoreDataEditorProjectLoader.m; sourceTree = "<group>"; };
-		833DF7F11593556000793430 /* MFLButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLButtonTableViewCell.h; sourceTree = "<group>"; };
-		833DF7F21593556000793430 /* MFLButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLButtonTableViewCell.m; sourceTree = "<group>"; };
 		833DF7F91593718600793430 /* MFLTextTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLTextTableCellView.h; sourceTree = "<group>"; };
 		833DF7FA1593718600793430 /* MFLTextTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLTextTableCellView.m; sourceTree = "<group>"; };
 		833DF7FC1593836600793430 /* MFLEntityTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLEntityTableCellView.h; sourceTree = "<group>"; };
@@ -133,8 +128,6 @@
 		835941211592351D0045B287 /* MFLCoreDataCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCoreDataCommon.m; sourceTree = "<group>"; };
 		83656E6419378FB7003D0E74 /* CoreDataUtilityStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUtilityStyle.h; sourceTree = "<group>"; };
 		83656E6519378FB7003D0E74 /* CoreDataUtilityStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtilityStyle.m; sourceTree = "<group>"; };
-		83656E6719379D0C003D0E74 /* TransformableDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformableDataTableViewCell.h; sourceTree = "<group>"; };
-		83656E6819379D0C003D0E74 /* TransformableDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformableDataTableViewCell.m; sourceTree = "<group>"; };
 		83656E6B1937A73B003D0E74 /* ObjectInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectInfoController.h; sourceTree = "<group>"; };
 		83656E6C1937A73B003D0E74 /* ObjectInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectInfoController.m; sourceTree = "<group>"; };
 		83656E6D1937A73B003D0E74 /* ObjectInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObjectInfoController.xib; sourceTree = "<group>"; };
@@ -142,8 +135,6 @@
 		837C067A1A0E646600F4D5D4 /* MFLBuild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLBuild.m; sourceTree = "<group>"; };
 		838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-CDP.icns"; sourceTree = "<group>"; };
 		838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-MOM.icns"; sourceTree = "<group>"; };
-		83922D361598F264004C273C /* MFLCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLCellBuilder.h; sourceTree = "<group>"; };
-		83922D371598F264004C273C /* MFLCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLCellBuilder.m; sourceTree = "<group>"; };
 		83AE7D2E19FF1AB400DD152B /* SimulatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulatorItem.h; sourceTree = "<group>"; };
 		83AE7D2F19FF1AB400DD152B /* SimulatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulatorItem.m; sourceTree = "<group>"; };
 		83AE7D3119FF1CE900DD152B /* simulatorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simulatorIcon.png; sourceTree = "<group>"; };
@@ -282,16 +273,10 @@
 			children = (
 				5B330A6E1590CB1E00D79D4D /* EntityDataTableViewCell.h */,
 				5B330A6F1590CB1E00D79D4D /* EntityDataTableViewCell.m */,
-				833DF7F11593556000793430 /* MFLButtonTableViewCell.h */,
-				833DF7F21593556000793430 /* MFLButtonTableViewCell.m */,
-				83922D361598F264004C273C /* MFLCellBuilder.h */,
-				83922D371598F264004C273C /* MFLCellBuilder.m */,
 				833DF7FC1593836600793430 /* MFLEntityTableCellView.h */,
 				833DF7FD1593836600793430 /* MFLEntityTableCellView.m */,
 				833DF7F91593718600793430 /* MFLTextTableCellView.h */,
 				833DF7FA1593718600793430 /* MFLTextTableCellView.m */,
-				83656E6719379D0C003D0E74 /* TransformableDataTableViewCell.h */,
-				83656E6819379D0C003D0E74 /* TransformableDataTableViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -634,7 +619,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CEFE621463779D00466EB3 /* main.m in Sources */,
-				83656E6919379D0C003D0E74 /* TransformableDataTableViewCell.m in Sources */,
 				83656E6619378FB7003D0E74 /* CoreDataUtilityStyle.m in Sources */,
 				C1CEFE691463779D00466EB3 /* MFLAppDelegate.m in Sources */,
 				837C067B1A0E646600F4D5D4 /* MFLBuild.m in Sources */,
@@ -647,12 +631,10 @@
 				83B158FD158F6AE2002B46C2 /* MFLCoreDataIntrospection.m in Sources */,
 				5B330A701590CB1E00D79D4D /* EntityDataTableViewCell.m in Sources */,
 				835941221592351D0045B287 /* MFLCoreDataCommon.m in Sources */,
-				833DF7F31593556000793430 /* MFLButtonTableViewCell.m in Sources */,
 				833DF7FB1593718600793430 /* MFLTextTableCellView.m in Sources */,
 				83656E6E1937A73B003D0E74 /* ObjectInfoController.m in Sources */,
 				833DF7FE1593836600793430 /* MFLEntityTableCellView.m in Sources */,
 				830D04ED1598CC4D003874CA /* MFLMainWindowController.m in Sources */,
-				83922D381598F264004C273C /* MFLCellBuilder.m in Sources */,
 				832C969B159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.m in Sources */,
 				5B2BA5C4159C9FEB00AFEC9D /* CoreDataHistoryObject.m in Sources */,
 				833FF6FD187860F1003ADCEA /* MFLConstants.m in Sources */,
