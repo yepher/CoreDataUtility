@@ -7,9 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MFLMainWindowController.h"
 
 @interface MFLTextTableCellView : NSTableCellView
 
-@property (strong) IBOutlet NSTextField* infoField;
+@property (nonatomic) NSString *text;
+
+@property (nonatomic) EViewType viewType;
 
 @end

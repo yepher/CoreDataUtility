@@ -164,11 +164,11 @@
 
 - (IBAction) copyCell:(id)sender {
     MFLTextTableCellView *cell = [self viewAtColumn:rightClickedCol row:rightClickedRow makeIfNecessary:NO];
-    NSLog(@"copyCell: r:%d, c:%d, %@", (int)rightClickedRow, (int)rightClickedCol, cell.infoField.stringValue);
+    NSLog(@"copyCell: r:%d, c:%d, %@", (int)rightClickedRow, (int)rightClickedCol, cell.text);
 
     NSPasteboard *pb = [NSPasteboard generalPasteboard];
     [pb declareTypes:@[NSStringPboardType] owner:nil];
-    [pb setString:cell.infoField.stringValue forType:NSStringPboardType];
+    [pb setString:cell.text forType:NSStringPboardType];
 }
 
 @end
