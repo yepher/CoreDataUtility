@@ -1,5 +1,8 @@
 # CoreDataPro - CoreDataUtility
 
+You can find relases here: [releases]
+
+[releases]: https://github.com/yepher/CoreDataUtility/releases  "Applicaion Releases"
 
 CoreDataPro lets you view explore your datamodel and view data that your application has stored. I am looking forward to your feedback and help making this project more powerful and useful.
 
