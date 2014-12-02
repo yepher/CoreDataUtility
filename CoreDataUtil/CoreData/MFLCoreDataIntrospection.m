@@ -413,7 +413,7 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
 }
 
 - (NSArray*) getDataAtRow: (NSUInteger) row {
-    if (row >= 0 && row < [self entityDataCount]) {
+    if (row > 0 && row < [self entityDataCount]) {
         return (self.entityData)[row];
     }
     else {

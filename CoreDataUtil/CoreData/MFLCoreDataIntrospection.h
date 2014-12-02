@@ -63,7 +63,7 @@
 - (void) executeFetch: (NSFetchRequest *)fetch;
 
 - (void)sortEntityData:(NSString *)fieldName;
-+ (id)getDisplayValueForObject:(id)obj;
+//+ (id)getDisplayValueForObject:(id)obj;
 - (NSInteger)getCurrentHistoryIndex;
 - (void)setCurrentHistoryIndex:(NSInteger)currentIndex;
 - (void)updateCoreDataHistory:(NSString *)name predicate:(NSPredicate *)predicate objectType:(MFLObjectType)type;

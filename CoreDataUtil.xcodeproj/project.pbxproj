@@ -500,7 +500,7 @@
 				ORGANIZATIONNAME = "mFluent LLC";
 				TargetAttributes = {
 					C1CEFE501463779C00466EB3 = {
-						DevelopmentTeam = K386ENA6UZ;
+						DevelopmentTeam = WDCGJTU726;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
