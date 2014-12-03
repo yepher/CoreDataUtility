@@ -46,6 +46,7 @@ With the release of XCode 6 the simulator changes the name of the persistence st
 
 Add this code to your iOS application:
 
+### Objective C
 `````
 #if !(TARGET_OS_EMBEDDED)  // This will work for Mac or Simulator but excludes physical iOS devices
 - (void) createCoreDataDebugProjectWithType: (NSNumber*) storeFormat storeUrl:(NSString*) storeURL modelFilePath:(NSString*) modelFilePath {
@@ -64,10 +65,33 @@ Add this code to your iOS application:
 #endif
 `````
 
+### Swift
+
+`````
+#if !(TARGET_OS_EMBEDDED)
+    func createCoreDataDebugProjectWithType(storeFormat: NSNumber, storeURL: String, modelFilePath: String) {
+        
+        var project:NSDictionary = [
+            "storeFilePath": storeURL,
+            "storeFormat" : storeFormat,
+            "modelFilePath": modelFilePath,
+            "v" : "1"
+        ]
+        
+        var projectFile = "/tmp/\(NSBundle.mainBundle().infoDictionary![kCFBundleNameKey]!).cdp"
+        
+        project.writeToFile(projectFile, atomically: true)
+    }
+    
+    #endif
+`````
+
 Now call that code where you initialize your CoreData persistent store. 
 
 Something like this:
 
+
+### Objective C
 `````
 #if !(TARGET_OS_EMBEDDED)  // This will work for Mac or Simulator but excludes physical iOS devices
 #ifdef DEBUG
@@ -75,6 +99,19 @@ Something like this:
     [self createCoreDataDebugProjectWithType:@(1) storeUrl:[storeURL absoluteString] modelFilePath:[modelUrl absoluteString]];
 #endif
 #endif
+`````
+
+### Swift
+
+`````
+
+#if !(TARGET_OS_EMBEDDED)  // This will work for Mac or Simulator but excludes physical iOS devices
+#if DEBUG
+	// @(1) is NSSQLiteStoreType
+	createCoreDataDebugProjectWithType(1, storeURL: persistentStore!.URL!.absoluteString!, modelFilePath: modelUrl.absoluteString!)
+#endif
+#endif
+
 `````
 
 Now you can just open the /tmp/YourAppName.cdp file and it will open CoreDataUtility with your app's data loaded.
