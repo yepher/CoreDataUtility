@@ -17,6 +17,7 @@
 #import "FetchRequestInfoController.h"
 #import "ObjectInfoController.h"
 #import "MFLUtils.h"
+#import "NSDate+TimeAgo.h"
 
 // max length of text to display in cell
 static const int MAX_TEXT_LENGTH = 255;
@@ -452,7 +453,12 @@ static const int MAX_TEXT_LENGTH = 255;
     else if ([valueObj isKindOfClass:[NSDate class]]) {
         viewType = ViewTypeDate;
         [self setupDateFormatter];
-        viewText = [self.dateFormatter stringFromDate:valueObj];
+        if (self.dateStyle == NSDateFormatterShortStyle) {
+            viewText = [valueObj timeAgo];
+
+        } else {
+            viewText = [self.dateFormatter stringFromDate:valueObj];
+        }
     }
     else if ([valueObj isKindOfClass:[NSURL class]]) {
         viewType = ViewTypeLink;

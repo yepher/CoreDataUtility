@@ -30,6 +30,12 @@
 		83656E6619378FB7003D0E74 /* CoreDataUtilityStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 83656E6519378FB7003D0E74 /* CoreDataUtilityStyle.m */; };
 		83656E6E1937A73B003D0E74 /* ObjectInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83656E6C1937A73B003D0E74 /* ObjectInfoController.m */; };
 		83656E6F1937A73B003D0E74 /* ObjectInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83656E6D1937A73B003D0E74 /* ObjectInfoController.xib */; };
+		8373BBB41A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373BBB21A3740B3009E0297 /* NSDate+TimeAgo.m */; };
+		8373BBB51A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373BBB21A3740B3009E0297 /* NSDate+TimeAgo.m */; };
+		8373BBB61A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373BBB21A3740B3009E0297 /* NSDate+TimeAgo.m */; };
+		8373BBB71A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8373BBB31A3740B3009E0297 /* NSDateTimeAgo.bundle */; };
+		8373BBB81A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8373BBB31A3740B3009E0297 /* NSDateTimeAgo.bundle */; };
+		8373BBB91A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8373BBB31A3740B3009E0297 /* NSDateTimeAgo.bundle */; };
 		837C067B1A0E646600F4D5D4 /* MFLBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C067A1A0E646600F4D5D4 /* MFLBuild.m */; };
 		838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */; };
 		838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */; };
@@ -131,6 +137,9 @@
 		83656E6B1937A73B003D0E74 /* ObjectInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectInfoController.h; sourceTree = "<group>"; };
 		83656E6C1937A73B003D0E74 /* ObjectInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectInfoController.m; sourceTree = "<group>"; };
 		83656E6D1937A73B003D0E74 /* ObjectInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObjectInfoController.xib; sourceTree = "<group>"; };
+		8373BBB11A3740B3009E0297 /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
+		8373BBB21A3740B3009E0297 /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
+		8373BBB31A3740B3009E0297 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
 		837C06791A0E646600F4D5D4 /* MFLBuild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MFLBuild.h; sourceTree = "<group>"; };
 		837C067A1A0E646600F4D5D4 /* MFLBuild.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MFLBuild.m; sourceTree = "<group>"; };
 		838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "ApplicationIcon-CDP.icns"; sourceTree = "<group>"; };
@@ -214,6 +223,7 @@
 		832C9698159BDB8600AC8FA8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8373BBAF1A37408D009E0297 /* extensions */,
 				833FF6FB187860F1003ADCEA /* MFLConstants.h */,
 				833FF6FC187860F1003ADCEA /* MFLConstants.m */,
 				832C9699159BDBB000AC8FA8 /* MFLCoreDataEditorProjectLoader.h */,
@@ -257,6 +267,24 @@
 				5B2E2AA51565A8AC00F6F6EA /* OpenFileSheetController.xib */,
 			);
 			name = windows;
+			sourceTree = "<group>";
+		};
+		8373BBAF1A37408D009E0297 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8373BBB01A3740B3009E0297 /* timeago */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		8373BBB01A3740B3009E0297 /* timeago */ = {
+			isa = PBXGroup;
+			children = (
+				8373BBB11A3740B3009E0297 /* NSDate+TimeAgo.h */,
+				8373BBB21A3740B3009E0297 /* NSDate+TimeAgo.m */,
+				8373BBB31A3740B3009E0297 /* NSDateTimeAgo.bundle */,
+			);
+			path = timeago;
 			sourceTree = "<group>";
 		};
 		83AE7D2D19FF1A9500DD152B /* simulator */ = {
@@ -534,6 +562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CEFE601463779D00466EB3 /* InfoPlist.strings in Resources */,
+				8373BBB71A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */,
 				C1CEFE661463779D00466EB3 /* Credits.rtf in Resources */,
 				C1CEFE6C1463779D00466EB3 /* MainMenu.xib in Resources */,
 				C1CEFE8B1463779D00466EB3 /* CoreDataUtilImporter.mdimporter in Resources */,
@@ -556,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CEFE801463779D00466EB3 /* InfoPlist.strings in Resources */,
+				8373BBB81A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CEFE991463779D00466EB3 /* InfoPlist.strings in Resources */,
+				8373BBB91A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +659,7 @@
 				5BE26B63157FE8EE00DC186E /* EntityTableView.m in Sources */,
 				83AE7D3019FF1AB400DD152B /* SimulatorItem.m in Sources */,
 				5BE26B67157FF22700DC186E /* EntityDataTableView.m in Sources */,
+				8373BBB41A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */,
 				83B158FD158F6AE2002B46C2 /* MFLCoreDataIntrospection.m in Sources */,
 				5B330A701590CB1E00D79D4D /* EntityDataTableViewCell.m in Sources */,
 				835941221592351D0045B287 /* MFLCoreDataCommon.m in Sources */,
@@ -648,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CEFE831463779D00466EB3 /* CoreDataUtilTests.m in Sources */,
+				8373BBB51A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +691,7 @@
 				C1CEFE9B1463779D00466EB3 /* main.c in Sources */,
 				C1CEFE9D1463779D00466EB3 /* GetMetadataForFile.m in Sources */,
 				C1CEFEA01463779D00466EB3 /* MySpotlightImporter.m in Sources */,
+				8373BBB61A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
