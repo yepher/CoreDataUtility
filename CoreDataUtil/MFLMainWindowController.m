@@ -766,7 +766,7 @@ static const int MAX_TEXT_LENGTH = 255;
         }
     }
 
-    BOOL isOk = [self openFiles:momUrl persistenceFile:dbUrl persistenceType:persistenceFormat];
+    BOOL isOk = [self openFiles:momUrl persistenceFile:dbUrl persistenceType:[persistenceFormat integerValue] ];
     if (isOk) {
         self.projectFile = filename;
     }

@@ -31,11 +31,7 @@
 		83656E6E1937A73B003D0E74 /* ObjectInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83656E6C1937A73B003D0E74 /* ObjectInfoController.m */; };
 		83656E6F1937A73B003D0E74 /* ObjectInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83656E6D1937A73B003D0E74 /* ObjectInfoController.xib */; };
 		8373BBB41A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373BBB21A3740B3009E0297 /* NSDate+TimeAgo.m */; };
-		8373BBB51A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373BBB21A3740B3009E0297 /* NSDate+TimeAgo.m */; };
-		8373BBB61A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8373BBB21A3740B3009E0297 /* NSDate+TimeAgo.m */; };
 		8373BBB71A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8373BBB31A3740B3009E0297 /* NSDateTimeAgo.bundle */; };
-		8373BBB81A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8373BBB31A3740B3009E0297 /* NSDateTimeAgo.bundle */; };
-		8373BBB91A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8373BBB31A3740B3009E0297 /* NSDateTimeAgo.bundle */; };
 		837C067B1A0E646600F4D5D4 /* MFLBuild.m in Sources */ = {isa = PBXBuildFile; fileRef = 837C067A1A0E646600F4D5D4 /* MFLBuild.m */; };
 		838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C715A3A67200D050E7 /* ApplicationIcon-CDP.icns */; };
 		838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */ = {isa = PBXBuildFile; fileRef = 838055C815A3A67200D050E7 /* ApplicationIcon-MOM.icns */; };
@@ -50,39 +46,8 @@
 		C1CEFE691463779D00466EB3 /* MFLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE681463779D00466EB3 /* MFLAppDelegate.m */; };
 		C1CEFE6C1463779D00466EB3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1CEFE6A1463779D00466EB3 /* MainMenu.xib */; };
 		C1CEFE6F1463779D00466EB3 /* CoreDataUtil.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE6D1463779D00466EB3 /* CoreDataUtil.xcdatamodeld */; };
-		C1CEFE771463779D00466EB3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CEFE761463779D00466EB3 /* SenTestingKit.framework */; };
-		C1CEFE781463779D00466EB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CEFE551463779D00466EB3 /* Cocoa.framework */; };
-		C1CEFE801463779D00466EB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1CEFE7E1463779D00466EB3 /* InfoPlist.strings */; };
-		C1CEFE831463779D00466EB3 /* CoreDataUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE821463779D00466EB3 /* CoreDataUtilTests.m */; };
-		C1CEFE8B1463779D00466EB3 /* CoreDataUtilImporter.mdimporter in Resources */ = {isa = PBXBuildFile; fileRef = C1CEFE881463779D00466EB3 /* CoreDataUtilImporter.mdimporter */; };
-		C1CEFE8D1463779D00466EB3 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CEFE8C1463779D00466EB3 /* CoreServices.framework */; };
-		C1CEFE8F1463779D00466EB3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CEFE8E1463779D00466EB3 /* CoreFoundation.framework */; };
-		C1CEFE911463779D00466EB3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CEFE901463779D00466EB3 /* CoreData.framework */; };
-		C1CEFE931463779D00466EB3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CEFE921463779D00466EB3 /* Foundation.framework */; };
-		C1CEFE991463779D00466EB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1CEFE971463779D00466EB3 /* InfoPlist.strings */; };
-		C1CEFE9B1463779D00466EB3 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE9A1463779D00466EB3 /* main.c */; };
-		C1CEFE9D1463779D00466EB3 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE9C1463779D00466EB3 /* GetMetadataForFile.m */; };
-		C1CEFEA01463779D00466EB3 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1CEFE9F1463779D00466EB3 /* MySpotlightImporter.m */; };
 		DB2F1D8D1A13D0470021E081 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2F1D8C1A13D0470021E081 /* QuartzCore.framework */; };
-		DB4F5F561A1257D300ED506D /* CoreDataPro.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1CEFE511463779C00466EB3 /* CoreDataPro.app */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C1CEFE791463779D00466EB3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1CEFE481463779C00466EB3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C1CEFE501463779C00466EB3;
-			remoteInfo = CoreDataUtil;
-		};
-		C1CEFE891463779D00466EB3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C1CEFE481463779C00466EB3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C1CEFE871463779D00466EB3;
-			remoteInfo = CoreDataUtilImporter;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		DB4F5F551A1257C700ED506D /* CopyFiles */ = {
@@ -91,7 +56,6 @@
 			dstPath = /Applications;
 			dstSubfolderSpec = 0;
 			files = (
-				DB4F5F561A1257D300ED506D /* CoreDataPro.app in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,13 +129,11 @@
 		C1CEFE681463779D00466EB3 /* MFLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MFLAppDelegate.m; sourceTree = "<group>"; };
 		C1CEFE6B1463779D00466EB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C1CEFE6E1463779D00466EB3 /* CoreDataUtil.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataUtil.xcdatamodel; sourceTree = "<group>"; };
-		C1CEFE751463779D00466EB3 /* CoreDataUtilTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataUtilTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CEFE761463779D00466EB3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		C1CEFE7D1463779D00466EB3 /* CoreDataUtilTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreDataUtilTests-Info.plist"; sourceTree = "<group>"; };
 		C1CEFE7F1463779D00466EB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C1CEFE811463779D00466EB3 /* CoreDataUtilTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataUtilTests.h; sourceTree = "<group>"; };
 		C1CEFE821463779D00466EB3 /* CoreDataUtilTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataUtilTests.m; sourceTree = "<group>"; };
-		C1CEFE881463779D00466EB3 /* CoreDataUtilImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataUtilImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1CEFE8C1463779D00466EB3 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		C1CEFE8E1463779D00466EB3 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		C1CEFE901463779D00466EB3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -194,26 +156,6 @@
 			files = (
 				DB2F1D8D1A13D0470021E081 /* QuartzCore.framework in Frameworks */,
 				C1CEFE561463779D00466EB3 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C1CEFE711463779D00466EB3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1CEFE771463779D00466EB3 /* SenTestingKit.framework in Frameworks */,
-				C1CEFE781463779D00466EB3 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C1CEFE851463779D00466EB3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1CEFE8D1463779D00466EB3 /* CoreServices.framework in Frameworks */,
-				C1CEFE8F1463779D00466EB3 /* CoreFoundation.framework in Frameworks */,
-				C1CEFE911463779D00466EB3 /* CoreData.framework in Frameworks */,
-				C1CEFE931463779D00466EB3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,8 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				C1CEFE511463779C00466EB3 /* CoreDataPro.app */,
-				C1CEFE751463779D00466EB3 /* CoreDataUtilTests.octest */,
-				C1CEFE881463779D00466EB3 /* CoreDataUtilImporter.mdimporter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -474,48 +414,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				C1CEFE8A1463779D00466EB3 /* PBXTargetDependency */,
 			);
 			name = CoreDataUtil;
 			productName = CoreDataUtil;
 			productReference = C1CEFE511463779C00466EB3 /* CoreDataPro.app */;
 			productType = "com.apple.product-type.application";
-		};
-		C1CEFE741463779D00466EB3 /* CoreDataUtilTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C1CEFEAB1463779D00466EB3 /* Build configuration list for PBXNativeTarget "CoreDataUtilTests" */;
-			buildPhases = (
-				C1CEFE701463779D00466EB3 /* Sources */,
-				C1CEFE711463779D00466EB3 /* Frameworks */,
-				C1CEFE721463779D00466EB3 /* Resources */,
-				C1CEFE731463779D00466EB3 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C1CEFE7A1463779D00466EB3 /* PBXTargetDependency */,
-			);
-			name = CoreDataUtilTests;
-			productName = CoreDataUtilTests;
-			productReference = C1CEFE751463779D00466EB3 /* CoreDataUtilTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
-		};
-		C1CEFE871463779D00466EB3 /* CoreDataUtilImporter */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C1CEFEA51463779D00466EB3 /* Build configuration list for PBXNativeTarget "CoreDataUtilImporter" */;
-			buildPhases = (
-				C1CEFE841463779D00466EB3 /* Sources */,
-				C1CEFE851463779D00466EB3 /* Frameworks */,
-				C1CEFE861463779D00466EB3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CoreDataUtilImporter;
-			productName = CoreDataUtilImporter;
-			productReference = C1CEFE881463779D00466EB3 /* CoreDataUtilImporter.mdimporter */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -523,7 +426,7 @@
 		C1CEFE481463779C00466EB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastTestingUpgradeCheck = 0600;
+				LastTestingUpgradeCheck = 0620;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "mFluent LLC";
 				TargetAttributes = {
@@ -550,8 +453,6 @@
 			projectRoot = "";
 			targets = (
 				C1CEFE501463779C00466EB3 /* CoreDataUtil */,
-				C1CEFE741463779D00466EB3 /* CoreDataUtilTests */,
-				C1CEFE871463779D00466EB3 /* CoreDataUtilImporter */,
 			);
 		};
 /* End PBXProject section */
@@ -565,7 +466,6 @@
 				8373BBB71A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */,
 				C1CEFE661463779D00466EB3 /* Credits.rtf in Resources */,
 				C1CEFE6C1463779D00466EB3 /* MainMenu.xib in Resources */,
-				C1CEFE8B1463779D00466EB3 /* CoreDataUtilImporter.mdimporter in Resources */,
 				5B2E2AA71565A8AC00F6F6EA /* OpenFileSheetController.xib in Resources */,
 				834D1481156B52ED00317376 /* ApplicationIcon.icns in Resources */,
 				5B2AEF1C1576B67600DFD0D6 /* GetInfoSheetController.xib in Resources */,
@@ -577,24 +477,6 @@
 				838055C915A3A67200D050E7 /* ApplicationIcon-CDP.icns in Resources */,
 				838055CA15A3A67200D050E7 /* ApplicationIcon-MOM.icns in Resources */,
 				1D52574716EB66F200A91244 /* FetchRequestInfoController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C1CEFE721463779D00466EB3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1CEFE801463779D00466EB3 /* InfoPlist.strings in Resources */,
-				8373BBB81A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C1CEFE861463779D00466EB3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1CEFE991463779D00466EB3 /* InfoPlist.strings in Resources */,
-				8373BBB91A3740B3009E0297 /* NSDateTimeAgo.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,19 +511,6 @@
 			shellPath = /bin/sh;
 			shellScript = "git checkout \"$SRCROOT/CoreDataUtil/MFLBuild.m\"";
 		};
-		C1CEFE731463779D00466EB3 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -675,40 +544,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C1CEFE701463779D00466EB3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1CEFE831463779D00466EB3 /* CoreDataUtilTests.m in Sources */,
-				8373BBB51A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C1CEFE841463779D00466EB3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1CEFE9B1463779D00466EB3 /* main.c in Sources */,
-				C1CEFE9D1463779D00466EB3 /* GetMetadataForFile.m in Sources */,
-				C1CEFEA01463779D00466EB3 /* MySpotlightImporter.m in Sources */,
-				8373BBB61A3740B3009E0297 /* NSDate+TimeAgo.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C1CEFE7A1463779D00466EB3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C1CEFE501463779C00466EB3 /* CoreDataUtil */;
-			targetProxy = C1CEFE791463779D00466EB3 /* PBXContainerItemProxy */;
-		};
-		C1CEFE8A1463779D00466EB3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C1CEFE871463779D00466EB3 /* CoreDataUtilImporter */;
-			targetProxy = C1CEFE891463779D00466EB3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C1CEFE5E1463779D00466EB3 /* InfoPlist.strings */ = {
@@ -787,7 +623,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -821,43 +657,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		C1CEFEA61463779D00466EB3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CoreDataUtilImporter/CoreDataUtilImporter-Prefix.pch";
-				INFOPLIST_FILE = "CoreDataUtilImporter/CoreDataUtilImporter-Info.plist";
-				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = mdimporter;
-			};
-			name = Debug;
-		};
-		C1CEFEA71463779D00466EB3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CoreDataUtilImporter/CoreDataUtilImporter-Prefix.pch";
-				INFOPLIST_FILE = "CoreDataUtilImporter/CoreDataUtilImporter-Info.plist";
-				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				WRAPPER_EXTENSION = mdimporter;
 			};
 			name = Release;
 		};
@@ -893,38 +695,6 @@
 			};
 			name = Release;
 		};
-		C1CEFEAC1463779D00466EB3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CoreDataUtil.app/Contents/MacOS/CoreDataUtil";
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CoreDataUtil/CoreDataUtil-Prefix.pch";
-				INFOPLIST_FILE = "CoreDataUtilTests/CoreDataUtilTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		C1CEFEAD1463779D00466EB3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CoreDataUtil.app/Contents/MacOS/CoreDataUtil";
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CoreDataUtil/CoreDataUtil-Prefix.pch";
-				INFOPLIST_FILE = "CoreDataUtilTests/CoreDataUtilTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -937,29 +707,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1CEFEA51463779D00466EB3 /* Build configuration list for PBXNativeTarget "CoreDataUtilImporter" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C1CEFEA61463779D00466EB3 /* Debug */,
-				C1CEFEA71463779D00466EB3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C1CEFEA81463779D00466EB3 /* Build configuration list for PBXNativeTarget "CoreDataUtil" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1CEFEA91463779D00466EB3 /* Debug */,
 				C1CEFEAA1463779D00466EB3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C1CEFEAB1463779D00466EB3 /* Build configuration list for PBXNativeTarget "CoreDataUtilTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C1CEFEAC1463779D00466EB3 /* Debug */,
-				C1CEFEAD1463779D00466EB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

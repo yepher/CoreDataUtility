@@ -225,7 +225,7 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
 }
 
 - (void) applyPredicate: (NSString*) entityName predicate:(NSPredicate*) predicate {
-    
+    NSLog(@"%s - %@: '%@'", __PRETTY_FUNCTION__, entityName, predicate);
     self.entityData = [self fetchObjectsByEntityName:entityName: predicate];
 }
 
@@ -413,7 +413,7 @@ NSInteger const CORE_DATA_HISTORY_MAX = 100;
 }
 
 - (NSArray*) getDataAtRow: (NSUInteger) row {
-    if (row > 0 && row < [self entityDataCount]) {
+    if (row < [self entityDataCount]) {
         return (self.entityData)[row];
     }
     else {
