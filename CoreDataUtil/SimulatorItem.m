@@ -273,7 +273,21 @@ static SimulatorItem *rootItem = nil;
                 break;
             }
             case MFLSimulatorItem: {
-                return [self.simInfo valueForKey:@"name"];
+                NSString* name = [self.simInfo valueForKey:@"name"];
+                NSString* runTime = [self.simInfo valueForKey:@"runtime"];
+                if (runTime == nil || runTime.length == 0) {
+                    runTime = @"unknown";
+                } else {
+                    runTime = [[runTime componentsSeparatedByString:@"."] lastObject];
+                    runTime = [runTime stringByReplacingOccurrencesOfString:@"-" withString:@"."];
+                }
+                
+                NSString* label = [NSString stringWithFormat:@"%@ (%@)", name, runTime];
+                if ([[self children] count] > 0) {
+                    label = [NSString stringWithFormat:@"%@ - %ld %@", label, [[self children] count], [[self children] count] == 1 ? @"app" : @"apps"];
+                }
+                
+                return label; //[self.simInfo valueForKey:@"name"];
                 break;
             }
             case MFLAppItem: {
