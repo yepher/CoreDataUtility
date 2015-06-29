@@ -71,14 +71,14 @@ Add this code to your iOS application:
 #if !(TARGET_OS_EMBEDDED)
     func createCoreDataDebugProjectWithType(storeFormat: NSNumber, storeURL: String, modelFilePath: String) {
         
-        var project:NSDictionary = [
+        let project:NSDictionary = [
             "storeFilePath": storeURL,
             "storeFormat" : storeFormat,
             "modelFilePath": modelFilePath,
             "v" : "1"
         ]
         
-        var projectFile = "/tmp/\(NSBundle.mainBundle().infoDictionary![kCFBundleNameKey]!).cdp"
+        let projectFile = "/tmp/\(NSBundle.mainBundle().infoDictionary![kCFBundleNameKey as String]!).cdp"
         
         project.writeToFile(projectFile, atomically: true)
     }
