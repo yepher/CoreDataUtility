@@ -83,7 +83,7 @@ Add this code to your iOS application:
         project.writeToFile(projectFile, atomically: true)
     }
     
-    #endif
+#endif
 `````
 
 Now call that code where you initialize your CoreData persistent store. 
